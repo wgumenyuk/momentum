@@ -1,0 +1,20 @@
+{
+  "name": "@momentum/server",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "build/index.js",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf build",
+    "build": "rimraf build && swc --ignore **/*.d.ts --strip-leading-paths -d build src && tsc-alias -f"
+  },
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "^1.4.17",
+    "@types/node": "^20.12.7",
+    "rimraf": "^5.0.5",
+    "tsc-alias": "^1.8.8"
+  }
+}
