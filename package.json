@@ -3,6 +3,13 @@
   "version": "1.0.0",
   "type": "module",
   "private": true,
-  "scripts": {},
-  "license": "GPL-3.0-only"
+  "scripts": {
+    "prepare": "husky"
+  },
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
+    "husky": "^9.0.11"
+  }
 }
