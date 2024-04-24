@@ -6,7 +6,9 @@
     "outDir": "build",
     "baseUrl": "src",
     "paths": {
-      "$internal/*": ["internal/*"]  // path needs to be adjusted
+      "$internal/*": [
+        "internal/*"
+      ]
     },
     "esModuleInterop": true,
     "noEmit": true,
