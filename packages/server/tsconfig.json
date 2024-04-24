@@ -5,7 +5,9 @@
     "moduleResolution": "bundler",
     "outDir": "build",
     "baseUrl": "src",
-    "paths": {},
+    "paths": {
+      "$internal/*": ["internal/*"]  // path needs to be adjusted
+    },
     "esModuleInterop": true,
     "noEmit": true,
     "skipLibCheck": true,
