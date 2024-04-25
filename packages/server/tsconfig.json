@@ -9,11 +9,14 @@
       "$api/*": [
         "api/*"
       ],
+      "$internal/*": [
+        "internal/*"
+      ],
       "$models/*": [
         "models/*"
       ],
-      "$internal/*": [
-        "internal/*"
+      "$services/*": [
+        "services/*"
       ]
     },
     "esModuleInterop": true,
