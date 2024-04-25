@@ -9,6 +9,9 @@
       "$api/*": [
         "api/*"
       ],
+      "$models/*": [
+        "models/*"
+      ],
       "$internal/*": [
         "internal/*"
       ]
