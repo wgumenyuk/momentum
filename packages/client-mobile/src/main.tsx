@@ -1,31 +1,30 @@
-import React, { useState } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
 import LoginPage from "pages/login";
 import Button from "$components/button/button";
+import Header from "$components/header/header";
 
 // CSS
 import "./index.css";
-import Header from "$components/header/header";
-
 
 const root = document.getElementById("root")!;
 
 const App: React.FC = () => {
-  const [showLoginPage, setShowLoginPage] = useState(false);
-
-  const showLoginPageHandler = () => {
-    setShowLoginPage(true);
+  const handleLoginClick = () => {
+    createRoot(root).render(
+      <React.StrictMode>
+        <Header />
+        <LoginPage />
+      </React.StrictMode>
+    );
   };
 
   return (
     <React.StrictMode>
       <Header />
-      {showLoginPage && <LoginPage />}
-      {!showLoginPage && (
-        <div className="flex justify-center mt-4">
-          <Button onClick={showLoginPageHandler} text="Login" />
-        </div>
-      )}
+      <div className="flex justify-center mt-4">
+        <Button onClick={handleLoginClick} text="Login" />
+      </div>
     </React.StrictMode>
   );
 };
