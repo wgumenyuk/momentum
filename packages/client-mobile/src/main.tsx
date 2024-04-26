@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { createRoot } from "react-dom/client";
 import LoginPage from "$components/pages/login";
-import Button from "$components/button/button";
-import Header from "$components/header/header";
+import { Header } from "$components/header";
+import { Button } from "$components/button";
 import "./index.css";
+
 
 const App: React.FC = () => {
   const [showLoginPage, setShowLoginPage] = useState(false);
