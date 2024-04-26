@@ -44,7 +44,7 @@ importers:
         version: 7.7.1(eslint@8.57.0)(typescript@5.4.5)
       '@vitejs/plugin-react':
         specifier: ^4.2.1
-        version: 4.2.1(vite@5.2.10(@types/node@20.12.7))
+        version: 4.2.1(vite@5.2.10(@types/node@20.12.7)(terser@5.30.4))
       autoprefixer:
         specifier: ^10.4.19
         version: 10.4.19(postcss@8.4.38)
@@ -68,7 +68,7 @@ importers:
         version: 5.4.5
       vite:
         specifier: ^5.2.0
-        version: 5.2.10(@types/node@20.12.7)
+        version: 5.2.10(@types/node@20.12.7)(terser@5.30.4)
 
   packages/server:
     dependencies:
@@ -78,6 +78,9 @@ importers:
       '@koa/router':
         specifier: ^12.0.1
         version: 12.0.1
+      '@momentum/shared':
+        specifier: link:../shared
+        version: link:../shared
       koa:
         specifier: ^2.15.3
         version: 2.15.3
@@ -112,6 +115,18 @@ importers:
       tsc-alias:
         specifier: ^1.8.8
         version: 1.8.8
+
+  packages/shared:
+    devDependencies:
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
+      terser:
+        specifier: ^5.30.4
+        version: 5.30.4
+      typescript:
+        specifier: ^5.2.2
+        version: 5.4.5
 
 packages:
 
@@ -511,6 +526,9 @@ packages:
   '@jridgewell/set-array@1.2.1':
     resolution: {integrity: sha512-R8gLRTZeyp03ymzP/6Lil/28tGeGEzhx1q2k703KGWRAI1VdvPIXdG70VJc2pAMw3NA6JKL5hhFu1sJX0Mnn/A==}
     engines: {node: '>=6.0.0'}
+
+  '@jridgewell/source-map@0.3.6':
+    resolution: {integrity: sha512-1ZJTZebgqllO79ue2bm3rIGud/bOe0pP5BjSRCRxxYkEZS8STV7zN84UBbiYu7jy+eCKSnVIUgoWWE/tt+shMQ==}
 
   '@jridgewell/sourcemap-codec@1.4.15':
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
@@ -1051,6 +1069,9 @@ packages:
     resolution: {integrity: sha512-BVINv2SgcMjL4oYbBuCQTpE3/VKOSxrOA8Cj/wQP7izSzlBGVomdm+TcUd0Pzy0ytLSSDweCKQ6X3f5veM5LQA==}
     engines: {node: '>=16.20.1'}
 
+  buffer-from@1.1.2:
+    resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
+
   buffer@5.7.1:
     resolution: {integrity: sha512-EHcyIPBQ4BSGlvjB16k5KgAJ27CIsHY/2JBmCRReo48y9rQ3MaUzWX3KVlBa4U7MyX02HdVj0K7C3WaB3ju7FQ==}
 
@@ -1151,6 +1172,9 @@ packages:
   commander@11.1.0:
     resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
     engines: {node: '>=16'}
+
+  commander@2.20.3:
+    resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
 
   commander@4.1.1:
     resolution: {integrity: sha512-NOKm8xhkzAjzFx8B2v5OAHT+u5pRQc2UCa2Vq9jYL/31o2wi9mxBA7LIFs3sV5VSC49z6pEhfbMULvShKj26WA==}
@@ -2564,6 +2588,13 @@ packages:
     resolution: {integrity: sha512-itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==}
     engines: {node: '>=0.10.0'}
 
+  source-map-support@0.5.21:
+    resolution: {integrity: sha512-uBHU3L3czsIyYXKX88fdrGovxdSCoTGDRZ6SYXtSRxLZUzHg5P/66Ht6uoUlHu9EZod+inXhKo3qQgwXUT/y1w==}
+
+  source-map@0.6.1:
+    resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
+    engines: {node: '>=0.10.0'}
+
   source-map@0.7.4:
     resolution: {integrity: sha512-l3BikUxvPOcn5E74dZiq5BGsTb5yEwhaTSzccU6t4sDOH8NWJCstKO5QT2CvtFoK6F0saL7p9xHAqHOlCPJygA==}
     engines: {node: '>= 8'}
@@ -2649,6 +2680,11 @@ packages:
   tailwindcss@3.4.3:
     resolution: {integrity: sha512-U7sxQk/n397Bmx4JHbJx/iSOOv5G+II3f1kpLpY2QeUv5DcPdcTsYLlusZfq1NthHS1c1cZoyFmmkex1rzke0A==}
     engines: {node: '>=14.0.0'}
+    hasBin: true
+
+  terser@5.30.4:
+    resolution: {integrity: sha512-xRdd0v64a8mFK9bnsKVdoNP9GQIKUAaJPTaqEQDL4w/J8WaW4sWXXoMZ+6SimPkfT5bElreXf8m9HnmPc3E1BQ==}
+    engines: {node: '>=10'}
     hasBin: true
 
   text-extensions@2.4.0:
@@ -3326,6 +3362,11 @@ snapshots:
 
   '@jridgewell/set-array@1.2.1': {}
 
+  '@jridgewell/source-map@0.3.6':
+    dependencies:
+      '@jridgewell/gen-mapping': 0.3.5
+      '@jridgewell/trace-mapping': 0.3.25
+
   '@jridgewell/sourcemap-codec@1.4.15': {}
 
   '@jridgewell/trace-mapping@0.3.25':
@@ -3739,14 +3780,14 @@ snapshots:
 
   '@ungap/structured-clone@1.2.0': {}
 
-  '@vitejs/plugin-react@4.2.1(vite@5.2.10(@types/node@20.12.7))':
+  '@vitejs/plugin-react@4.2.1(vite@5.2.10(@types/node@20.12.7)(terser@5.30.4))':
     dependencies:
       '@babel/core': 7.24.4
       '@babel/plugin-transform-react-jsx-self': 7.24.1(@babel/core@7.24.4)
       '@babel/plugin-transform-react-jsx-source': 7.24.1(@babel/core@7.24.4)
       '@types/babel__core': 7.20.5
       react-refresh: 0.14.0
-      vite: 5.2.10(@types/node@20.12.7)
+      vite: 5.2.10(@types/node@20.12.7)(terser@5.30.4)
     transitivePeerDependencies:
       - supports-color
 
@@ -3889,6 +3930,8 @@ snapshots:
 
   bson@6.6.0: {}
 
+  buffer-from@1.1.2: {}
+
   buffer@5.7.1:
     dependencies:
       base64-js: 1.5.1
@@ -3999,6 +4042,8 @@ snapshots:
       text-hex: 1.0.0
 
   commander@11.1.0: {}
+
+  commander@2.20.3: {}
 
   commander@4.1.1: {}
 
@@ -5349,6 +5394,13 @@ snapshots:
 
   source-map-js@1.2.0: {}
 
+  source-map-support@0.5.21:
+    dependencies:
+      buffer-from: 1.1.2
+      source-map: 0.6.1
+
+  source-map@0.6.1: {}
+
   source-map@0.7.4: {}
 
   sparse-bitfield@3.0.3:
@@ -5449,6 +5501,13 @@ snapshots:
     transitivePeerDependencies:
       - ts-node
 
+  terser@5.30.4:
+    dependencies:
+      '@jridgewell/source-map': 0.3.6
+      acorn: 8.11.3
+      commander: 2.20.3
+      source-map-support: 0.5.21
+
   text-extensions@2.4.0: {}
 
   text-hex@1.0.0: {}
@@ -5546,7 +5605,7 @@ snapshots:
 
   vary@1.1.2: {}
 
-  vite@5.2.10(@types/node@20.12.7):
+  vite@5.2.10(@types/node@20.12.7)(terser@5.30.4):
     dependencies:
       esbuild: 0.20.2
       postcss: 8.4.38
@@ -5554,6 +5613,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.12.7
       fsevents: 2.3.3
+      terser: 5.30.4
 
   wcwidth@1.0.1:
     dependencies:
