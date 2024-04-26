@@ -20,6 +20,9 @@ importers:
 
   packages/client-mobile:
     dependencies:
+      '@fontsource/inter':
+        specifier: ^5.0.18
+        version: 5.0.18
       react:
         specifier: ^18.2.0
         version: 18.2.0
@@ -466,6 +469,9 @@ packages:
   '@fastify/busboy@2.1.1':
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
+
+  '@fontsource/inter@5.0.18':
+    resolution: {integrity: sha512-YCsoYPTcs713sI7tLtxaPrIhXAXvEetGg5Ry02ivA8qUOb3fQHojbK/X9HLD5OOKvFUNR2Ynkwb1kR1hVKQHpw==}
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -3261,6 +3267,8 @@ snapshots:
   '@eslint/js@8.57.0': {}
 
   '@fastify/busboy@2.1.1': {}
+
+  '@fontsource/inter@5.0.18': {}
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
