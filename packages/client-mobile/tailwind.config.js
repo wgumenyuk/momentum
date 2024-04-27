@@ -7,7 +7,7 @@ export default {
   ],
   theme: {
     fontFamily: {
-      sans: "Inter, ui-system, sans-serif"
+      sans: "Inter, system-ui, sans-serif"
     },
     extend: {}
   },
