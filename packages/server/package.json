@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf build",
+    "lint": "eslint --ext .js,.ts src",
     "build": "rimraf build && swc --ignore **/*.d.ts --strip-leading-paths -d build src && tsc-alias -f",
     "dev": "dotenvx run -q -- node .",
     "start": "dotenvx run -qf .env.production -- node ."
