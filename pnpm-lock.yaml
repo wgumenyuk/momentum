@@ -115,6 +115,15 @@ importers:
       '@types/node':
         specifier: ^20.12.7
         version: 20.12.7
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^7.2.0
+        version: 7.7.1(@typescript-eslint/parser@7.7.1(eslint@8.57.0)(typescript@5.4.5))(eslint@8.57.0)(typescript@5.4.5)
+      '@typescript-eslint/parser':
+        specifier: ^7.2.0
+        version: 7.7.1(eslint@8.57.0)(typescript@5.4.5)
+      eslint:
+        specifier: ^8.57.0
+        version: 8.57.0
       pino-pretty:
         specifier: ^11.0.0
         version: 11.0.0
