@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "node16",
+    "checkJs": true,
+    "noEmit": true,
+    "strict": true
+  },
+  "include": [
+    "index.js",
+    "eslint.config.js"
+  ]
+}

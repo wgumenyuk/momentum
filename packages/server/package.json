@@ -1,0 +1,28 @@
+{
+  "name": "@momentum/server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "build/index.js",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf build",
+    "lint": "eslint src",
+    "build": "rimraf build && swc --ignore **/*.d.ts --strip-leading-paths src -d build && tsc-alias -f"
+  },
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "@momentum/eslint-config": "link:../eslint-config",
+    "@swc/cli": "^0.3.12",
+    "@swc/core": "^1.4.17",
+    "@types/koa": "^2.15.0",
+    "@types/koa__cors": "^5.0.0",
+    "@types/koa__router": "^12.0.4",
+    "rimraf": "^5.0.5",
+    "tsc-alias": "^1.8.8"
+  },
+  "dependencies": {
+    "koa": "^2.15.3",
+    "koa-cors": "^0.0.16",
+    "koa-router": "^12.0.1"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "outDir": "build",
+    "baseUrl": "src",
+    "paths": {
+      "$api/*": [
+        "api/*"
+      ],
+      "$internal/*": [
+        "$internal/*"
+      ]
+    },
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "strict": true
+  },
+  "include": [
+    "src"
+  ]
+}
