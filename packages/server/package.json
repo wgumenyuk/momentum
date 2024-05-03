@@ -7,7 +7,9 @@
   "scripts": {
     "clean": "rimraf build",
     "lint": "eslint src",
-    "build": "rimraf build && swc --ignore **/*.d.ts --strip-leading-paths src -d build && tsc-alias -f"
+    "build": "rimraf build && swc --ignore **/*.d.ts --strip-leading-paths src -d build && tsc-alias -f",
+    "dev": "dotenvx run -q -- node .",
+    "prod": "dotenvx run -qf .env.production -- node ."
   },
   "license": "GPL-3.0-only",
   "devDependencies": {
