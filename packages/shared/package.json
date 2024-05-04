@@ -1,0 +1,17 @@
+{
+  "name": "@momentum/shared",
+  "version": "1.0.0",
+  "type": "module",
+  "types": "build/index.d.ts",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf build",
+    "lint": "eslint src",
+    "build": "rimraf build && tsc"
+  },
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "rimraf": "^5.0.5",
+    "typescript": "^5.2.2"
+  }
+}

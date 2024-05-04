@@ -42,6 +42,9 @@ importers:
       '@momentum/eslint-config':
         specifier: link:../eslint-config
         version: link:../eslint-config
+      '@momentum/shared':
+        specifier: link:../shared
+        version: link:../shared
       '@storybook/addon-essentials':
         specifier: ^8.0.9
         version: 8.0.9(@types/react@18.3.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -141,6 +144,9 @@ importers:
       '@prisma/client':
         specifier: 5.13.0
         version: 5.13.0(prisma@5.13.0)
+      '@momentum/shared':
+        specifier: link:../shared
+        version: link:../shared
       koa:
         specifier: ^2.15.3
         version: 2.15.3
@@ -175,6 +181,15 @@ importers:
       tsc-alias:
         specifier: ^1.8.8
         version: 1.8.8
+
+  packages/shared:
+    devDependencies:
+      rimraf:
+        specifier: ^5.0.5
+        version: 5.0.5
+      typescript:
+        specifier: ^5.2.2
+        version: 5.4.5
 
 packages:
 
