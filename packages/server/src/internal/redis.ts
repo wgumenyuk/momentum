@@ -1,5 +1,8 @@
 import { Redis } from "ioredis";
 
+// Intern
+import { log } from "$internal/logger";
+
 const { REDIS_URL } = process.env;
 
 /**
@@ -13,6 +16,14 @@ export const redis = new Redis(REDIS_URL, {
   Stellt eine Verbindung zu Redis her,
 */
 export const initRedis = async () => {
-  // TODO: Logging.
-  await redis.connect();
+  log.info("connecting to Redis");
+  
+  try {
+    await redis.connect();
+  } catch(err) {
+    log.fatal(err, "failed to connect to Redis");
+    process.exit(1);
+  }
+
+  log.info("connected to Redis");
 };
