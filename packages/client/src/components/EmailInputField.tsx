@@ -1,5 +1,5 @@
 import React from "react";
-import { MdEmail } from "react-icons/md";
+import { Mail } from "lucide-react";
 import InputField from "./InputField";
 
 interface EmailInputFieldProps {
@@ -9,26 +9,15 @@ interface EmailInputFieldProps {
 }
 
 const EmailInputField: React.FC<EmailInputFieldProps> = ({ placeholder, value, onChange }) => {
-  const containerStyle = {
-    display: "flex",
-    alignItems: "center",
-    borderRadius: "9px",
-    border: "1px solid #ccc",
-    boxShadow: "inset 0 1px 2px rgba(0,0,0,0.075)",
-    padding: "5px 10px",
-    width: "100%"
-  };
-
-  const iconStyle = {
-    color: "#555",
-    marginRight: "10px",
-    fontSize: "24px"
-  };
-
   return (
-    <div style={containerStyle}>
-      <MdEmail style={iconStyle} />
-      <InputField placeholder={placeholder} value={value} onChange={onChange} styleOverride={{ border: "none", boxShadow: "none", borderRadius: "0px" }} />
+    <div className="flex items-center border rounded-lg border-gray-300 shadow-inner p-1.5 w-full">
+      <Mail className="text-gray-700 mr-2.5 text-3xl" />
+      <InputField 
+        placeholder={placeholder} 
+        value={value} 
+        onChange={onChange} 
+        className="border-none shadow-none rounded-none"
+        ></InputField>
     </div>
   );
 };

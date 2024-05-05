@@ -4,20 +4,13 @@ interface InputFieldProps {
   placeholder?: string;
   value: string;
   onChange: (value: string) => void;
-  styleOverride?: React.CSSProperties;
+  className?: string; // Changed to accept a string of Tailwind classes for overriding
 }
 
-const InputField: React.FC<InputFieldProps> = ({ placeholder, value, onChange, styleOverride }) => {
-  const defaultStyle = {
-    padding: "10px 15px",
-    fontSize: "14px",
-    borderRadius: "9px",
-    border: "1px solid #ccc",
-    boxShadow: "inset 0 1px 2px rgba(0,0,0,0.075)",
-    width: "100%"
-  };
-
-  const combinedStyle = { ...defaultStyle, ...styleOverride };
+const InputField: React.FC<InputFieldProps> = ({ placeholder, value, onChange, className }) => {
+  // Default Tailwind classes for the input field
+  const defaultClasses = "p-2.5 text-base rounded-lg border border-gray-300 shadow-inner w-full";
+  const combinedClasses = `${defaultClasses} ${className || ""}`;
 
   return (
     <input
@@ -25,7 +18,7 @@ const InputField: React.FC<InputFieldProps> = ({ placeholder, value, onChange, s
       placeholder={placeholder}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      style={combinedStyle}
+      className={combinedClasses}
     />
   );
 };
