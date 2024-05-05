@@ -10,10 +10,10 @@
         "api/*"
       ],
       "$internal/*": [
-        "$internal/*"
+        "internal/*"
       ],
       "$services/*": [
-        "$services/*"
+        "services/*"
       ]
     },
     "esModuleInterop": true,
