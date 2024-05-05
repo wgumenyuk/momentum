@@ -1,5 +1,5 @@
 import React from "react";
-import { MdEmail } from "react-icons/md";
+import { Mail } from "lucide-react";  // Import Mail icon from lucide-react
 import InputField from "./InputField";
 
 interface EmailInputFieldProps {
@@ -27,7 +27,7 @@ const EmailInputField: React.FC<EmailInputFieldProps> = ({ placeholder, value, o
 
   return (
     <div style={containerStyle}>
-      <MdEmail style={iconStyle} />
+      <Mail style={iconStyle} />
       <InputField placeholder={placeholder} value={value} onChange={onChange} styleOverride={{ border: "none", boxShadow: "none", borderRadius: "0px" }} />
     </div>
   );
