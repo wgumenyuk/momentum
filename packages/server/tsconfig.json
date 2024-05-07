@@ -12,6 +12,9 @@
       "$internal/*": [
         "internal/*"
       ],
+      "$models/*": [
+        "models/*"
+      ],
       "$services/*": [
         "services/*"
       ]
