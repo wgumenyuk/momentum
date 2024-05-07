@@ -12,7 +12,13 @@ const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ placeholder, va
   return (
     <div className="flex items-center rounded-lg shadow-sm p-1 w-full h-10 bg-white">
       <LockIcon className="text-gray-900 mr-1 text-lg" />
-      <InputField placeholder={placeholder} value={value} onChange={onChange} className="w-full shadow-none rounded-none bg-transparent text-sm" /> 
+      <InputField
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        type="password"
+        className="w-full shadow-none rounded-none bg-transparent text-sm"
+      /> 
     </div>
   );
 };
