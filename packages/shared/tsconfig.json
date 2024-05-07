@@ -6,7 +6,6 @@
     "outDir": "build",
     "declaration": true,
     "esModuleInterop": true,
-    "emitDeclarationOnly": true,
     "skipLibCheck": true,
     "strict": true
   },
