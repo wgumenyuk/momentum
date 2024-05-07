@@ -3,6 +3,7 @@ declare global {
     interface ProcessEnv {
       NODE_ENV: string;
       PORT: number;
+      ORIGIN: string;
       MONGODB_URL: string;
       REDIS_URL: string;
     }
