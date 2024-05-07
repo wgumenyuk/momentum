@@ -4,7 +4,7 @@ import EmailInputField from "./EmailInputField";
 
 export default {
   title: "Components/InputField",
-  component: { InputField, EmailInputField }
+  component: InputField
 };
 
 export const PlainInput = () => {
@@ -23,4 +23,4 @@ export const EmailInput = () => {
       <EmailInputField placeholder="Enter email..." value={email} onChange={setEmail} />
     </div>
   );
-};
+}; 
