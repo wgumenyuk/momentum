@@ -58,8 +58,7 @@ const UserSchema = new Schema<User>({
   },
   password: {
     type: "string",
-    required: true,
-    unique: true
+    required: true
   },
   createdAt: {
     type: "number",
