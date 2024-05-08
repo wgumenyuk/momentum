@@ -1,12 +1,12 @@
 import React from "react";
 
-export interface TickBoxProps {
+export interface CheckBoxProps {
   label: string;
   checked: boolean;
   onChange: (checked: boolean) => void;
 }
 
-const TickBox: React.FC<TickBoxProps> = ({ label, checked, onChange }) => {
+const CheckBox: React.FC<CheckBoxProps> = ({ label, checked, onChange }) => {
   return (
     <label className="flex items-center space-x-2 cursor-pointer">
       <input
@@ -20,4 +20,4 @@ const TickBox: React.FC<TickBoxProps> = ({ label, checked, onChange }) => {
   );
 };
 
-export default TickBox;
+export default CheckBox;

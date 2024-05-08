@@ -1,19 +1,20 @@
 import { StoryFn, Meta } from "@storybook/react";
-import TickBox from "./CheckBox";
-import { TickBoxProps } from "./CheckBox";
+import CheckBox from "./CheckBox";
+import { CheckBoxProps } from "./CheckBox";
 import { useState } from "react";
 import RememberMeCheckbox from "./RememberMeCheckBox";
+import SubscribeToNewsletterCheckbox from "./SubscribeToNewsletterCheckBox";
 
 export default {
-  title: "Components/TickBox",
-  component: TickBox,
+  title: "Components/CheckBox",
+  component: CheckBox,
   argTypes: {
     checked: { control: "boolean" },
     label: { control: "text" }
   }
 } as Meta;
 
-const Template: StoryFn<TickBoxProps> = (args) => <TickBox {...args} />;
+const Template: StoryFn<CheckBoxProps> = (args) => <CheckBox {...args} />;
 
 export const Checked = Template.bind({});
 Checked.args = {
@@ -32,7 +33,7 @@ Unchecked.args = {
 export const Interactive = () => {
   const [checked, setChecked] = useState(false);
   return (
-    <TickBox
+    <CheckBox
       label="Interactive Checkbox"
       checked={checked}
       onChange={(newChecked) => setChecked(newChecked)}
@@ -42,4 +43,8 @@ export const Interactive = () => {
 
 export const RememberMe = () => {
   return <RememberMeCheckbox />;
+};
+
+export const SubscribeToNewsletter = () => {
+  return <SubscribeToNewsletterCheckbox />;
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TickBox from "./CheckBox";
+import CheckBox from "./CheckBox";
 
 const RememberMeCheckbox = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -9,7 +9,7 @@ const RememberMeCheckbox = () => {
   };
 
   return (
-    <TickBox 
+    <CheckBox 
       label="Remember Me" 
       checked={isChecked} 
       onChange={handleCheckboxChange}
