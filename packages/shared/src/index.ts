@@ -2,8 +2,10 @@
   API-Antwortcode.
 */
 export enum ResponseCode {
-  Success,
-  InvalidData
+  InternalError,
+  InvalidData,
+  NotFound,
+  Success
 };
 
 /**
