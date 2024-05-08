@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import TickBox from "./TickBox";
+import TickBox from "./CheckBox";
 
 const RememberMeCheckbox = () => {
   const [isChecked, setIsChecked] = useState(false);
