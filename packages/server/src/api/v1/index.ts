@@ -1,10 +1,8 @@
 import Router from "@koa/router";
 
 // Intern
-import { ResponseCode, Empty } from "@momentum/shared";
-
-// Types
-import type { Response } from "@momentum/shared";
+import { StatusCode } from "@momentum/shared";
+import { ok } from "$api/response";
 
 /**
   Router.
@@ -14,11 +12,5 @@ export const router = new Router({
 });
 
 router.get("/status", (ctx) => {
-  ctx.status = 200;
-  ctx.body = {
-    success: true,
-    status: 200,
-    code: ResponseCode.Success,
-    data: {}
-  } satisfies Response<Empty, Empty>;
+  ok(ctx, StatusCode.Success);
 });
