@@ -1,8 +1,8 @@
 import { StoryFn, Meta } from "@storybook/react";
-import TickBox from "./TickBox";
-import { TickBoxProps } from "./TickBox";
+import TickBox from "./CheckBox";
+import { TickBoxProps } from "./CheckBox";
 import { useState } from "react";
-import RememberMeCheckbox from "./RememberMeTickBox";
+import RememberMeCheckbox from "./RememberMeCheckBox";
 
 export default {
   title: "Components/TickBox",
