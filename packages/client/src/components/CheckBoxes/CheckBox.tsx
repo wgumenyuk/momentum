@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface CheckBoxProps {
-  label: string;
+  label: React.ReactNode;  // Changed from string to React.ReactNode to accept JSX elements
   checked: boolean;
   onChange: (checked: boolean) => void;
 }
