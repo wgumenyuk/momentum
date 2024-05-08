@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import InputField from "./InputField";
 import EmailInputField from "./EmailInputField";
 import PasswordInputField from "./PasswordInputField";
