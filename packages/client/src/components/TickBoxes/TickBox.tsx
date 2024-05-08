@@ -13,7 +13,7 @@ const TickBox: React.FC<TickBoxProps> = ({ label, checked, onChange }) => {
         type="checkbox"
         checked={checked}
         onChange={(e) => onChange(e.target.checked)}
-        className="form-checkbox h-5 w-5 text-blue-600 rounded-full shadow-md"
+        className="form-checkbox h-4 w-4 text-blue-600 rounded-full shadow-md"
       />
       <span className="text-gray-700 text-sm font-bold">{label}</span>
     </label>
@@ -21,5 +21,3 @@ const TickBox: React.FC<TickBoxProps> = ({ label, checked, onChange }) => {
 };
 
 export default TickBox;
-
-/* ROUNDED CORNERS OF BOX */
