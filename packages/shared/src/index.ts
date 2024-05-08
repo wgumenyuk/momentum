@@ -41,7 +41,7 @@ export type Response<T extends Record<string, unknown> = Record<string, never>> 
   /**
     Fehlercode.
   */
-  error: ErrorCodeValue;
+  err: ErrorCodeValue;
 });
 
 /**
