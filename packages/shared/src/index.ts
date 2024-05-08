@@ -1,62 +1,62 @@
-/**
-  API-Antwortcode.
-*/
-export enum ResponseCode {
-  InternalError,
-  InvalidData,
-  NotFound,
-  Success
-};
+type StatusCodeEntries = typeof StatusCode;
+type StatusCodeKeys = keyof StatusCodeEntries;
+
+type ErrorCodeEntries = typeof ErrorCode;
+type ErrorCodeKeys = keyof ErrorCodeEntries;
 
 /**
-  Leeres Objekt.
+  Wert im `StatusCode`-Objekt.
 */
-export type Empty = Record<string, never>;
+export type StatusCodeValue = StatusCodeEntries[StatusCodeKeys];
+
+/**
+  Wert im `ErrorCode`-Objekt.
+*/
+export type ErrorCodeValue = ErrorCodeEntries[ErrorCodeKeys];
 
 /**
   API-Antwort.
 */
-export type Response<
-  Data extends Record<string, unknown> = Empty,
-  Error extends Record<string, unknown> = Empty
-> = {
+export type Response<T extends Record<string, unknown> = Record<string, never>> = {
   /**
-    Ob die Anfrage erfolgreich war.
+    Statuscode.
   */
-  success: true;
-
+  status: StatusCodeValue[1];
+} & ({
   /**
-    HTTP-Status.
+    Die Anfrage wurde erfolgreich ausgeführt.
   */
-  status: number;
-
-  /**
-    API-Antwortcode.
-  */
-  code: ResponseCode;
+  ok: true;
 
   /**
     Mitgelieferte Daten.
   */
-  data: Data;
+  data: T;
 } | {
   /**
-    Ob die Anfrage erfolgreich war.
+    Die Anfrage wurde nicht erfolgreich ausgeführt.
   */
-  success: false;
+  ok: false;
 
   /**
-    HTTP-Status.
+    Fehlercode.
   */
-  status: number;
+  error: ErrorCodeValue;
+});
 
-  /**
-    API-Antwortcode.
-  */
-  code: ResponseCode;
+/**
+  Statuscodes.
+*/
+export const StatusCode = {
+  Success: [ 200, "success" ],
+  BadRequest: [ 400, "bad_request" ],
+  InternalError: [ 500, "internal_error" ]
+} as const;
 
-  /**
-    Mitgelieferte Details über den Fehler.
-  */
-  details: Error;
-};
+/**
+  Fehlercodes.
+*/
+export const ErrorCode = {
+  NotFound: "not_found",
+  InternalError: "internal_error"
+} as const;
