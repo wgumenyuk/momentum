@@ -15,8 +15,8 @@ export type Empty = Record<string, never>;
   API-Antwort.
 */
 export type Response<
-  Data extends Record<string, unknown>,
-  Error extends Record<string, unknown>
+  Data extends Record<string, unknown> = Empty,
+  Error extends Record<string, unknown> = Empty
 > = {
   /**
     Ob die Anfrage erfolgreich war.
