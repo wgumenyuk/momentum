@@ -4,6 +4,7 @@ import { CheckBoxProps } from "./CheckBox";
 import { useState } from "react";
 import RememberMeCheckbox from "./RememberMeCheckBox";
 import SubscribeToNewsletterCheckbox from "./SubscribeToNewsletterCheckBox";
+import TermsAndConditionsCheckBox from "./TermsAndConditionsCheckBox";
 
 export default {
   title: "Components/CheckBox",
@@ -47,4 +48,8 @@ export const RememberMe = () => {
 
 export const SubscribeToNewsletter = () => {
   return <SubscribeToNewsletterCheckbox />;
+};
+
+export const TermsAndConditions = () => {
+  return <TermsAndConditionsCheckBox />;
 };
