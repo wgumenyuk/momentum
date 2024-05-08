@@ -1,6 +1,7 @@
 import React from "react";
 
 interface InputFieldProps {
+  title?: string;
   placeholder?: string;
   value: string;
   onChange: (value: string) => void;
@@ -8,9 +9,10 @@ interface InputFieldProps {
   className?: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ placeholder, value, onChange, type = "text", className }) => {
+const InputField: React.FC<InputFieldProps> = ({ title, placeholder, value, onChange, type = "text", className }) => {
   return (
-    <div className="flex items-center rounded-lg shadow-sm p-1 w-full h-10 bg-white">
+    <div className="flex items-center rounded-lg shadow-sm p-1 w-full h-10 bg-white relative">
+      {title && <span className="absolute left-2 top-1 text-xs text-gray-600">{title}</span>}
       {type === "password" ? (
         <input
           type="password"
