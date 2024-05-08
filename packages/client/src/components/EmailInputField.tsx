@@ -12,7 +12,7 @@ const EmailInputField: React.FC<EmailInputFieldProps> = ({ placeholder, value, o
   return (
     <div className="flex items-center rounded-lg shadow-sm p-1 w-full h-10 bg-white">
       <Mail className="text-gray-900 mr-1 text-lg" />
-      <InputField placeholder={placeholder} value={value} onChange={onChange} className="w-full shadow-none rounded-none bg-transparent text-sm" /> 
+      <InputField title="E-Mail" placeholder={placeholder} value={value} onChange={onChange} className="w-full shadow-none rounded-none bg-transparent text-sm" /> 
     </div>
   );
 };
