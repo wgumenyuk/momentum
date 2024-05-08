@@ -11,8 +11,12 @@ interface InputFieldProps {
 
 const InputField: React.FC<InputFieldProps> = ({ title, placeholder, value, onChange, type = "text", className }) => {
   return (
-    <div className="flex items-center rounded-lg shadow-sm p-1 w-full h-10 bg-white relative">
-      {title && <span className="absolute left-2 top-1 text-xs text-gray-600">{title}</span>}
+    <div className="relative flex items-center rounded-lg shadow-sm p-1 w-full h-10 bg-white">
+      {title && (
+        <span className="absolute left-0 top-[-20px] text-xs text-gray-600">
+          {title}
+        </span>
+      )}
       {type === "password" ? (
         <input
           type="password"
