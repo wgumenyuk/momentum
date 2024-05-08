@@ -1,6 +1,8 @@
 import { StoryFn, Meta } from "@storybook/react";
 import TickBox from "./TickBox";
 import { TickBoxProps } from "./TickBox";
+import { useState } from "react";
+import RememberMeCheckbox from "./RememberMeTickBox";
 
 export default {
   title: "Components/TickBox",
@@ -25,4 +27,19 @@ Unchecked.args = {
   label: "Accept Terms and Conditions",
   checked: false,
   onChange: () => {}
+};
+
+export const Interactive = () => {
+  const [checked, setChecked] = useState(false);
+  return (
+    <TickBox
+      label="Interactive Checkbox"
+      checked={checked}
+      onChange={(newChecked) => setChecked(newChecked)}
+    />
+  );
+};
+
+export const RememberMe = () => {
+  return <RememberMeCheckbox />;
 };
