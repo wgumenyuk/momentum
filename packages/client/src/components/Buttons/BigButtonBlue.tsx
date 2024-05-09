@@ -5,7 +5,7 @@ interface BigButtonProps {
   onClick: () => void;
 }
 
-const BigButton: React.FC<BigButtonProps> = ({ text, onClick }) => {
+const BigButtonBlue: React.FC<BigButtonProps> = ({ text, onClick }) => {
   return (
     <button
       onClick={onClick}
@@ -16,4 +16,4 @@ const BigButton: React.FC<BigButtonProps> = ({ text, onClick }) => {
   );
 };
 
-export default BigButton;
+export default BigButtonBlue;
