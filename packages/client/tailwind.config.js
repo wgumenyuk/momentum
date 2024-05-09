@@ -54,7 +54,13 @@ export default {
         700: "#2F6824",
         800: "#1C3E15",
         900: "#091507"
-      }
+      },
+      "blue-start": "#3BAFDA",
+      "blue-end": "#0D9DC7"
+    },
+    backgroundImage: {
+      "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+      "gradient-btn": "linear-gradient(to right, #3BAFDA, #0D9DC7)"
     }
   },
   plugins: []
