@@ -24,13 +24,13 @@ export const handleError: Middleware = async (ctx, next) => {
     
     // Fehlerhafte JSON.
     if(status === 400) {
-      nok(ctx, StatusCode.BadRequest ,ErrorCode.MalformedJson);
+      nok(ctx, StatusCode.BadRequest, ErrorCode.MalformedJson);
       return;
     }
 
     // Not Found.
     if(status === 404) {
-      nok(ctx, StatusCode.NotFound ,ErrorCode.NotFound);
+      nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
       return;
     }
 
