@@ -4,6 +4,7 @@ import { bodyParser } from "@koa/bodyparser";
 
 // Intern
 import { log } from "$internal/logger";
+import { logRequest } from "$api/middleware/log-request";
 import { handleError } from "$api/middleware/handle-error";
 import { router } from "$api/v1";
 
@@ -20,6 +21,7 @@ app.use(
   })
 );
 
+app.use(logRequest);
 app.use(handleError);
 
 app.use(
