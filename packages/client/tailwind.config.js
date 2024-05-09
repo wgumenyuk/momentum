@@ -54,7 +54,8 @@ export default {
         700: "#2F6824",
         800: "#1C3E15",
         900: "#091507"
-      }
+      },
+      "cool-gray": "#D4D9E3"
     }
   },
   plugins: []
