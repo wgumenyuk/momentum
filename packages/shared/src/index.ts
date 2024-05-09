@@ -50,6 +50,7 @@ export type Response<T extends Record<string, unknown> = Record<string, never>> 
 export const StatusCode = {
   Success: [ 200, "success" ],
   BadRequest: [ 400, "bad_request" ],
+  NotFound: [ 404, "not_found" ],
   InternalError: [ 500, "internal_error" ]
 } as const;
 
@@ -58,5 +59,6 @@ export const StatusCode = {
 */
 export const ErrorCode = {
   NotFound: "not_found",
-  InternalError: "internal_error"
+  InternalError: "internal_error",
+  MalformedJson: "malformed_json"
 } as const;
