@@ -1,8 +1,10 @@
 import Koa from "koa";
 import cors from "@koa/cors";
+import { bodyParser } from "@koa/bodyparser";
 
 // Intern
 import { log } from "$internal/logger";
+import { handleError } from "$api/middleware/handle-error";
 import { router } from "$api/v1";
 
 const {
@@ -15,6 +17,17 @@ const app = new Koa();
 app.use(
   cors({
     origin: ORIGIN
+  })
+);
+
+app.use(handleError);
+
+app.use(
+  bodyParser({
+    encoding: "utf-8",
+    onError: (_err, ctx) => {
+      ctx.throw(400);
+    }
   })
 );
 
