@@ -60,8 +60,9 @@ export default {
     },
     backgroundImage: {
       "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-      "gradient-btn": "linear-gradient(to right, #3BAFDA, #0D9DC7)"
-    }
+      "gradient-btn": "linear-gradient(to right, #3BAFDA, #0D9DC7)",
+      "cool-gray": "#D4D9E3"
+    },
   },
   plugins: []
 };

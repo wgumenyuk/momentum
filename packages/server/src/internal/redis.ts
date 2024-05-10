@@ -13,7 +13,7 @@ export const redis = new Redis(REDIS_URL, {
 });
 
 /**
-  Stellt eine Verbindung zu Redis her,
+  Stellt eine Verbindung zu Redis her.
 */
 export const initRedis = async () => {
   log.info("connecting to Redis");
