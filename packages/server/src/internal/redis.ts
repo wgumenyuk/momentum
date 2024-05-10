@@ -9,7 +9,10 @@ const { REDIS_URL } = process.env;
   Redis-Client.
 */
 export const redis = new Redis(REDIS_URL, {
-  lazyConnect: true
+  lazyConnect: true,
+  reconnectOnError: () => {
+    return false;
+  }
 });
 
 /**
@@ -17,7 +20,11 @@ export const redis = new Redis(REDIS_URL, {
 */
 export const initRedis = async () => {
   log.info("connecting to Redis");
-  
+
+  redis.on("error", (err) => {
+    log.error(err, "Redis generated an error");
+  });
+
   try {
     await redis.connect();
   } catch(err) {
