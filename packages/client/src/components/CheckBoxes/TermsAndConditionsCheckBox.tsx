@@ -16,7 +16,7 @@ const TermsAndConditionsCheckbox = () => {
         <CheckBox
             label={
                 <span>
-                    I accept the <a href="/terms-and-conditions" onClick={handleLinkClick} className="text-blue-600 hover:text-blue-800 visited:text-purple-600">terms and conditions</a>
+                    I accept the <a href="/terms-and-conditions" onClick={handleLinkClick} className="text-blue-300 hover:text-blue-600 visited:text-purple-600">terms and conditions</a>
                 </span>
             }
             checked={isChecked}
