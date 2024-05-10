@@ -3,6 +3,7 @@ import cors from "@koa/cors";
 import { bodyParser } from "@koa/bodyparser";
 
 // Intern
+import { initRedis } from "$internal/redis";
 import { log } from "$internal/logger";
 import { logRequest } from "$api/middleware/log-request";
 import { handleError } from "$api/middleware/handle-error";
@@ -12,6 +13,9 @@ const {
   PORT = 3000,
   ORIGIN = "*"
 } = process.env;
+
+// Datenbanken initialisieren.
+await initRedis();
 
 const app = new Koa();
 
