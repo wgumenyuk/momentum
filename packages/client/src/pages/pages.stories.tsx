@@ -1,10 +1,17 @@
 import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import RegisterPage from "../pages/RegisterPage";
-
+import RegisterPage from "./RegisterPage";
+import LoginPage from "./LoginPage";
 export default {
-  title: "Pages/RegisterPage",
-  component: RegisterPage
+  title: "Pages/Auth",
+  component: RegisterPage,
+  subcomponents: { LoginPage }
 } as Meta;
 
-export const Default: StoryFn = () => <RegisterPage />;
+// Story for RegisterPage
+export const Register: StoryFn = () => <RegisterPage />;
+Register.storyName = "Register Page";
+
+// Story for LoginPage
+export const Login: StoryFn = () => <LoginPage />;
+Login.storyName = "Login Page";
