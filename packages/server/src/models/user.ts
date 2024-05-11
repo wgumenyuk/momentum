@@ -16,14 +16,14 @@ type User = {
   email: string;
 
   /**
-    Vorname.
+    Anzeigename.
   */
-  firstName: string;
+  displayName: string;
 
   /**
-    Nachname.
+    Gewicht in Kilogramm.
   */
-  lastName: string;
+  weight: number;
 
   /**
     Passwort-Hash.
@@ -48,13 +48,11 @@ const UserSchema = new Schema<User>({
     required: true,
     unique: true
   },
-  firstName: {
-    type: "string",
-    required: true
+  displayName: {
+    type: "string"
   },
-  lastName: {
-    type: "string",
-    required: true
+  weight: {
+    type: "number"
   },
   password: {
     type: "string",
