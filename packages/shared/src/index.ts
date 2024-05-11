@@ -1,3 +1,5 @@
+import { z } from "zod";
+
 type StatusCodeEntries = typeof StatusCode;
 type StatusCodeKeys = keyof StatusCodeEntries;
 
@@ -60,5 +62,34 @@ export const StatusCode = {
 export const ErrorCode = {
   NotFound: "not_found",
   InternalError: "internal_error",
-  MalformedJson: "malformed_json"
+  MalformedJson: "malformed_json",
+  RegisterInvalidEmail: "register.invalid_email",
+  RegisterInvalidPassword: "register.invalid_password",
+  RegisterPasswordTooShort: "register.password_too_short",
+  RegisterPasswordTooLong: "register.password_too_long",
+  RegisterEmailTaken: "register.email_taken"
 } as const;
+
+/**
+  Schema für das Registrierungs-Formular.
+*/
+export const RegisterSchema = z.object({
+  /**
+    E-Mail.
+  */
+  email: z
+    .string({
+      message: ErrorCode.RegisterInvalidEmail
+    })
+    .email(ErrorCode.RegisterInvalidEmail),
+
+  /**
+    Passwort.
+  */
+  password: z
+    .string({
+      message: ErrorCode.RegisterInvalidPassword
+    })
+    .min(12, ErrorCode.RegisterPasswordTooShort)
+    .max(32, ErrorCode.RegisterPasswordTooLong)
+});
