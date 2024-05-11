@@ -54,7 +54,8 @@ export const StatusCode = {
   BadRequest: [ 400, "bad_request" ],
   NotFound: [ 404, "not_found" ],
   InternalError: [ 500, "internal_error" ],
-  Unauthenticated: [ 401, "unauthenticated" ]
+  Unauthenticated: [ 401, "unauthenticated" ],
+  Forbidden: [ 403, "forbidden" ]
 } as const;
 
 /**
