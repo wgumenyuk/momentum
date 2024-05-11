@@ -14,15 +14,17 @@ const LoginPage: React.FC = () => {
         <form className="space-y-4">
           <EmailInputField placeholder="you@example.com" value={email} onChange={setEmail} />
           <PasswordInputField placeholder="********" value={password} onChange={setPassword} />
-          <div className="flex items-center justify-between mt-4">
+          <div className="mt-4">
             <label className="flex items-center">
               <input type="checkbox" className="form-checkbox" />
               <span className="ml-2 text-sm">Remember me</span>
             </label>
-            <a href="/forgot-password" className="text-sm text-blue-300 hover:text-blue-600">Forgot password?</a>
           </div>
           <div className="flex justify-center mt-6">
             <BigButtonBlue text="Sign In" onClick={() => alert("Welcome back!")} />
+          </div>
+          <div className="text-center mt-2">
+            <a href="/forgot-password" className="text-sm text-blue-300 hover:text-blue-600">Forgot password?</a>
           </div>
         </form>
         <div className="text-center mt-6 text-sm">
