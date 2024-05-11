@@ -1,25 +1,33 @@
 import { Schema, model } from "mongoose";
 
-
-interface Muscle {
+/**
+  Muskel.
+*/
+type Muscle = {
+  /**
+    ID.
+  */
   id: string;
 
+  /**
+    Region im Körper.
+  */
   region: string;
-}
+};
 
 const MuscleSchema = new Schema({
   id: {
-    type: String,
+    type: "string",
     required: true,
     unique: true
   },
-
   region: {
-    type: String,
-    required: true,
-    unique: false
+    type: "string",
+    required: true
   }
-
 });
 
+/**
+  `Muscle`-Modell.
+*/
 export const Muscle = model<Muscle>("Muscle", MuscleSchema);
