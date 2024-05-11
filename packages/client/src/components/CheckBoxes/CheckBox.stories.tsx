@@ -32,7 +32,7 @@ Unchecked.args = {
 };
 
 export const Interactive = () => {
-  const [checked, setChecked] = useState(false);
+  const [ checked, setChecked ] = useState(false);
   return (
     <CheckBox
       label="Interactive Checkbox"

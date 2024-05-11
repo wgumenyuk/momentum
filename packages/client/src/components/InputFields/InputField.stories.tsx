@@ -9,7 +9,7 @@ export default {
 };
 
 export const PlainInput = () => {
-  const [value, setValue] = useState("");
+  const [ value, setValue ] = useState("");
   return (
     <div style={{ padding: "20px", maxWidth: "300px" }}>
       <InputField placeholder="Enter text..." value={value} onChange={setValue} />
@@ -18,7 +18,7 @@ export const PlainInput = () => {
 };
 
 export const EmailInput = () => {
-  const [email, setEmail] = useState("");
+  const [ email, setEmail ] = useState("");
   return (
     <div style={{ padding: "20px", maxWidth: "300px" }}>
       <EmailInputField placeholder="Enter email..." value={email} onChange={setEmail} />
@@ -27,7 +27,7 @@ export const EmailInput = () => {
 }; 
 
 export const PasswordInput = () => {
-  const [email, setEmail] = useState("");
+  const [ email, setEmail ] = useState("");
   return (
     <div style={{ padding: "20px", maxWidth: "300px" }}>
       <PasswordInputField placeholder="Enter password..." value={email} onChange={setEmail} />

@@ -4,8 +4,8 @@ import { BigButtonBlue } from "$components/Buttons";
 import { EmailInputField, PasswordInputField } from "$components/InputFields";
 
 const LoginPage: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
 
   return (
     <BackgroundLayout>

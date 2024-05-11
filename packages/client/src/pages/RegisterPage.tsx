@@ -5,8 +5,8 @@ import { EmailInputField, PasswordInputField } from "$components/InputFields";
 import { TermsAndConditionsCheckbox, SubscribeToNewsletterCheckbox } from "$components/CheckBoxes";
 
 const RegisterPage: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
 
   return (
     <BackgroundLayout>

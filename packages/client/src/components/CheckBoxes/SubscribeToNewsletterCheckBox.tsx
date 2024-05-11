@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CheckBox from "./CheckBox";
 
 const SubscribeToNewsletterCheckbox = () => {
-  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [ isSubscribed, setIsSubscribed ] = useState(false);
 
   const handleCheckboxChange = (subscribed: boolean) => {
     setIsSubscribed(subscribed);

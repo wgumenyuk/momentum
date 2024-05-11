@@ -10,7 +10,7 @@ export const initMongo = async () => {
 
   try {
     await mongoose.connect(MONGODB_URL);
-    mongoose.connection.on("error", err => {
+    mongoose.connection.on("error", (err) => {
       throw err;
     });
   } catch(err) {

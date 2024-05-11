@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CheckBox from "./CheckBox";
 
 const TermsAndConditionsCheckbox = () => {
-    const [isChecked, setIsChecked] = useState(false);
+    const [ isChecked, setIsChecked ] = useState(false);
 
     const handleCheckboxChange = (checked: boolean) => {
         setIsChecked(checked);

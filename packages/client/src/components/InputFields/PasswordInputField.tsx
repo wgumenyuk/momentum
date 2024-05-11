@@ -10,7 +10,7 @@ interface PasswordInputFieldProps {
 
 const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ placeholder, value, onChange }) => {
   // State to toggle password visibility
-  const [showPassword, setShowPassword] = useState(false);
+  const [ showPassword, setShowPassword ] = useState(false);
 
   return (
     <div className="flex flex-col items-start rounded-lg shadow-sm p-1 w-full h-auto bg-white">
