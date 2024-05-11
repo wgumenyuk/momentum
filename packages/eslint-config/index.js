@@ -11,6 +11,8 @@ export default ts.config(
       "@stylistic": stylistic
     },
     rules: {
+      "@stylistic/arrow-parens": [ "error", "always" ],
+      "@stylistic/array-bracket-spacing": [ "error", "always" ],
       "@stylistic/comma-dangle": [ "error", "never" ],
       "@stylistic/semi": [ "error", "always" ],
       "@stylistic/quotes": [ "error", "double" ]
