@@ -2,6 +2,7 @@ import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import RegisterPage from "./RegisterPage";
 import LoginPage from "./LoginPage";
+
 export default {
   title: "Pages/Auth",
   component: RegisterPage,
