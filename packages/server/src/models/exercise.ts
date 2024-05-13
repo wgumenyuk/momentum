@@ -22,7 +22,7 @@ type Exercise = {
   /**
     Schwierigkeitsgrad.
   */
-  difficulty: "easy" | "intermediate" | "advanced",
+  difficulty: "easy" | "intermediate" | "advanced";
 };
 
 const ExerciseSchema = new Schema<Exercise>({
