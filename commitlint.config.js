@@ -13,6 +13,7 @@ export default {
         "chore",
         "docs",
         "feat",
+        "fix",
         "merge",
         "refactor",
         "revert",
