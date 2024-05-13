@@ -64,6 +64,8 @@ export const StatusCode = {
 export const ErrorCode = {
   NotFound: "not_found",
   InternalError: "internal_error",
+  Unauthenticated: "unauthenticated",
+  Forbidden: "forbidden",
   MalformedJson: "malformed_json",
   RegisterInvalidEmail: "register.invalid_email",
   RegisterInvalidPassword: "register.invalid_password",
