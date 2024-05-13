@@ -53,4 +53,4 @@ const ExerciseSchema = new Schema<Exercise>({
 /**
   `Exercise`-Modell.
 */
-export const Exercise = model("Exercise", ExerciseSchema);
+export const Exercise = model<Exercise>("Exercise", ExerciseSchema);
