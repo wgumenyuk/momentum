@@ -13,9 +13,14 @@ type Muscle = {
     Region im Körper.
   */
   region: string;
+
+  /*
+    Liste von Übungen, die diesen Muskel trainieren.
+  */
+  exercises: string[];
 };
 
-const MuscleSchema = new Schema({
+const MuscleSchema = new Schema<Muscle>({
   id: {
     type: "string",
     required: true,
@@ -23,6 +28,10 @@ const MuscleSchema = new Schema({
   },
   region: {
     type: "string",
+    required: true
+  },
+  exercises: {
+    type: [ String ],
     required: true
   }
 });
