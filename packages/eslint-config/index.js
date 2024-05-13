@@ -14,6 +14,7 @@ export default ts.config(
       "@stylistic/arrow-parens": [ "error", "always" ],
       "@stylistic/array-bracket-spacing": [ "error", "always" ],
       "@stylistic/comma-dangle": [ "error", "never" ],
+      "@stylistic/indent": [ "error", 2 ],
       "@stylistic/semi": [ "error", "always" ],
       "@stylistic/quotes": [ "error", "double" ]
     }

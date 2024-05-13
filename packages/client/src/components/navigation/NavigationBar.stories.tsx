@@ -4,8 +4,8 @@ import { Meta, StoryFn } from "@storybook/react";
 import NavigationBar from "./NavigationBar";
 
 export default {
-    title: "Components/NavigationBar",
-    component: NavigationBar
+  title: "Components/NavigationBar",
+  component: NavigationBar
 } as Meta;
 
 export const Default: StoryFn = () => <NavigationBar />;
