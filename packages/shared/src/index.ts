@@ -78,7 +78,8 @@ export const ErrorCode = {
   LoginInvalidEmail: "login.invalid_email",
   LoginInvalidPassword: "login.invalid_password",
   TokenInvalid: "token.invalid",
-  TokenAlreadyBlacklisted: "token.already_blacklisted"
+  TokenAlreadyBlacklisted: "token.already_blacklisted",
+  TokenExpired: "token.expired"
 } as const;
 
 /**
