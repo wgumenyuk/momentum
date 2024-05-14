@@ -1,3 +1,6 @@
+// Exporting from schemas/workout
+export { ExerciseSchema, type Exercise, WorkoutSchema, type Workout } from "./schemas/workout";
+
 import { z } from "zod";
 
 type StatusCodeEntries = typeof StatusCode;
