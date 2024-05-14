@@ -5,6 +5,9 @@ import { log } from "$internal/logger";
 
 const { MONGODB_URL } = process.env;
 
+/**
+  Stellt eine Verbindung zu Mongo her.
+*/
 export const initMongo = async () => {
   log.info("connecting to MongoDB");
 
