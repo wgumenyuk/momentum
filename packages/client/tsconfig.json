@@ -14,6 +14,9 @@
       "$components/*": [
         "components/*"
       ],
+      "$internal/*": [
+        "internal/*"
+      ],
       "$views/*": [
         "views/*"
       ]
