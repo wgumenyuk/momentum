@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { BackgroundLayout } from "$components/Background";
 import { BigButtonBlue } from "$components/Buttons";
 import { EmailInputField, PasswordInputField } from "$components/InputFields";
+import { Auth } from "$internal/api";
 
 const LoginPage: React.FC = () => {
   const [ email, setEmail ] = useState("");
@@ -11,7 +12,7 @@ const LoginPage: React.FC = () => {
     <BackgroundLayout>
       <div className="max-w-sm mx-auto p-5 bg-white rounded-lg shadow-lg">
         <h1 className="text-center text-lg font-bold mb-6">Sign in to <span className="text-blue-300">Momentum</span></h1>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={() => Auth.login({ email, password })}>
           <EmailInputField placeholder="you@example.com" value={email} onChange={setEmail} />
           <PasswordInputField placeholder="********" value={password} onChange={setPassword} />
           <div className="mt-4">
