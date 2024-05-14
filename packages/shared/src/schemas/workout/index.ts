@@ -1,2 +1,2 @@
-export { ExerciseSchema, type Exercise } from "./exerciseSchema";
-export { WorkoutSchema, type Workout } from "./workoutSchema";
+export { ExerciseSchema, type Exercise } from "./ExerciseSchema";
+export { WorkoutSchema, type Workout } from "./WorkoutSchema";

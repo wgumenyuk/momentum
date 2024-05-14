@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { ExerciseSchema } from "./exerciseSchema";
+import { ExerciseSchema } from "./ExerciseSchema";
 
 // Define the schema for a workout
 export const WorkoutSchema = z.object({
