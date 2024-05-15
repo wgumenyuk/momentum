@@ -1,8 +1,10 @@
+import jwt from "jwt-promisify";
+
+// Intern
 import { RegisterSchema, StatusCode, ErrorCode, LoginSchema } from "@momentum/shared";
 import { ok, nok } from "$api/response";
 import { hashPassword, verifyPassword } from "$services/crypto";
 import { User } from "$models/user";
-import jwt from "jwt-promisify";
 
 // Types
 import type { Context } from "koa";
@@ -92,4 +94,36 @@ export const login = async (ctx: Context) => {
   ok(ctx, StatusCode.Success, {
     token: token
   });
+};
+
+/**
+  Meldet einen Benutzer ab.
+*/
+export const logout = async (ctx: Context) => {
+  const token = ctx.request.headers.authorization?.split(" ")[1];
+
+  if (!token) {
+    return nok(ctx, StatusCode.BadRequest, ErrorCode.TokenInvalid);
+  }
+
+  try {
+    const decoded = await jwt.decode(token);
+
+    if (!decoded || !decoded.exp) {
+      return nok(ctx, StatusCode.BadRequest, ErrorCode.TokenInvalid);
+    }
+
+    const currentTime = Math.floor(Date.now() / 1000);
+    const remainingLifetime = decoded.exp - currentTime;
+
+    if (remainingLifetime <= 0) {
+      return nok(ctx, StatusCode.BadRequest, ErrorCode.TokenExpired);
+    }
+
+    await redis.setex(token, remainingLifetime, "blacklisted");
+
+    return ok(ctx, StatusCode.Success);
+  } catch (error) {
+    return nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
+  }
 };

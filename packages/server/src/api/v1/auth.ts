@@ -1,6 +1,5 @@
 import Router from "@koa/router";
-import { login, register } from "$services/auth";
-import { logout } from "$services/logout";
+import { login, register, logout } from "$services/auth";
 import { isAuthenticated, isUnauthenticated } from "$api/middleware/auth";
 
 export const authRouter = new Router({
@@ -8,13 +7,13 @@ export const authRouter = new Router({
 });
 
 authRouter.post("/login", isUnauthenticated, async (ctx) => {
-  await login (ctx);
+  await login(ctx);
 });
 
 authRouter.post("/register" , isUnauthenticated, async (ctx) => {
-  await register (ctx);
+  await register(ctx);
 });
 
 authRouter.post("/logout", isAuthenticated, async (ctx) => {
-  await logout (ctx);
+  await logout(ctx);
 });
