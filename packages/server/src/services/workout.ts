@@ -9,7 +9,7 @@ import { StatusCode, ErrorCode, ErrorCodeValue, WorkoutSchema } from "@momentum/
 const createWorkout = async (ctx: Context) => {
   const { success, error, data } = WorkoutSchema.safeParse(ctx.request.body);
 
-  if (!success) {
+  if(!success) {
     const errorMessage = error.issues.map((issue) => issue.message).join(", ");
     return nok(ctx, StatusCode.BadRequest, errorMessage as ErrorCodeValue);
   }
@@ -29,11 +29,11 @@ const getWorkout = async (ctx: Context) => {
 
   try {
     const workout = await Workout.findOne({ id });
-    if (!workout) {
+    if(!workout) {
       return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
     }
     ok(ctx, StatusCode.Success, { workout });
-  } catch (error) {
+  } catch(error) {
     nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
   }
 };
@@ -44,7 +44,7 @@ const getWorkouts = async (ctx: Context) => {
   try {
     const workouts = await Workout.find({ userId });
     ok(ctx, StatusCode.Success, { workouts });
-  } catch (error) {
+  } catch(error) {
     nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
   }
 };
@@ -53,18 +53,18 @@ const updateWorkout = async (ctx: Context) => {
   const { id } = ctx.params;
   const { success, error, data } = WorkoutSchema.partial().safeParse(ctx.request.body);
 
-  if (!success) {
+  if(!success) {
     const errorMessage = error.issues.map((issue) => issue.message).join(", ");
     return nok(ctx, StatusCode.BadRequest, errorMessage as ErrorCodeValue);
   }
 
   try {
     const workout = await Workout.findOneAndUpdate({ id }, data, { new: true });
-    if (!workout) {
+    if(!workout) {
       return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
     }
     ok(ctx, StatusCode.Success, { workout });
-  } catch (error) {
+  } catch(error) {
     nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
   }
 };
@@ -74,11 +74,11 @@ const deleteWorkout = async (ctx: Context) => {
 
   try {
     const workout = await Workout.findOneAndDelete({ id });
-    if (!workout) {
+    if(!workout) {
       return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
     }
     ok(ctx, StatusCode.Success, { workout });
-  } catch (error) {
+  } catch(error) {
     nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
   }
 };
