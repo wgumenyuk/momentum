@@ -8,13 +8,18 @@ export type Muscle = {
     ID.
   */
   id: string;
+  
+  /**
+    Muskelgruppe, die die einzeln genannten Muskeln beinhaltet.
+  */
+  muscleGroup: string;
 
   /**
     Region im Körper.
   */
   region: string;
 
-  /*
+  /**
     Liste von Übungen, die diesen Muskel trainieren.
   */
   exercises: string[];
@@ -25,6 +30,10 @@ const MuscleSchema = new Schema<Muscle>({
     type: "string",
     required: true,
     unique: true
+  },
+  muscleGroup: {
+    type: "string",
+    required: true
   },
   region: {
     type: "string",

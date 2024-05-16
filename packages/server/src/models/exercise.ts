@@ -12,7 +12,7 @@ export type Exercise = {
   /**
     Betroffene Muskeln.
   */
-  muscles: string[];
+  muscleGroups: string[];
 
   /**
     Benötige Ausrüstung.
@@ -31,7 +31,7 @@ const ExerciseSchema = new Schema<Exercise>({
     required: true,
     unique: true
   },
-  muscles: {
+  muscleGroups: {
     type: [ String ],
     required: true
   },
