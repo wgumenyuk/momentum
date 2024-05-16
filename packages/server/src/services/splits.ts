@@ -1,3 +1,4 @@
+// services/splitService.ts
 import { nanoid } from "nanoid";
 import { Context } from "koa";
 import { Split } from "$models/split";
@@ -17,7 +18,8 @@ const createSplit = async (ctx: Context) => {
 
   const newSplit = new Split({
     ...data,
-    id: nanoid()
+    id: nanoid(),
+    userId: ctx.params.uid
   });
 
   await newSplit.save();
@@ -27,10 +29,10 @@ const createSplit = async (ctx: Context) => {
 
 // Get a specific split by ID
 const getSplit = async (ctx: Context) => {
-  const { id } = ctx.params;
+  const { sid } = ctx.params;
 
   try {
-    const split = await Split.findOne({ id });
+    const split = await Split.findOne({ id: sid });
     if(!split) {
       return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
     }
@@ -42,10 +44,10 @@ const getSplit = async (ctx: Context) => {
 
 // Get all splits for a specific user
 const getSplits = async (ctx: Context) => {
-  const { userId } = ctx.params;
+  const { uid } = ctx.params;
 
   try {
-    const splits = await Split.find({ userId });
+    const splits = await Split.find({ userId: uid });
     ok(ctx, StatusCode.Success, { splits });
   } catch(error) {
     nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
@@ -54,7 +56,7 @@ const getSplits = async (ctx: Context) => {
 
 // Update a specific split by ID
 const updateSplit = async (ctx: Context) => {
-  const { id } = ctx.params;
+  const { sid } = ctx.params;
   const { success, error, data } = SplitSchema.partial().safeParse(ctx.request.body);
 
   if(!success) {
@@ -63,7 +65,7 @@ const updateSplit = async (ctx: Context) => {
   }
 
   try {
-    const split = await Split.findOneAndUpdate({ id }, data, { new: true });
+    const split = await Split.findOneAndUpdate({ id: sid }, data, { new: true });
     if(!split) {
       return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
     }
@@ -75,10 +77,10 @@ const updateSplit = async (ctx: Context) => {
 
 // Delete a specific split by ID
 const deleteSplit = async (ctx: Context) => {
-  const { id } = ctx.params;
+  const { sid } = ctx.params;
 
   try {
-    const split = await Split.findOneAndDelete({ id });
+    const split = await Split.findOneAndDelete({ id: sid });
     if(!split) {
       return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
     }
