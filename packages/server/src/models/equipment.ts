@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 /**
   Ausrüstung.
 */
-type Equipment = {
+export type Equipment = {
   /**
     ID.
   */

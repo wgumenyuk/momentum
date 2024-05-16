@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 /**
   Muskel.
 */
-type Muscle = {
+export type Muscle = {
   /**
     ID.
   */

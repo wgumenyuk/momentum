@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 /**
   Übung.
 */
-type Exercise = {
+export type Exercise = {
   /**
     Übung.
   */

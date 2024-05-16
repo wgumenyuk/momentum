@@ -57,7 +57,7 @@ export const verifyPassword = async (password: string, hash: string) => {
   Erzeugt einen Hash mit dem BLAKE2b-Algorithmus.
 */
 export const blake2b = (input: string) => {
-  const hash = crypto.createHash("blak2b512");
+  const hash = crypto.createHash("blake2b512");
   hash.update(input);
   return hash.digest("hex");
 };
