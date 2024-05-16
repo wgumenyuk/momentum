@@ -1,40 +1,96 @@
-const BASE_URL = (import.meta.env.DEV) ?
-  "http://localhost:3000/api/v1" :
-  "http://localhost:8080/api/v1";
+import type { Response } from "@momentum/shared";
 
-const request = async (
-  method: string,
-  endpoint: string,
+/**
+  HTTP-Methode.
+*/
+type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
+
+/**
+  API-Endpunkt.
+*/
+type Endpoint = `/${string}`;
+
+/**
+  Basis-URL der API.
+*/
+const BASE_URL = (import.meta.env.DEV) ?
+  import.meta.env.VITE_API_BASE_URL_DEV :
+  import.meta.env.VITE_API_BASE_URL_PROD;
+
+/**
+  Schlüssel im Local-Storage für das JWT.
+*/
+const TOKEN_KEY = "token";
+
+/**
+  Timeout der Anfrage in Sekunden.
+*/
+const REQUEST_TIMEOUT = 1000 * 10;
+
+/**
+  Schickt eine HTTP-Anfrage an den Server.
+*/
+const request = async <T extends Record<string, unknown> = Record<string, never>>(
+  method: HttpMethod,
+  endpoint: Endpoint,
   data?: Record<string, unknown>
 ) => {
-  const token = localStorage.get("TOKEN");
-  
-  const headers: HeadersInit = {};
+  const url = BASE_URL + endpoint;
 
-  if(token) {
-    headers.Authorization = token;
-  }
-
-  const requestInit: RequestInit = {
-    method,
-    headers
+  const headers: Record<string, string> = {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
   };
 
+  // JWT in HTTP-Headers anhängen, falls vorhanden.
+  if(localStorage.getItem(TOKEN_KEY)) {
+    headers["Authorization"] = localStorage.getItem(TOKEN_KEY)!;
+  }
+
+  const request: RequestInit = {
+    method,
+    headers,
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT)
+  };
+
+  // Body anhängen für POST- und PUT-Anfragen.
   if((method === "POST" || method === "PUT") && !!data) {
-    requestInit.body = JSON.stringify(data);
+    request.body = JSON.stringify(data);
   }
 
-  const response = await fetch(`${BASE_URL}/${endpoint}`, requestInit);
-
-  if(!response.ok) {
-    return;
+  try {
+    const response = await fetch(url, request);
+    return response.json() as Promise<Response<T>>;
+  } catch(err) {
+    console.error("Failed to fetch data from API", err);
+    return null;
   }
-
-  return response.json();
 };
 
+/**
+  Auth-API.
+*/
 export const Auth = {
-  login: (data: Record<string, unknown>) => request("POST", "/auth/login", data),
-  register: (data: Record<string, unknown>) => request("POST", "/auth/register", data),
-  logout: () => request("POST", "/auth/logout")
+  /**
+    Meldet den Nutzer an.
+  */
+  login: (data: Record<string, unknown>) => request<{ token: string; }>(
+    "POST",
+    "/auth/login",
+    data
+  ),
+
+  /**
+    Registriert ein neues Konto.
+  */
+  register: (data: Record<string, unknown>) => request(
+    "POST",
+    "/auth/register",
+    data
+  ),
+
+  /**
+    Meldet den Nutzer ab.
+  */
+  logout: () => request( "POST", "/auth/logout")
 };
