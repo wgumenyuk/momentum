@@ -1,3 +1,6 @@
+// Exporting from schemas/workout
+export { ExerciseSchema, type Exercise, WorkoutSchema, type Workout } from "./schemas/workout";
+
 import { z } from "zod";
 
 type StatusCodeEntries = typeof StatusCode;
@@ -73,7 +76,10 @@ export const ErrorCode = {
   RegisterPasswordTooLong: "register.password_too_long",
   RegisterEmailTaken: "register.email_taken",
   LoginInvalidEmail: "login.invalid_email",
-  LoginInvalidPassword: "login.invalid_password"
+  LoginInvalidPassword: "login.invalid_password",
+  TokenInvalid: "token.invalid",
+  TokenAlreadyBlacklisted: "token.already_blacklisted",
+  TokenExpired: "token.expired"
 } as const;
 
 /**

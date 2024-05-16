@@ -4,6 +4,7 @@ import { bodyParser } from "@koa/bodyparser";
 
 // Intern
 import { initRedis } from "$internal/redis";
+import { initMongo } from "$internal/mongo";
 import { log } from "$internal/logger";
 import { logRequest } from "$api/middleware/log-request";
 import { handleError } from "$api/middleware/handle-error";
@@ -16,6 +17,7 @@ const {
 
 // Datenbanken initialisieren.
 await initRedis();
+await initMongo();
 
 const app = new Koa();
 

@@ -15,6 +15,25 @@ export default ts.config(
       "@stylistic/array-bracket-spacing": [ "error", "always" ],
       "@stylistic/comma-dangle": [ "error", "never" ],
       "@stylistic/indent": [ "error", 2 ],
+      "@stylistic/keyword-spacing": [
+        "error",
+        {
+          "overrides": {
+            "catch": {
+              "after": false
+            },
+            "for": {
+              "after": false
+            },
+            "if": {
+              "after": false
+            },
+            "while": {
+              "after": false
+            }
+          }
+        }
+      ],
       "@stylistic/semi": [ "error", "always" ],
       "@stylistic/quotes": [ "error", "double" ]
     }

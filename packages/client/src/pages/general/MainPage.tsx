@@ -1,4 +1,5 @@
 import { BackgroundLayout } from "$components/Background";
+import NavigationBar from "$components/navigation/NavigationBar";
 import React from "react";
 
 const MainPage: React.FC = () => {
@@ -14,6 +15,7 @@ const MainPage: React.FC = () => {
           Start Workout: Push
         </button>
       </div>
+      <NavigationBar />
     </BackgroundLayout>
   );
 };
