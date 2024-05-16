@@ -1,6 +1,3 @@
-// Exporting from schemas/workout
-export { ExerciseSchema, type Exercise, WorkoutSchema, type Workout } from "./schemas/workout";
-
 import { z } from "zod";
 
 type StatusCodeEntries = typeof StatusCode;
@@ -130,4 +127,112 @@ export const LoginSchema = z.object({
     .string({
       message: ErrorCode.LoginInvalidPassword
     })
+});
+
+/**
+  Schema für eine Übung.
+*/
+export const ExerciseSchema = z.object({
+  /**
+    ID.
+  */
+  id: z.string(),
+
+  /**
+    Name.
+  */
+  name: z.string(),
+
+  /**
+    Anzahl der Wiederholdungen.
+  */
+  repetitions: z.number().int().positive(),
+
+  /**
+    Anzahl der Sätze.
+  */
+  sets: z.number().int().positive(),
+
+  /**
+    Verwendendes Gewicht.
+  */
+  weight: z.number().nonnegative().optional(),
+
+  /**
+    Dauer.
+  */
+  duration: z.number().nonnegative().optional(),
+
+  /**
+    Liste von beanspruchten Muskelgruppen.
+  */
+  muscleGroups: z.array(z.string()),
+
+  /**
+    Gerätinstellungen.
+  */
+  deviceSetting: z.string().optional(),
+
+  /**
+    Notiz.
+  */
+  note: z.string().optional()
+});
+
+/**
+  Schema für ein Workout.
+*/
+export const WorkoutSchema = z.object({
+  /**
+    ID.
+  */
+  id: z.string(),
+
+  /**
+    Datum.
+  */
+  date: z.string(),
+
+  /**
+    Übungen.
+  */
+  exercises: z.array(ExerciseSchema)
+});
+
+/**
+  Schema für einen Split.
+*/
+export const SplitSchema = z.object({
+  /**
+    ID.
+  */
+  id: z.string(),
+
+  /**
+    Name.
+  */
+  name: z.string(),
+
+  /**
+    Workouts.
+  */
+  workouts: z.array(z.object({
+    type: z.enum([
+      "Push", 
+      "Pull", 
+      "Legs", 
+      "Upper Body", 
+      "Lower Body", 
+      "Full Body", 
+      "Cardio", 
+      "Rest",
+      "Arms",
+      "Chest and Back",
+      "Shoulders and Arms",
+      "Chest",
+      "Back",
+      "Shoulders"
+    ]),
+    workout: WorkoutSchema
+  }))
 });
