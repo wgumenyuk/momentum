@@ -5,11 +5,11 @@ import { RegisterSchema, StatusCode, ErrorCode, LoginSchema } from "@momentum/sh
 import { ok, nok } from "$api/response";
 import { hashPassword, verifyPassword } from "$services/crypto";
 import { User } from "$models/user";
+import { redis } from "$internal/redis";
 
 // Types
 import type { Context } from "koa";
 import type { ErrorCodeValue } from "@momentum/shared";
-import { redis } from "$internal/redis";
 
 /**
   Registriert ein neues Nutzerkonto.
