@@ -9,6 +9,7 @@ import { User } from "$models/user";
 // Types
 import type { Context } from "koa";
 import type { ErrorCodeValue } from "@momentum/shared";
+import { redis } from "$internal/redis";
 
 /**
   Registriert ein neues Nutzerkonto.
