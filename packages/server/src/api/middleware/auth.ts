@@ -21,7 +21,7 @@ export const isAuthenticated: Middleware = async (ctx, next) => {
       ctx.throw(401);
     }
 
-    const isExpired = !!(await redis.sismember("expired-tokens", token)); 
+    const isExpired = !!(await redis.get(`expired-token:${token}`));
 
     if(isExpired) {
       ctx.throw(401);

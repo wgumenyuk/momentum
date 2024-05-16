@@ -121,7 +121,11 @@ export const logout = async (ctx: Context) => {
       return nok(ctx, StatusCode.BadRequest, ErrorCode.TokenExpired);
     }
 
-    await redis.setex(token, remainingLifetime, "blacklisted");
+    await redis.setex(
+      `expired-token:${token}`,
+      remainingLifetime,
+      remainingLifetime
+    );
 
     return ok(ctx, StatusCode.Success);
   } catch(error) {
