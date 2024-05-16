@@ -13,9 +13,6 @@ export const initMongo = async () => {
 
   try {
     await mongoose.connect(MONGODB_URL);
-    mongoose.connection.on("error", (err) => {
-      throw err;
-    });
   } catch(err) {
     log.fatal(err, "failed to connect to MongoDB");
     process.exit(1);

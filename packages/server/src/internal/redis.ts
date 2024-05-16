@@ -21,10 +21,6 @@ export const redis = new Redis(REDIS_URL, {
 export const initRedis = async () => {
   log.info("connecting to Redis");
 
-  redis.on("error", (err) => {
-    log.error(err, "Redis generated an error");
-  });
-
   try {
     await redis.connect();
   } catch(err) {
