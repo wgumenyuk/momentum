@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BackgroundLayout } from "$components/Background";
-import { BigButtonBlue } from "$components/Buttons";
 import { EmailInputField, PasswordInputField } from "$components/InputFields";
 import { TermsAndConditionsCheckbox, SubscribeToNewsletterCheckbox } from "$components/CheckBoxes";
 import { Auth } from "$internal/api";
+import BigButton from "$components/Buttons/BigButton";
 
 const RegisterPage: React.FC = () => {
   const [ email, setEmail ] = useState("");
@@ -44,7 +44,7 @@ const RegisterPage: React.FC = () => {
           <TermsAndConditionsCheckbox/>
           <SubscribeToNewsletterCheckbox/>
           <div className="flex justify-center mt-6">
-            <BigButtonBlue text="Sign Up" onClick={handleSubmit}/>
+            <BigButton text="Sign Up" onClick={handleSubmit} variant="blue"/>
           </div>
         </form>
         <div className="text-center mt-6 text-sm">

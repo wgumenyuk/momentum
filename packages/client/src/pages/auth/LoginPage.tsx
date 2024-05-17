@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { BackgroundLayout } from "$components/Background";
-import { BigButtonBlue } from "$components/Buttons";
 import { EmailInputField, PasswordInputField } from "$components/InputFields";
 import { Auth } from "$internal/api";
+import BigButton from "$components/Buttons/BigButton";
 
 const LoginPage: React.FC = () => {
   const [ email, setEmail ] = useState("");
@@ -51,7 +51,7 @@ const LoginPage: React.FC = () => {
             </label>
           </div>
           <div className="flex justify-center mt-6">
-            <BigButtonBlue text="Sign In" onClick={handleSubmit}/>
+            <BigButton text="Sign In" onClick={handleSubmit} variant="blue"/>
           </div>
           <div className="text-center mt-2">
             <Link to="/forgot-password" className="text-sm text-blue-300 hover:text-blue-600">Forgot password?</Link>

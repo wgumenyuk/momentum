@@ -1,2 +1,1 @@
-export { default as BigButtonBlue } from "./BigButtonBlue";
-export { default as BigButtonRed } from "./BigButtonRed";
+export { default as BigButtonBlue } from "./BigButton";

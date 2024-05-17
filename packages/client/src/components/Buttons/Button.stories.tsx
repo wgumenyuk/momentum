@@ -1,22 +1,23 @@
 import { Meta, StoryFn } from "@storybook/react";
-import BigButtonBlue from "./BigButtonBlue";
-import BigButtonRed from "./BigButtonRed";
+import BigButton from "./BigButton";
 
 export default {
-  title: "Components/BigButtons"
+  title: "Components/BigButton",
+  component: BigButton
 } as Meta;
 
-const TemplateBlue: StoryFn<{ text: string; onClick: () => void }> = (args) => <BigButtonBlue {...args}/>;
-const TemplateRed: StoryFn<{ text: string; onClick: () => void }> = (args) => <BigButtonRed {...args}/>;
+const Template: StoryFn<{ text: string; onClick: () => void; variant: "blue" | "red" }> = (args) => <BigButton {...args}/>;
 
-export const DefaultBigButtonBlue = TemplateBlue.bind({});
+export const DefaultBigButtonBlue = Template.bind({});
 DefaultBigButtonBlue.args = {
   text: "Sign Up",
-  onClick: () => alert("Clicked!")
+  onClick: () => alert("Clicked!"),
+  variant: "blue"
 };
 
-export const DefaultBigButtonRed = TemplateRed.bind({});
+export const DefaultBigButtonRed = Template.bind({});
 DefaultBigButtonRed.args = {
   text: "Delete account",
-  onClick: () => alert("Clicked!")
+  onClick: () => alert("Clicked!"),
+  variant: "red"
 };
