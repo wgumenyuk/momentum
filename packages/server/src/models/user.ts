@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import { nanoid } from "nanoid";
 
 /**
   Nutzer.
@@ -40,8 +39,7 @@ const UserSchema = new Schema<User>({
   id: {
     type: "string",
     required: true,
-    unique: true,
-    default: nanoid()
+    unique: true
   },
   email: {
     type: "string",

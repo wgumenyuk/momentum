@@ -10,6 +10,7 @@ import { redis } from "$internal/redis";
 // Types
 import type { Context } from "koa";
 import type { ErrorCodeValue } from "@momentum/shared";
+import { nanoid } from "nanoid";
 
 /**
   Registriert ein neues Nutzerkonto.
@@ -41,7 +42,8 @@ export const register = async (ctx: Context) => {
 
   const user = await User.create({
     email,
-    password: hash
+    password: hash,
+    id: nanoid()
   });
 
   await user.save();
