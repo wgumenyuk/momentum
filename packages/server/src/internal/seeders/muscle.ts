@@ -17,7 +17,7 @@ const seed: MuscleType[] = [
     ]
   },
   {
-    id: "long_head",
+    id: "biceps_long_head",
     muscleGroup: "biceps_brachi",
     region: "arms",
     exercises: [
@@ -53,7 +53,7 @@ const seed: MuscleType[] = [
     ]
   },
   {
-    id: "long_head",
+    id: "triceps_long_head",
     muscleGroup: "triceps_brachi",
     region: "arms",
     exercises: [
