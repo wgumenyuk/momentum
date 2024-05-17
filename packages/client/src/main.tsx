@@ -4,8 +4,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Intern
 import "./index.css";
-import LoginPage from "pages/auth/LoginPage";
-import HomePage from "pages/HomePage";
+import LoginPage from "./pages/auth/LoginPage";
+import HomePage from "./pages/HomePage";
 
 const root = document.getElementById("root")!;
 
@@ -25,4 +25,3 @@ createRoot(root).render(
     <RouterProvider router={router} />
   </React.StrictMode>
 );
-
