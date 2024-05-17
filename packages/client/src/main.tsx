@@ -4,15 +4,25 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Intern
 import "./index.css";
+import LoginPage from "pages/auth/LoginPage";
+import HomePage from "pages/HomePage";
 
 const root = document.getElementById("root")!;
 
 const router = createBrowserRouter([
-  // TODO: Routen hinzufügen.
+  {
+    path: "/",
+    element: <LoginPage />
+  },
+  {
+    path: "/home",
+    element: <HomePage />
+  }
 ]);
 
 createRoot(root).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <RouterProvider router={router} />
   </React.StrictMode>
 );
+
