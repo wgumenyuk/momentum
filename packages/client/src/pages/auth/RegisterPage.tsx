@@ -1,13 +1,36 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BackgroundLayout } from "$components/Background";
 import { BigButtonBlue } from "$components/Buttons";
 import { EmailInputField, PasswordInputField } from "$components/InputFields";
 import { TermsAndConditionsCheckbox, SubscribeToNewsletterCheckbox } from "$components/CheckBoxes";
+import { Auth } from "$internal/api";
 
 const RegisterPage: React.FC = () => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
+
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    const data = {
+      email,
+      password
+    };
+
+    const response = await Auth.register(data);
+
+    if(!response) {
+      // TODO Fehlernachricht.
+      return;
+    }
+
+    if(!response.ok) {
+      // TODO Fehlernachricht.
+      return;
+    }
+
+    navigate("/login");
+  }; 
 
   return (
     <BackgroundLayout>
@@ -21,7 +44,7 @@ const RegisterPage: React.FC = () => {
           <TermsAndConditionsCheckbox />
           <SubscribeToNewsletterCheckbox />
           <div className="flex justify-center mt-6">
-            <BigButtonBlue text="Sign Up" onClick={() => alert("Thank you for registering!")} />
+            <BigButtonBlue text="Sign Up" onClick={handleSubmit}/>
           </div>
         </form>
         <div className="text-center mt-6 text-sm">
