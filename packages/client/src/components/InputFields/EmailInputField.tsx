@@ -9,11 +9,11 @@ interface EmailInputFieldProps {
 }
 
 const EmailInputField: React.FC<EmailInputFieldProps> = ({ placeholder, value, onChange }) => (
-  <div className="flex flex-col items-start rounded-lg shadow-sm p-1 w-full h-auto bg-white">
-    <span className="text-xs text-gray-600 mb-1 bg-transparent" style={{ backgroundColor: "transparent", padding: 0, margin: 0, border: "none" }}>
+  <div className="flex flex-col items-start rounded-lg shadow-sm p-1 w-full h-auto">
+    <span className="text-xs text-gray-600 mb-1">
       E-Mail
     </span>
-    <div className="flex items-center w-full">
+    <div className="flex items-center w-full bg-white rounded-lg px-4 py-2 gap-2">
       <Mail className="text-gray-900 mr-1 text-lg"/>
       <InputField 
         placeholder={placeholder} 

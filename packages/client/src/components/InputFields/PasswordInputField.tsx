@@ -13,11 +13,11 @@ const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ placeholder, va
   const [ showPassword, setShowPassword ] = useState(false);
 
   return (
-    <div className="flex flex-col items-start rounded-lg shadow-sm p-1 w-full h-auto bg-white">
-      <span className="text-xs text-gray-600 mb-1 bg-transparent" style={{ backgroundColor: "transparent", padding: 0, margin: 0, border: "none" }}>
+    <div className="flex flex-col items-start rounded-lg shadow-sm p-1 w-full h-auto">
+      <span className="text-xs text-gray-600 mb-1 bg-transparent">
         Password
       </span>
-      <div className="flex items-center w-full relative">
+      <div className="relative flex items-center w-full bg-white rounded-lg px-4 py-2 gap-2">
         <LockIcon className="text-gray-900 mr-1 text-lg"/>
         <InputField 
           placeholder={placeholder} 
@@ -26,8 +26,11 @@ const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ placeholder, va
           type={showPassword ? "text" : "password"} 
           className="w-full shadow-none rounded-none bg-transparent text-sm"
         />
-        <div className="absolute right-0 inset-y-0 flex items-center pr-2 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
-          {showPassword ? <Eye size="16"/> : <EyeOff size="16"/>}
+        <div
+          className="absolute right-4 inset-y-0 flex items-center pr-2 cursor-pointer"
+          onClick={() => setShowPassword(!showPassword)}
+        >
+          {showPassword ? <Eye/> : <EyeOff/>}
         </div>
       </div>
     </div>
