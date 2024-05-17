@@ -95,7 +95,7 @@ export const login = async (ctx: Context) => {
 
   // Authentication successful, return the token
   ok(ctx, StatusCode.Success, {
-    token: token
+    token: `Bearer ${token}`
   });
 };
 
