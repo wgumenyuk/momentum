@@ -11,7 +11,7 @@ const ModifyWorkout: React.FC = () => {
           <p className="text-lg text-black">Here you can modify your workout details.</p>
         </div>
       </BackgroundLayout>
-      <NavigationBar />
+      <NavigationBar/>
     </>
   );
 };

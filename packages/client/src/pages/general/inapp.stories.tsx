@@ -8,5 +8,5 @@ export default {
 } as Meta;
 
 // Story for MainPage
-export const Main: StoryFn = () => <MainPage />;
+export const Main: StoryFn = () => <MainPage/>;
 Main.storyName = "Main Page";

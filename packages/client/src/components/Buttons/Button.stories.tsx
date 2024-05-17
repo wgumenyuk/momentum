@@ -6,8 +6,8 @@ export default {
   title: "Components/BigButtons"
 } as Meta;
 
-const TemplateBlue: StoryFn<{ text: string; onClick: () => void }> = (args) => <BigButtonBlue {...args} />;
-const TemplateRed: StoryFn<{ text: string; onClick: () => void }> = (args) => <BigButtonRed {...args} />;
+const TemplateBlue: StoryFn<{ text: string; onClick: () => void }> = (args) => <BigButtonBlue {...args}/>;
+const TemplateRed: StoryFn<{ text: string; onClick: () => void }> = (args) => <BigButtonRed {...args}/>;
 
 export const DefaultBigButtonBlue = TemplateBlue.bind({});
 DefaultBigButtonBlue.args = {

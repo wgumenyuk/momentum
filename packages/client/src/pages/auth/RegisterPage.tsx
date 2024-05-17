@@ -39,10 +39,10 @@ const RegisterPage: React.FC = () => {
           Create your <span className="text-blue-300">Momentum</span> account
         </h1>
         <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-          <EmailInputField placeholder="you@example.com" value={email} onChange={setEmail} />
-          <PasswordInputField placeholder="********" value={password} onChange={setPassword} />
-          <TermsAndConditionsCheckbox />
-          <SubscribeToNewsletterCheckbox />
+          <EmailInputField placeholder="you@example.com" value={email} onChange={setEmail}/>
+          <PasswordInputField placeholder="********" value={password} onChange={setPassword}/>
+          <TermsAndConditionsCheckbox/>
+          <SubscribeToNewsletterCheckbox/>
           <div className="flex justify-center mt-6">
             <BigButtonBlue text="Sign Up" onClick={handleSubmit}/>
           </div>

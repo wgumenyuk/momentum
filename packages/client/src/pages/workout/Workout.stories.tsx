@@ -9,9 +9,9 @@ export default {
 } as Meta;
 
 // Story for WorkoutPage
-export const Workout: StoryFn = () => <WorkoutPage />;
+export const Workout: StoryFn = () => <WorkoutPage/>;
 Workout.storyName = "Workout Page";
 
 // Story for ModifyWorkout
-export const Modify: StoryFn = () => <ModifyWorkout />;
+export const Modify: StoryFn = () => <ModifyWorkout/>;
 Modify.storyName = "Modify Workout Page";

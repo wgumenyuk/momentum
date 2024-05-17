@@ -10,9 +10,9 @@ export default {
 } as Meta;
 
 // Story for RegisterPage
-export const Register: StoryFn = () => <RegisterPage />;
+export const Register: StoryFn = () => <RegisterPage/>;
 Register.storyName = "Register Page";
 
 // Story for LoginPage
-export const Login: StoryFn = () => <LoginPage />;
+export const Login: StoryFn = () => <LoginPage/>;
 Login.storyName = "Login Page";

@@ -15,7 +15,7 @@ export default {
   }
 } as Meta;
 
-const Template: StoryFn<CheckBoxProps> = (args) => <CheckBox {...args} />;
+const Template: StoryFn<CheckBoxProps> = (args) => <CheckBox {...args}/>;
 
 export const Checked = Template.bind({});
 Checked.args = {
@@ -43,13 +43,13 @@ export const Interactive = () => {
 };
 
 export const RememberMe = () => {
-  return <RememberMeCheckbox />;
+  return <RememberMeCheckbox/>;
 };
 
 export const SubscribeToNewsletter = () => {
-  return <SubscribeToNewsletterCheckbox />;
+  return <SubscribeToNewsletterCheckbox/>;
 };
 
 export const TermsAndConditions = () => {
-  return <TermsAndConditionsCheckBox />;
+  return <TermsAndConditionsCheckBox/>;
 };

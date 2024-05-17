@@ -9,5 +9,5 @@ export default {
 } as Meta;
 
 // Story for SplitsPage
-export const Splits: StoryFn = () => <SplitsPage />;
+export const Splits: StoryFn = () => <SplitsPage/>;
 Splits.storyName = "Splits Page";

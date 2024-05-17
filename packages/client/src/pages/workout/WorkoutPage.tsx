@@ -17,7 +17,7 @@ const WorkoutPage: React.FC = () => {
           </button>
         </div>
       </BackgroundLayout>
-      <NavigationBar />
+      <NavigationBar/>
     </>
   );
 };

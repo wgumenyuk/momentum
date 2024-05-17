@@ -15,7 +15,7 @@ const SplitItem: React.FC<SplitItemProps> = ({ title, muscles }) => {
         <p className="text-sm text-gray-600">{muscles}</p>
       </div>
       <button className="p-2 bg-white rounded-full shadow-md">
-        <Edit className="w-6 h-6 text-current" />
+        <Edit className="w-6 h-6 text-current"/>
       </button>
     </div>
   );

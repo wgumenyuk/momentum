@@ -18,7 +18,7 @@ const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ placeholder, va
         Password
       </span>
       <div className="flex items-center w-full relative">
-        <LockIcon className="text-gray-900 mr-1 text-lg" />
+        <LockIcon className="text-gray-900 mr-1 text-lg"/>
         <InputField 
           placeholder={placeholder} 
           value={value} 
@@ -27,7 +27,7 @@ const PasswordInputField: React.FC<PasswordInputFieldProps> = ({ placeholder, va
           className="w-full shadow-none rounded-none bg-transparent text-sm"
         />
         <div className="absolute right-0 inset-y-0 flex items-center pr-2 cursor-pointer" onClick={() => setShowPassword(!showPassword)}>
-          {showPassword ? <Eye size="16" /> : <EyeOff size="16" />}
+          {showPassword ? <Eye size="16"/> : <EyeOff size="16"/>}
         </div>
       </div>
     </div>

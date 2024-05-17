@@ -42,11 +42,11 @@ const LoginPage: React.FC = () => {
           Sign in to <span className="text-blue-300">Momentum</span>
         </h1>
         <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-          <EmailInputField placeholder="you@example.com" value={email} onChange={setEmail} />
-          <PasswordInputField placeholder="********" value={password} onChange={setPassword} />
+          <EmailInputField placeholder="you@example.com" value={email} onChange={setEmail}/>
+          <PasswordInputField placeholder="********" value={password} onChange={setPassword}/>
           <div className="mt-4">
             <label className="flex items-center">
-              <input type="checkbox" className="form-checkbox" />
+              <input type="checkbox" className="form-checkbox"/>
               <span className="ml-2 text-sm">Remember me</span>
             </label>
           </div>

@@ -8,4 +8,4 @@ export default {
   component: NavigationBar
 } as Meta;
 
-export const Default: StoryFn = () => <NavigationBar />;
+export const Default: StoryFn = () => <NavigationBar/>;

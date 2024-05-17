@@ -13,20 +13,20 @@ const root = document.getElementById("root")!;
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />
+    element: <HomePage/>
   },
   {
     path: "/login",
-    element: <LoginPage />
+    element: <LoginPage/>
   },
   {
     path: "/register",
-    element: <RegisterPage />
+    element: <RegisterPage/>
   }
 ]);
 
 createRoot(root).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={router}/>
   </React.StrictMode>
 );

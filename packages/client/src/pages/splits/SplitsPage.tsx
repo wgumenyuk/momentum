@@ -9,11 +9,11 @@ const SplitsPage: React.FC = () => {
     <BackgroundLayout>
       <h1 className="text-2xl font-bold text-black">Splits</h1>
       <div className="space-y-4">
-        <SplitItem title="Push" muscles="Chest, Shoulders, Triceps" />
-        <SplitItem title="Pull" muscles="Back, Biceps" />
-        <SplitItem title="Legs" muscles="Quads, Hamstrings, Calves" />
+        <SplitItem title="Push" muscles="Chest, Shoulders, Triceps"/>
+        <SplitItem title="Pull" muscles="Back, Biceps"/>
+        <SplitItem title="Legs" muscles="Quads, Hamstrings, Calves"/>
       </div>
-      <NavigationBar />
+      <NavigationBar/>
     </BackgroundLayout>
   );
 };

@@ -15,7 +15,7 @@ const MainPage: React.FC = () => {
           Start Workout: Push
         </button>
       </div>
-      <NavigationBar />
+      <NavigationBar/>
     </BackgroundLayout>
   );
 };

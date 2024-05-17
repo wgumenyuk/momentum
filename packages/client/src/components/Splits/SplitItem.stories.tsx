@@ -10,9 +10,9 @@ export default {
 
 const Template: StoryFn = () => (
   <div className="space-y-4">
-    <SplitItem title="Push" muscles="Chest, Shoulders, Triceps" />
-    <SplitItem title="Pull" muscles="Back, Biceps" />
-    <SplitItem title="Legs" muscles="Quads, Hamstrings, Calves" />
+    <SplitItem title="Push" muscles="Chest, Shoulders, Triceps"/>
+    <SplitItem title="Pull" muscles="Back, Biceps"/>
+    <SplitItem title="Legs" muscles="Quads, Hamstrings, Calves"/>
   </div>
 );
 
