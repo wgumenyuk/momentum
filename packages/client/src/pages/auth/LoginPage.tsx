@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { BackgroundLayout } from "$components/Background";
 import { BigButtonBlue } from "$components/Buttons";
 import { EmailInputField, PasswordInputField } from "$components/InputFields";
@@ -9,13 +9,39 @@ const LoginPage: React.FC = () => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
 
+  const navigate = useNavigate();
+
+  const handleSubmit = async () => {
+    const data = {
+      email,
+      password
+    };
+
+    const response = await Auth.login(data);
+
+    if(!response) {
+      // TODO Fehlernachricht.
+      return;
+    }
+
+    if(!response.ok) {
+      // TODO Fehlernachricht.
+      return;
+    }
+
+    const { token } = response.data;
+
+    localStorage.setItem("token", token);
+    navigate("/home");
+  }; 
+
   return (
     <BackgroundLayout>
       <div className="max-w-sm mx-auto p-5 bg-white rounded-lg shadow-lg">
         <h1 className="text-center text-lg font-bold mb-6">
           Sign in to <span className="text-blue-300">Momentum</span>
         </h1>
-        <form className="space-y-4" onSubmit={() => Auth.login({ email, password })}>
+        <form className="space-y-4">
           <EmailInputField placeholder="you@example.com" value={email} onChange={setEmail} />
           <PasswordInputField placeholder="********" value={password} onChange={setPassword} />
           <div className="mt-4">
@@ -25,7 +51,7 @@ const LoginPage: React.FC = () => {
             </label>
           </div>
           <div className="flex justify-center mt-6">
-            <BigButtonBlue text="Sign In" onClick={() => alert("Welcome back!")} />
+            <BigButtonBlue text="Sign In" onClick={handleSubmit}/>
           </div>
           <div className="text-center mt-2">
             <Link to="/forgot-password" className="text-sm text-blue-300 hover:text-blue-600">Forgot password?</Link>
