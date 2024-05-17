@@ -15,7 +15,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({ label, checked, onChange }) => {
         onChange={(e) => onChange(e.target.checked)}
         className="form-checkbox h-4 w-4 text-blue-600 rounded-full shadow-md"
       />
-      <span className="text-gray-700 text-sm font-bold">{label}</span>
+      <span className="text-gray-700 text-sm">{label}</span>
     </label>
   );
 };
