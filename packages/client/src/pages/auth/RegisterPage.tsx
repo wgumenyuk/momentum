@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { BackgroundLayout } from "$components/Background";
 import { BigButtonBlue } from "$components/Buttons";
 import { EmailInputField, PasswordInputField } from "$components/InputFields";
@@ -11,7 +12,9 @@ const RegisterPage: React.FC = () => {
   return (
     <BackgroundLayout>
       <div className="max-w-sm mx-auto p-5 bg-white rounded-lg shadow-lg">
-        <h1 className="text-center text-lg font-bold mb-6">Create your <span className="text-blue-300">Momentum</span> account</h1>
+        <h1 className="text-center text-lg font-bold mb-6">
+          Create your <span className="text-blue-300">Momentum</span> account
+        </h1>
         <form className="space-y-4">
           <EmailInputField placeholder="you@example.com" value={email} onChange={setEmail} />
           <PasswordInputField placeholder="********" value={password} onChange={setPassword} />
@@ -22,7 +25,7 @@ const RegisterPage: React.FC = () => {
           </div>
         </form>
         <div className="text-center mt-6 text-sm">
-          Already have an account? <a href="/login" className="text-blue-300 hover:text-blue-600">Sign in.</a>
+          Already have an account? <Link to="/login" className="text-blue-300 hover:text-blue-600">Sign in.</Link>
         </div>
       </div>
     </BackgroundLayout>
