@@ -38,7 +38,7 @@ const RegisterPage: React.FC = () => {
         <h1 className="text-center text-lg font-bold mb-6">
           Create your <span className="text-blue-300">Momentum</span> account
         </h1>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
           <EmailInputField placeholder="you@example.com" value={email} onChange={setEmail} />
           <PasswordInputField placeholder="********" value={password} onChange={setPassword} />
           <TermsAndConditionsCheckbox />
