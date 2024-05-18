@@ -1,32 +1,36 @@
 import { StoryFn, Meta } from "@storybook/react";
+import { MemoryRouter } from "react-router-dom";
 import CheckBox from "./CheckBox";
 import { CheckBoxProps } from "./CheckBox";
 import { useState } from "react";
-import RememberMeCheckbox from "./RememberMeCheckBox";
-import SubscribeToNewsletterCheckbox from "./SubscribeToNewsletterCheckBox";
-import TermsAndConditionsCheckBox from "./TermsAndConditionsCheckBox";
 
 export default {
   title: "Components/CheckBox",
   component: CheckBox,
   argTypes: {
-    checked: { control: "boolean" },
-    label: { control: "text" }
-  }
+    checked: { control: "boolean" }
+  },
+  decorators: [
+    (Story) => (
+      <MemoryRouter>
+        <Story/>
+      </MemoryRouter>
+    )
+  ]
 } as Meta;
 
 const Template: StoryFn<CheckBoxProps> = (args) => <CheckBox {...args}/>;
 
 export const Checked = Template.bind({});
 Checked.args = {
-  label: "Accept Terms and Conditions",
+  variant: "terms",
   checked: true,
   onChange: () => {}
 };
 
 export const Unchecked = Template.bind({});
 Unchecked.args = {
-  label: "Accept Terms and Conditions",
+  variant: "terms",
   checked: false,
   onChange: () => {}
 };
@@ -35,7 +39,7 @@ export const Interactive = () => {
   const [ checked, setChecked ] = useState(false);
   return (
     <CheckBox
-      label="Interactive Checkbox"
+      variant="terms"
       checked={checked}
       onChange={(newChecked) => setChecked(newChecked)}
     />
@@ -43,13 +47,34 @@ export const Interactive = () => {
 };
 
 export const RememberMe = () => {
-  return <RememberMeCheckbox/>;
+  const [ checked, setChecked ] = useState(false);
+  return (
+    <CheckBox
+      variant="rememberMe"
+      checked={checked}
+      onChange={(newChecked) => setChecked(newChecked)}
+    />
+  );
 };
 
 export const SubscribeToNewsletter = () => {
-  return <SubscribeToNewsletterCheckbox/>;
+  const [ checked, setChecked ] = useState(false);
+  return (
+    <CheckBox
+      variant="subscribe"
+      checked={checked}
+      onChange={(newChecked) => setChecked(newChecked)}
+    />
+  );
 };
 
 export const TermsAndConditions = () => {
-  return <TermsAndConditionsCheckBox/>;
+  const [ checked, setChecked ] = useState(false);
+  return (
+    <CheckBox
+      variant="terms"
+      checked={checked}
+      onChange={(newChecked) => setChecked(newChecked)}
+    />
+  );
 };

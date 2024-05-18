@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { BackgroundLayout } from "$components/Background";
-import { TermsAndConditionsCheckbox, SubscribeToNewsletterCheckbox } from "$components/CheckBoxes";
 import { Auth } from "$internal/api";
-import { InputField } from "$components/InputFields";
+import InputField from "$components/InputFields/InputField";
 import BigButton from "$components/Buttons/BigButton";
+import CheckBox from "$components/CheckBoxes/CheckBox";
 
 const RegisterPage: React.FC = () => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
+  const [ termsAccepted, setTermsAccepted ] = useState(false);
+  const [ subscribed, setSubscribed ] = useState(false);
 
   const navigate = useNavigate();
+
   const handleSubmit = async () => {
     const data = {
       email,
@@ -30,7 +33,7 @@ const RegisterPage: React.FC = () => {
     }
 
     navigate("/login");
-  }; 
+  };
 
   return (
     <BackgroundLayout>
@@ -39,16 +42,42 @@ const RegisterPage: React.FC = () => {
           Create your <span className="text-blue-300">Momentum</span> account
         </h1>
         <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-          <InputField placeholder="you@example.com" value={email} onChange={setEmail} variant="email" title="E-Mail"/>
-          <InputField placeholder="********" value={password} onChange={setPassword} variant="password" title="Password"/>
-          <TermsAndConditionsCheckbox/>
-          <SubscribeToNewsletterCheckbox/>
+          <InputField
+            placeholder="you@example.com"
+            value={email}
+            onChange={setEmail}
+            variant="email"
+            title="E-Mail"
+          />
+          <InputField
+            placeholder="********"
+            value={password}
+            onChange={setPassword}
+            variant="password"
+            title="Password"
+          />
+          <CheckBox
+            variant="terms"
+            checked={termsAccepted}
+            onChange={setTermsAccepted}
+          />
+          <CheckBox
+            variant="subscribe"
+            checked={subscribed}
+            onChange={setSubscribed}
+          />
           <div className="flex justify-center mt-6">
             <BigButton text="Sign Up" onClick={handleSubmit} variant="blue"/>
           </div>
         </form>
         <div className="text-center mt-6 text-sm">
-          Already have an account? <Link to="/login" className="text-blue-300 hover:text-blue-600">Sign in.</Link>
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-blue-300 hover:text-blue-600"
+          >
+            Sign in.
+          </Link>
         </div>
       </div>
     </BackgroundLayout>
