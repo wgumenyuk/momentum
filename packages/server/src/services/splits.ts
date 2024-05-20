@@ -1,12 +1,17 @@
 import { nanoid } from "nanoid";
 
 // Intern
-import { StatusCode, ErrorCode, ErrorCodeValue, SplitSchema } from "@momentum/shared";
+import {
+  StatusCode,
+  ErrorCode,
+  SplitSchema
+} from "@momentum/shared";
 import { ok, nok } from "$api/response";
 import { Split } from "$models/split";
 
 // Types
 import type { Context } from "koa";
+import type { ErrorCodeValue } from "@momentum/shared";
 
 /**
   Erstellt einen neuen Split.
@@ -15,7 +20,11 @@ export const createSplit = async (ctx: Context) => {
   const { success, error, data } = SplitSchema.safeParse(ctx.request.body);
 
   if(!success) {
-    return nok(ctx, StatusCode.BadRequest, error.issues[0].message as ErrorCodeValue);
+    return nok(
+      ctx,
+      StatusCode.BadRequest,
+      error.issues[0].message as ErrorCodeValue
+    );
   }
 
   const split = new Split({
@@ -70,10 +79,17 @@ export const getSplits = async (ctx: Context) => {
 */
 export const updateSplit = async (ctx: Context) => {
   const { sid } = ctx.params;
-  const { success, error, data } = SplitSchema.partial().safeParse(ctx.request.body);
+
+  const { success, error, data } = SplitSchema
+    .partial()
+    .safeParse(ctx.request.body);
 
   if(!success) {
-    return nok(ctx, StatusCode.BadRequest, error.issues[0].message as ErrorCodeValue);
+    return nok(
+      ctx,
+      StatusCode.BadRequest,
+      error.issues[0].message as ErrorCodeValue
+    );
   }
 
   const split = await Split.findOneAndUpdate(

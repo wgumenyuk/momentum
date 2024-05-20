@@ -1,12 +1,17 @@
 import { nanoid } from "nanoid";
 
 // Intern
-import { StatusCode, ErrorCode, ErrorCodeValue, WorkoutSchema } from "@momentum/shared";
+import {
+  StatusCode,
+  ErrorCode,
+  WorkoutSchema
+} from "@momentum/shared";
 import { ok, nok } from "$api/response";
 import { Workout } from "$models/workout";
 
 // Types
 import type { Context } from "koa";
+import type { ErrorCodeValue } from "@momentum/shared";
 
 /**
   Erstellt ein neues Workout. 
@@ -15,7 +20,11 @@ export const createWorkout = async (ctx: Context) => {
   const { success, error, data } = WorkoutSchema.safeParse(ctx.request.body);
 
   if(!success) {
-    return nok(ctx, StatusCode.BadRequest, error.issues[0].message as ErrorCodeValue);
+    return nok(
+      ctx,
+      StatusCode.BadRequest,
+      error.issues[0].message as ErrorCodeValue
+    );
   }
 
   const workout = new Workout({
@@ -69,10 +78,17 @@ export const getWorkouts = async (ctx: Context) => {
 */
 export const updateWorkout = async (ctx: Context) => {
   const { id } = ctx.params;
-  const { success, error, data } = WorkoutSchema.partial().safeParse(ctx.request.body);
+  
+  const { success, error, data } = WorkoutSchema
+    .partial()
+    .safeParse(ctx.request.body);
 
   if(!success) {
-    return nok(ctx, StatusCode.BadRequest, error.issues[0].message as ErrorCodeValue);
+    return nok(
+      ctx,
+      StatusCode.BadRequest,
+      error.issues[0].message as ErrorCodeValue
+    );
   }
 
   const workout = await Workout.findOneAndUpdate(
@@ -89,7 +105,9 @@ export const updateWorkout = async (ctx: Context) => {
     return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
   }
 
-  ok(ctx, StatusCode.Success, { workout });
+  ok(ctx, StatusCode.Success, {
+    workout
+  });
 };
 
 /**
