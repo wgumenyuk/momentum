@@ -1,93 +1,112 @@
 import { nanoid } from "nanoid";
-import { Context } from "koa";
-import { Workout } from "$models/workout";
-import { ok, nok } from "$api/response";
+
+// Intern
 import { StatusCode, ErrorCode, ErrorCodeValue, WorkoutSchema } from "@momentum/shared";
+import { ok, nok } from "$api/response";
+import { Workout } from "$models/workout";
 
+// Types
+import type { Context } from "koa";
 
-// CRUD Service Functions
-const createWorkout = async (ctx: Context) => {
+/**
+  Erstellt ein neues Workout. 
+*/
+export const createWorkout = async (ctx: Context) => {
   const { success, error, data } = WorkoutSchema.safeParse(ctx.request.body);
 
   if(!success) {
-    const errorMessage = error.issues.map((issue) => issue.message).join(", ");
-    return nok(ctx, StatusCode.BadRequest, errorMessage as ErrorCodeValue);
+    return nok(ctx, StatusCode.BadRequest, error.issues[0].message as ErrorCodeValue);
   }
 
-  const newWorkout = new Workout({
+  const workout = new Workout({
     ...data,
     id: nanoid()
   });
 
-  await newWorkout.save();
+  await workout.save();
 
-  ok(ctx, StatusCode.Success, { workout: newWorkout });
+  ok(ctx, StatusCode.Success, {
+    workout
+  });
 };
 
-const getWorkout = async (ctx: Context) => {
+/**
+  Ruft ein Workout ab. 
+*/
+export const getWorkout = async (ctx: Context) => {
   const { id } = ctx.params;
 
-  try {
-    const workout = await Workout.findOne({ id });
-    if(!workout) {
-      return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
-    }
-    ok(ctx, StatusCode.Success, { workout });
-  } catch(error) {
-    nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
+  const workout = await Workout.findOne({
+    id
+  });
+
+  if(!workout) {
+    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
   }
+
+  ok(ctx, StatusCode.Success, {
+    workout
+  });
 };
 
-const getWorkouts = async (ctx: Context) => {
-  const { userId } = ctx.params;
+/**
+  Ruft alle Workouts eines Nutzers ab. 
+*/
+export const getWorkouts = async (ctx: Context) => {
+  const { uid } = ctx.params;
 
-  try {
-    const workouts = await Workout.find({ userId });
-    ok(ctx, StatusCode.Success, { workouts });
-  } catch(error) {
-    nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
-  }
+  const workouts = await Workout.find({
+    userId: uid
+  });
+
+  ok(ctx, StatusCode.Success, {
+    workouts
+  });
 };
 
-const updateWorkout = async (ctx: Context) => {
+/**
+  Aktualisiert ein Workout.
+*/
+export const updateWorkout = async (ctx: Context) => {
   const { id } = ctx.params;
   const { success, error, data } = WorkoutSchema.partial().safeParse(ctx.request.body);
 
   if(!success) {
-    const errorMessage = error.issues.map((issue) => issue.message).join(", ");
-    return nok(ctx, StatusCode.BadRequest, errorMessage as ErrorCodeValue);
+    return nok(ctx, StatusCode.BadRequest, error.issues[0].message as ErrorCodeValue);
   }
 
-  try {
-    const workout = await Workout.findOneAndUpdate({ id }, data, { new: true });
-    if(!workout) {
-      return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
+  const workout = await Workout.findOneAndUpdate(
+    {
+      id
+    },
+    data,
+    {
+      new: true
     }
-    ok(ctx, StatusCode.Success, { workout });
-  } catch(error) {
-    nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
+  );
+
+  if(!workout) {
+    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
   }
+
+  ok(ctx, StatusCode.Success, { workout });
 };
 
-const deleteWorkout = async (ctx: Context) => {
+/**
+  Löscht ein Workout.
+*/
+export const deleteWorkout = async (ctx: Context) => {
   const { id } = ctx.params;
 
-  try {
-    const workout = await Workout.findOneAndDelete({ id });
-    if(!workout) {
-      return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
-    }
-    ok(ctx, StatusCode.Success, { workout });
-  } catch(error) {
-    nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
-  }
-};
+  const workout = await Workout.findOneAndDelete({
+    id
+  });
 
-// Export all functions
-export {
-  createWorkout,
-  getWorkout,
-  getWorkouts,
-  updateWorkout,
-  deleteWorkout
+  if(!workout) {
+    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
+  }
+
+  ok(ctx, StatusCode.Success, {
+    id: workout.id
+  });
 };
