@@ -8,6 +8,11 @@ declare module "koa" {
         ID.
       */
       id: string;
+
+      /**
+        E-Mail.
+      */
+      email: string;
     };
   }
 }
