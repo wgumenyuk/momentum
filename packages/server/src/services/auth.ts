@@ -1,16 +1,16 @@
+import { nanoid } from "nanoid";
 import jwt from "jwt-promisify";
 
 // Intern
 import { RegisterSchema, StatusCode, ErrorCode, LoginSchema } from "@momentum/shared";
 import { ok, nok } from "$api/response";
+import { redis } from "$internal/redis";
 import { hashPassword, verifyPassword } from "$services/crypto";
 import { User } from "$models/user";
-import { redis } from "$internal/redis";
 
 // Types
 import type { Context } from "koa";
 import type { ErrorCodeValue } from "@momentum/shared";
-import { nanoid } from "nanoid";
 
 /**
   Registriert ein neues Nutzerkonto.
@@ -41,9 +41,9 @@ export const register = async (ctx: Context) => {
   const hash = await hashPassword(password);
 
   const user = await User.create({
+    id: nanoid(),
     email,
-    password: hash,
-    id: nanoid()
+    password: hash
   });
 
   await user.save();
@@ -83,17 +83,17 @@ export const login = async (ctx: Context) => {
     return nok(ctx, StatusCode.Unauthenticated, ErrorCode.LoginInvalidPassword);
   }
 
-  // Generate JWT
   const token = await jwt.sign(
     {
       id: user.id,
       email: user.email
     },
-    process.env.JWT_SECRET, // Ensure your JWT secret is securely stored and accessed
-    { expiresIn: "1h" } // Token expires in one hour
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1h"
+    }
   );
 
-  // Authentication successful, return the token
   ok(ctx, StatusCode.Success, {
     token: `Bearer ${token}`
   });
