@@ -1,100 +1,115 @@
-// services/splitService.ts
 import { nanoid } from "nanoid";
-import { Context } from "koa";
-import { Split } from "$models/split";
-import { ok, nok } from "$api/response";
+
+// Intern
 import { StatusCode, ErrorCode, ErrorCodeValue, SplitSchema } from "@momentum/shared";
+import { ok, nok } from "$api/response";
+import { Split } from "$models/split";
 
-// CRUD Service Functions
+// Types
+import type { Context } from "koa";
 
-// Create a new split
-const createSplit = async (ctx: Context) => {
+/**
+  Erstellt einen neuen Split.
+*/
+export const createSplit = async (ctx: Context) => {
   const { success, error, data } = SplitSchema.safeParse(ctx.request.body);
 
   if(!success) {
-    const errorMessage = error.issues.map((issue) => issue.message).join(", ");
-    return nok(ctx, StatusCode.BadRequest, errorMessage as ErrorCodeValue);
+    return nok(ctx, StatusCode.BadRequest, error.issues[0].message as ErrorCodeValue);
   }
 
-  const newSplit = new Split({
+  const split = new Split({
     ...data,
     id: nanoid(),
     userId: ctx.params.uid
   });
 
-  await newSplit.save();
+  await split.save();
 
-  ok(ctx, StatusCode.Success, { split: newSplit });
+  ok(ctx, StatusCode.Success, {
+    id: split.id
+  });
 };
 
-// Get a specific split by ID
-const getSplit = async (ctx: Context) => {
+/**
+  Ruft einen Split ab. 
+*/
+export const getSplit = async (ctx: Context) => {
   const { sid } = ctx.params;
 
-  try {
-    const split = await Split.findOne({ id: sid });
-    if(!split) {
-      return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
-    }
-    ok(ctx, StatusCode.Success, { split });
-  } catch(error) {
-    nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
+  const split = await Split.findOne({
+    id: sid
+  });
+
+  if(!split) {
+    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
   }
+
+  ok(ctx, StatusCode.Success, {
+    split
+  });
 };
 
-// Get all splits for a specific user
-const getSplits = async (ctx: Context) => {
+/**
+  Ruft alle Splits eines Nutzers ab.
+*/
+export const getSplits = async (ctx: Context) => {
   const { uid } = ctx.params;
 
-  try {
-    const splits = await Split.find({ userId: uid });
-    ok(ctx, StatusCode.Success, { splits });
-  } catch(error) {
-    nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
-  }
+  const splits = await Split.find({
+    userId: uid
+  });
+
+  ok(ctx, StatusCode.Success, {
+    splits
+  });
 };
 
-// Update a specific split by ID
-const updateSplit = async (ctx: Context) => {
+/**
+  Aktualisiert einen Split.
+*/
+export const updateSplit = async (ctx: Context) => {
   const { sid } = ctx.params;
   const { success, error, data } = SplitSchema.partial().safeParse(ctx.request.body);
 
   if(!success) {
-    const errorMessage = error.issues.map((issue) => issue.message).join(", ");
-    return nok(ctx, StatusCode.BadRequest, errorMessage as ErrorCodeValue);
+    return nok(ctx, StatusCode.BadRequest, error.issues[0].message as ErrorCodeValue);
   }
 
-  try {
-    const split = await Split.findOneAndUpdate({ id: sid }, data, { new: true });
-    if(!split) {
-      return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
+  const split = await Split.findOneAndUpdate(
+    {
+      id: sid
+    },
+    data,
+    {
+      new: true
     }
-    ok(ctx, StatusCode.Success, { split });
-  } catch(error) {
-    nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
+  );
+
+  if(!split) {
+    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
   }
+
+  ok(ctx, StatusCode.Success, {
+    split
+  });
 };
 
-// Delete a specific split by ID
-const deleteSplit = async (ctx: Context) => {
+/**
+  Löscht einen Split. 
+*/
+export const deleteSplit = async (ctx: Context) => {
   const { sid } = ctx.params;
 
-  try {
-    const split = await Split.findOneAndDelete({ id: sid });
-    if(!split) {
-      return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
-    }
-    ok(ctx, StatusCode.Success, { split });
-  } catch(error) {
-    nok(ctx, StatusCode.InternalError, ErrorCode.InternalError);
-  }
-};
+  const split = await Split.findOneAndDelete({
+    id: sid
+  });
 
-// Export all functions
-export {
-  createSplit,
-  getSplit,
-  getSplits,
-  updateSplit,
-  deleteSplit
+  if(!split) {
+    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
+  }
+
+  ok(ctx, StatusCode.Success, {
+    id: split.id
+  });
 };
