@@ -105,6 +105,8 @@ export const RegisterSchema = z.object({
     .max(32, ErrorCode.RegisterPasswordTooLong)
 });
 
+export type RegisterSchemaType = z.infer<typeof RegisterSchema>;
+
 /**
  * Schema für das Login-Formular.
  */
@@ -128,6 +130,8 @@ export const LoginSchema = z.object({
       message: ErrorCode.LoginInvalidPassword
     })
 });
+
+export type LoginSchemaType = z.infer<typeof LoginSchema>;
 
 /**
   Schema für eine Übung.
@@ -179,6 +183,8 @@ export const ExerciseSchema = z.object({
   note: z.string().optional()
 });
 
+export type ExerciseSchemaType = z.infer<typeof ExerciseSchema>;
+
 /**
   Schema für ein Workout.
 */
@@ -198,6 +204,8 @@ export const WorkoutSchema = z.object({
   */
   exercises: z.array(ExerciseSchema)
 });
+
+export type WorkoutSchemaType = z.infer<typeof WorkoutSchema>;
 
 /**
   Schema für einen Split.
@@ -236,3 +244,5 @@ export const SplitSchema = z.object({
     workout: WorkoutSchema
   }))
 });
+
+export type SplitSchemaType = z.infer<typeof SplitSchema>;
