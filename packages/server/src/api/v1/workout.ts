@@ -1,4 +1,7 @@
 import Router from "@koa/router";
+
+// Intern
+import { isAuthenticated } from "$api/middleware/auth";
 import {
   createWorkout,
   getWorkout,
@@ -6,7 +9,6 @@ import {
   updateWorkout,
   deleteWorkout
 } from "$services/workout";
-import { isAuthenticated } from "$api/middleware/auth";
 
 export const workoutRouter = new Router({
   prefix: "/users/:uid/workouts"

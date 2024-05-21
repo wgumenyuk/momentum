@@ -1,6 +1,8 @@
 import Router from "@koa/router";
-import { login, register, logout } from "$services/auth";
+
+// Intern
 import { isAuthenticated, isUnauthenticated } from "$api/middleware/auth";
+import { login, register, logout } from "$services/auth";
 
 export const authRouter = new Router({
   prefix: "/auth"
