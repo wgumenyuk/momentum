@@ -1,4 +1,3 @@
-// src/components/SplitItem.tsx
 import React from "react";
 import { Edit } from "lucide-react";
 
