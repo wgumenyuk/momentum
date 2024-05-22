@@ -1,4 +1,4 @@
-import type { Response } from "@momentum/shared";
+import type { Response, LoginSchemaType, RegisterSchemaType } from "@momentum/shared";
 
 /**
   HTTP-Methode.
@@ -74,7 +74,7 @@ export const Auth = {
   /**
     Meldet den Nutzer an.
   */
-  login: (data: Record<string, unknown>) => request<{ token: string; }>(
+  login: (data: LoginSchemaType) => request<{ token: string; }>(
     "POST",
     "/auth/login",
     data
@@ -83,7 +83,7 @@ export const Auth = {
   /**
     Registriert ein neues Konto.
   */
-  register: (data: Record<string, unknown>) => request(
+  register: (data: RegisterSchemaType) => request(
     "POST",
     "/auth/register",
     data
