@@ -1,5 +1,5 @@
 import { BackgroundLayout } from "$components/Background";
-import NavigationBar from "$components/navigation/NavigationBar";
+import { NavigationBar } from "$components/Navigation";
 import React from "react";
 
 const WorkoutPage: React.FC = () => {
