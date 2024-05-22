@@ -1,4 +1,3 @@
-// src/components/SplitItem.tsx
 import React from "react";
 import { Edit } from "lucide-react";
 
@@ -14,8 +13,8 @@ const SplitItem: React.FC<SplitItemProps> = ({ title, muscles }) => {
         <h3 className="text-lg font-semibold">{title}</h3>
         <p className="text-sm text-gray-600">{muscles}</p>
       </div>
-      <button className="p-2 bg-white rounded-full shadow-md">
-        <Edit className="w-6 h-6 text-current"/>
+      <button className="p-2 bg-white rounded-lg shadow-md">
+        <Edit className="w-7 h-7 text-current"/>
       </button>
     </div>
   );
