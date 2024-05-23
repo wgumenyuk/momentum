@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, Search } from "lucide-react";
 
 interface InputFieldProps {
   placeholder?: string;
   value: string;
   onChange: (value: string) => void;
-  variant: "text" | "email" | "password";
+  variant: "text" | "email" | "password" | "search";
   title?: string;
 }
 
@@ -19,6 +19,7 @@ const InputField: React.FC<InputFieldProps> = ({ placeholder, value, onChange, v
   const renderIcon = () => {
     if(variant === "email") return <Mail className="text-gray-900 mr-1 text-lg"/>;
     if(variant === "password") return <Lock className="text-gray-900 mr-1 text-lg"/>;
+    if(variant === "search") return <Search className="text-gray-900 mr-1 text-lg"/>;
     return null;
   };
 
