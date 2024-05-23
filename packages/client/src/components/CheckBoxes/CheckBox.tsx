@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export interface CheckBoxProps {
-  variant: "rememberMe" | "subscribe" | "terms";
+  variant: "blank" | "rememberMe" | "subscribe" | "terms";
   checked: boolean;
   onChange: (checked: boolean) => void;
 }
@@ -27,6 +27,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({ variant, checked, onChange }) => {
             </Link>
           </span>
         );
+      case "blank":
       default:
         return null;
     }
@@ -40,7 +41,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({ variant, checked, onChange }) => {
         onChange={(e) => onChange(e.target.checked)}
         className="form-checkbox h-4 w-4 text-blue-600 rounded-full shadow-md"
       />
-      <span className="text-gray-700 text-sm">{getLabel()}</span>
+      {variant !== "blank" && <span className="text-gray-700 text-sm">{getLabel()}</span>}
     </label>
   );
 };
