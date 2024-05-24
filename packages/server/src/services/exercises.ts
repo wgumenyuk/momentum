@@ -1,4 +1,4 @@
-import { Exercise } from "../models/Exercise"; // Adjust path as necessary
+import { Exercise } from "packages/server/src/models/exercise.ts"; // Adjust path as necessary
 
 // Function to fetch exercises, filtered by muscle group if specified
 export async function getExercises(ctx) {
