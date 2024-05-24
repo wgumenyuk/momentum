@@ -1,6 +1,6 @@
 // NavigationBar.tsx
 import React from "react";
-import { Home, Dumbbell, History, User } from "lucide-react";
+import { Home, Dumbbell, Users, User } from "lucide-react";
 
 const NavigationBar = () => {
   return (
@@ -14,8 +14,8 @@ const NavigationBar = () => {
         <span className="text-xs mt-1">Workouts</span>
       </button>
       <button className="text-cool-gray flex flex-col items-center">
-        <History className="w-6 h-6"/>
-        <span className="text-xs mt-1">History</span>
+        <Users className="w-6 h-6"/>
+        <span className="text-xs mt-1">Social</span>
       </button>
       <button className="text-cool-gray flex flex-col items-center">
         <User className="w-6 h-6"/>
