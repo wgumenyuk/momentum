@@ -1,7 +1,6 @@
 import Router from "@koa/router";
 
 // Intern
-import { isAuthenticated } from "$api/middleware/auth";
 import {
   createWorkout,
   getWorkout,
@@ -11,10 +10,8 @@ import {
 } from "$services/workout";
 
 export const workoutRouter = new Router({
-  prefix: "/users/:uid/workouts"
+  prefix: "/:uid/workouts"
 });
-
-workoutRouter.use(isAuthenticated);
 
 workoutRouter.post("/", async (ctx) => {
   await createWorkout(ctx);

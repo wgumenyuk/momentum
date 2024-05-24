@@ -1,7 +1,6 @@
 import Router from "@koa/router";
 
 // Intern
-import { isAuthenticated } from "$api/middleware/auth";
 import {
   createSplit,
   getSplit,
@@ -11,10 +10,8 @@ import {
 } from "$services/splits";
 
 export const splitRouter = new Router({
-  prefix: "/users/:uid/splits"
+  prefix: "/:uid/splits"
 });
-
-splitRouter.use(isAuthenticated);
 
 splitRouter.post("/", async (ctx) => {
   await createSplit(ctx);
