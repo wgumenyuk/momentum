@@ -1,4 +1,3 @@
-// NavigationBar.tsx
 import React from "react";
 import { Link } from "react-router-dom";
 import { Home, Dumbbell, Users, User } from "lucide-react";
