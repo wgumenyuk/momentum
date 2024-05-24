@@ -1,8 +1,8 @@
 // src/pages/SplitsPage.tsx
 import React from "react";
 import { BackgroundLayout } from "$components/Background";
-import NavigationBar from "$components/navigation/NavigationBar";
 import SplitItem from "$components/Splits/SplitItem";
+import { NavigationBar } from "$components/Navigation";
 
 const SplitsPage: React.FC = () => {
   return (
