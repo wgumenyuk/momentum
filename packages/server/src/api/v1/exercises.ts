@@ -1,5 +1,5 @@
 import Router from "@koa/router";
-import { getExercises } from "../services/exerciseService"; // Adjust path as necessary
+import { getExercises } from "packages/server/src/services/exercises.ts"; // Adjust path as necessary
 
 export const exerciseRouter = new Router({
   prefix: "/exercises"
