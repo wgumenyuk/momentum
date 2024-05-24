@@ -12,6 +12,7 @@
   },
   "license": "GPL-3.0-only",
   "devDependencies": {
+    "@momentum/eslint-config": "workspace:^",
     "rimraf": "^5.0.5",
     "typescript": "^5.2.2"
   },
