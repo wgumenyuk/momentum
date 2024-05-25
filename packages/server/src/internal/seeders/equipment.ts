@@ -221,7 +221,7 @@ export const seedEquipment = async () => {
     return;
   }
 
-  log.info("initialising seeding for `Muscle` model");
+  log.info("initialising seeding for `Equipment` model");
 
   await Equipment.deleteMany({});
 
