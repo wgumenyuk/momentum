@@ -1,4 +1,10 @@
-import type { Response, LoginSchemaType, RegisterSchemaType } from "@momentum/shared";
+import type {
+  Response,
+  LoginSchemaType,
+  RegisterSchemaType,
+  SplitSchemaType,
+  WorkoutSchemaType
+} from "@momentum/shared";
 
 /**
   HTTP-Methode.
@@ -93,4 +99,94 @@ export const Auth = {
     Meldet den Nutzer ab.
   */
   logout: () => request( "POST", "/auth/logout")
+};
+
+/**
+  Splits-API.
+*/
+export const Splits = {
+  /**
+    Erstellt einen Split.
+  */
+  create: (userId: string, data: SplitSchemaType) => request(
+    "POST",
+    `/users/${userId}/splits`,
+    data
+  ),
+
+  /**
+    Ruft alle Splits eines Nutzers ab.
+  */
+  getAll: (userId: string) => request("GET", `/users/${userId}/splits`),
+
+  /**
+    Ruft einen Split ab.
+  */
+  get: (userId: string, splitId: string) => request(
+    "GET",
+    `/users/${userId}/splits/${splitId}`
+  ),
+
+  /**
+    Aktualisiert einen Split.
+  */
+  update: (userId: string, splitId: string, data: SplitSchemaType) => request(
+    "PUT",
+    `/users/${userId}/splits/${splitId}`,
+    data
+  ),
+
+  /**
+    Löscht einen Split.
+  */
+  delete: (userId: string, splitId: string, data: SplitSchemaType) => request(
+    "DELETE",
+    `/users/${userId}/splits/${splitId}`,
+    data
+  )
+};
+
+/**
+  Workout-API.
+*/
+export const Workouts = {
+  /**
+    Erstellt ein Workout.
+  */
+  create: (userId: string, data: WorkoutSchemaType) => request(
+    "POST",
+    `/users/${userId}/workouts`,
+    data
+  ),
+
+  /**
+    Ruft alle Workouts eines Nutzers ab.
+  */
+  getAll: (userId: string) => request("GET", `/users/${userId}/workouts`),
+
+  /**
+    Ruft ein Workout ab.
+  */
+  get: (userId: string, workoutId: string) => request(
+    "GET",
+    `/users/${userId}/workouts/${workoutId}`
+  ),
+
+  /**
+    Aktualisiert ein Workout.
+  */
+  update: (userId: string, workoutId: string, data: WorkoutSchemaType) => request(
+    "PUT",
+    `/users/${userId}/workouts/${workoutId}`,
+    data
+  ),
+
+  /**
+    Löscht ein Workout.
+  */
+  delete: (userId: string, workoutId: string, data: WorkoutSchemaType) => request(
+    "DELETE",
+    `/users/${userId}/workout/${workoutId}`,
+    data
+  )
 };
