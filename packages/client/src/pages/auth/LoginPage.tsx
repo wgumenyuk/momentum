@@ -39,7 +39,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <BackgroundLayout>
-      <div className="max-w-sm mx-auto p-5 bg-white rounded-lg shadow-lg">
+      <div className="max-w-sm mx-auto p-5 bg-gray rounded-lg shadow-lg">
         <h1 className="text-center text-lg font-bold mb-6">
           Sign in to <span className="text-blue-300">Momentum</span>
         </h1>
@@ -58,28 +58,28 @@ const LoginPage: React.FC = () => {
             variant="password"
             title="Password"
           />
-          <CheckBox
-            variant="rememberMe"
-            checked={rememberMe}
-            onChange={setRememberMe}
-          />
-          <div className="flex justify-center mt-6">
-            <BigButton text="Sign In" onClick={handleSubmit} variant="blue"/>
-          </div>
-          <div className="text-center mt-2">
+          <div className="flex justify-between">
+            <CheckBox
+              variant="rememberMe"
+              checked={rememberMe}
+              onChange={setRememberMe}
+            />
             <Link
               to="/forgot-password"
-              className="text-sm text-blue-300 hover:text-blue-600"
+              className="text-sm text-blue-300 hover:text-blue-600 font-bold"
             >
               Forgot password?
             </Link>
+          </div>
+          <div className="flex justify-center mt-6">
+            <BigButton text="Sign In" onClick={handleSubmit} variant="blue"/>
           </div>
         </form>
         <div className="text-center mt-6 text-sm">
           Don’t have an account?{" "}
           <Link
             to="/register"
-            className="text-blue-300 hover:text-blue-600"
+            className="text-blue-300 hover:text-blue-600 font-bold"
           >
             Sign up.
           </Link>
