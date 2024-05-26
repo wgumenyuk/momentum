@@ -8,7 +8,7 @@ export interface SplitItemProps {
 
 const SplitItem: React.FC<SplitItemProps> = ({ title, muscles }) => {
   return (
-    <div className="flex justify-between items-center bg-gray-200 p-4 rounded-lg shadow-md">
+    <div className="flex justify-between items-center bg-blue-800 p-4 rounded-lg shadow-md">
       <div>
         <h3 className="text-lg font-semibold">{title}</h3>
         <p className="text-sm text-gray-600">{muscles}</p>

@@ -39,7 +39,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <BackgroundLayout>
-      <div className="max-w-sm mx-auto p-5 bg-gray rounded-lg shadow-lg">
+      <div className="mx-auto p-6 bg-gray text-blue-900 rounded-xl shadow-lg">
         <h1 className="text-center text-lg font-bold mb-6">
           Sign in to <span className="text-blue-300">Momentum</span>
         </h1>

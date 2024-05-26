@@ -1,10 +1,21 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Home, Dumbbell, Users, User } from "lucide-react";
 
 const NavigationBar = () => {
   return (
-    <nav className="fixed bottom-0 left-0 right-0 bg-dark-gray p-4 flex justify-around">
+    <nav className="
+      fixed
+      bottom-0
+      left-1/2
+      right-0
+      -translate-x-1/2
+      bg-dark-gray
+      p-4
+      flex
+      justify-around
+      max-w-screen-md
+      w-full
+    ">
       <Link to="/" className="text-cool-gray flex flex-col items-center">
         <Home className="w-6 h-6"/>
         <span className="text-xs mt-1">Home</span>

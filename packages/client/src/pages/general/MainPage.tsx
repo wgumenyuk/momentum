@@ -5,7 +5,7 @@ import React from "react";
 const MainPage: React.FC = () => {
   return (
     <BackgroundLayout>
-      <div className="flex flex-col items-center space-y-4">
+      <div className="flex flex-col items-center space-y-4 w-full">
         <h1 className="text-2xl font-bold text-black">Momentum</h1>
         <p className="text-lg text-black">Welcome back, <span className="font-bold">John.</span></p>
         <button 
