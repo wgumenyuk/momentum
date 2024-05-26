@@ -37,7 +37,7 @@ const RegisterPage: React.FC = () => {
 
   return (
     <BackgroundLayout>
-      <div className="max-w-sm mx-auto p-5 bg-white rounded-lg shadow-lg">
+      <div className="max-w-sm mx-auto p-5 bg-gray rounded-lg shadow-lg">
         <h1 className="text-center text-lg font-bold mb-6">
           Create your <span className="text-blue-300">Momentum</span> account
         </h1>
@@ -74,7 +74,7 @@ const RegisterPage: React.FC = () => {
           Already have an account?{" "}
           <Link
             to="/login"
-            className="text-blue-300 hover:text-blue-600"
+            className="text-blue-300 hover:text-blue-600 font-bold"
           >
             Sign in.
           </Link>
