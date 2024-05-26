@@ -13,7 +13,7 @@ const BackgroundLayout: React.FC<BackgroundLayoutProps> = ({ children }) => {
       min-h-screen
       max-w-screen-md
       mx-auto
-      p-8
+      p-4
       lg:p-0
     ">
       {children}
