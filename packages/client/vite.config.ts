@@ -13,7 +13,7 @@ export default defineConfig({
     alias: {
       $components: path.resolve("src/components"),
       $internal: path.resolve("src/internal"),
-      $views: path.resolve("src/views")
+      $pages: path.resolve("src/pages")
     }
   }
 });

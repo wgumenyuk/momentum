@@ -17,8 +17,8 @@
       "$internal/*": [
         "internal/*"
       ],
-      "$views/*": [
-        "views/*"
+      "$pages/*": [
+        "pages/*"
       ]
     },
     "allowImportingTsExtensions": true,
