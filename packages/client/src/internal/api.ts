@@ -94,3 +94,13 @@ export const Auth = {
   */
   logout: () => request( "POST", "/auth/logout")
 };
+
+/**
+  Nutzer-API.
+*/
+export const User = {
+  /**
+    Löscht das eigene Nutzerkonto.
+  */
+  deleteAccount: () => request("DELETE", "/users/delete")
+};
