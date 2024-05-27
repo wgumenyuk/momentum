@@ -1,20 +1,19 @@
-import { Exercise } from "packages/server/src/models/exercise.ts"; // Adjust path as necessary
+import { StatusCode } from "@momentum/shared";
+import { ok } from "$api/response";
+import { Exercise } from "$models/exercise";
 
-// Function to fetch exercises, filtered by muscle group if specified
-export async function getExercises(ctx) {
-  try {
-    const muscleGroup = ctx.query.muscleGroup;
-    let query = {};
+// Types
+import type { Context } from "koa";
 
-    if (muscleGroup) {
-      query = { muscleGroups: { $in: [muscleGroup] } };
-    }
+/**
+  Ruft alle Übungen ab.
+*/
+export const getExercises = async (ctx: Context) => {
+  const exercises = await Exercise.find({}, {}, {
+    lean: true
+  });
 
-    const exercises = await Exercise.find(query);
-    ctx.status = 200;
-    ctx.body = exercises;
-  } catch (error) {
-    ctx.status = 500;
-    ctx.body = { message: "An error occurred while retrieving the exercises.", error: error.message };
-  }
-}
+  ok(ctx, StatusCode.Success, {
+    exercises
+  });
+};
