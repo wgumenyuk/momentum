@@ -190,3 +190,13 @@ export const Workouts = {
     data
   )
 };
+
+/**
+  Nutzer-API.
+*/
+export const User = {
+  /**
+    Löscht das eigene Nutzerkonto.
+  */
+  deleteAccount: () => request("DELETE", "/users/delete")
+};
