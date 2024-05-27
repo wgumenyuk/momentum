@@ -4,6 +4,7 @@ import Router from "@koa/router";
 import { isAuthenticated } from "$api/middleware/auth";
 import { splitRouter } from "$api/v1/splits";
 import { workoutRouter } from "$api/v1/workout";
+import { deleteUser } from "$services/user";
 
 /**
   Nutzer-Router.
@@ -16,3 +17,7 @@ usersRouter.use(isAuthenticated);
 
 usersRouter.use(splitRouter.routes());
 usersRouter.use(workoutRouter.routes());
+
+usersRouter.delete("/", async (ctx) => {
+  await deleteUser(ctx);
+});
