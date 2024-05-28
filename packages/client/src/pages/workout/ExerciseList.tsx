@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 // Intern
-import { SplitItem } from "$components/Splits";
+import { Workout } from "$components/Workouts";
 import { InputField } from "$components/InputField";
 
 export const ExerciseListPage: React.FC = () => {
@@ -23,7 +23,7 @@ export const ExerciseListPage: React.FC = () => {
         <h2 className="text-grey-500">Showing 100 exercises</h2>
         <div className="space-y-4">
           {exercises.map((exercise, index) => (
-            <SplitItem key={index} title={exercise.title} muscles={exercise.muscles}/>
+            <Workout key={index} title={exercise.title} muscles={exercise.muscles}/>
           ))}
         </div>
       </div>

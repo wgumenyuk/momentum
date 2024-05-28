@@ -1,12 +1,12 @@
 import React from "react";
 import { Edit } from "lucide-react";
 
-export interface SplitItemProps {
+export interface WorkoutProps {
   title: string;
   muscles: string;
 }
 
-export const SplitItem: React.FC<SplitItemProps> = ({ title, muscles }) => {
+export const Workout: React.FC<WorkoutProps> = ({ title, muscles }) => {
   return (
     <div className="flex justify-between items-center bg-blue-800 p-4 rounded-lg shadow-md">
       <div>
