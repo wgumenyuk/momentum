@@ -1,6 +1,8 @@
-import { CheckBox } from "$components/CheckBoxes";
-import { SplitSchema } from "@momentum/shared";
 import React, { useState } from "react";
+
+// Intern
+import { SplitSchema } from "@momentum/shared";
+import { Checkbox } from "$components/Checkbox";
 
 // Extract muscle groups from SplitSchema
 const MuscleGroupsEnum = SplitSchema.shape.workouts.element.shape.type;
@@ -15,7 +17,7 @@ const createInitialMuscleGroupsState = (): Record<MuscleGroupsType, boolean> => 
   }, {} as Record<MuscleGroupsType, boolean>);
 };
 
-const FilterMuscleGroupsPage: React.FC = () => {
+export const FilterMuscleGroupsPage: React.FC = () => {
   const [ groupSelection, setGroupSelection ] = useState(createInitialMuscleGroupsState);
 
   const handleCheckboxChange = (group: MuscleGroupsType, checked: boolean) => {
@@ -32,7 +34,7 @@ const FilterMuscleGroupsPage: React.FC = () => {
         {Object.keys(groupSelection).map((group) => (
           <div key={group} className="flex justify-between items-center bg-gray-800 p-4 rounded-lg shadow-md">
             <span className="text-lg font-semibold text-grey-500">{group}</span>
-            <CheckBox
+            <Checkbox
               variant="blank"
               checked={groupSelection[group as MuscleGroupsType]}
               onChange={(checked) => handleCheckboxChange(group as MuscleGroupsType, checked)}
@@ -43,5 +45,3 @@ const FilterMuscleGroupsPage: React.FC = () => {
     </div>
   );
 };
-
-export default FilterMuscleGroupsPage;

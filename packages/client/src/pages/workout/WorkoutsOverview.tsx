@@ -2,7 +2,8 @@ import React from "react";
 import { BackgroundLayout } from "$components/Background";
 import Workout from "$components/Workouts/Workout";
 
-const WorkoutsPage: React.FC = () => {
+
+export const WorkoutsPage: React.FC = () => {
   return (
     <BackgroundLayout>
       <div className="min-h-screen w-full bg-gray-900 p-6">
@@ -19,5 +20,3 @@ const WorkoutsPage: React.FC = () => {
     </BackgroundLayout>
   );
 };
-
-export default WorkoutsPage;

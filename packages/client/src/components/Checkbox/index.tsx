@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export interface CheckBoxProps {
+export interface CheckboxProps {
   variant: "blank" | "rememberMe" | "subscribe" | "terms";
   checked: boolean;
   onChange: (checked: boolean) => void;
 }
 
-const CheckBox: React.FC<CheckBoxProps> = ({ variant, checked, onChange }) => {
+export const Checkbox: React.FC<CheckboxProps> = ({ variant, checked, onChange }) => {
   const getLabel = () => {
     switch (variant) {
       case "rememberMe":
@@ -45,5 +45,3 @@ const CheckBox: React.FC<CheckBoxProps> = ({ variant, checked, onChange }) => {
     </label>
   );
 };
-
-export default CheckBox;

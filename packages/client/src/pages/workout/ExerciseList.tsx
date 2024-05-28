@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Workout from "$components/Workouts/Workout";
 import { InputField } from "$components/InputFields";
 
-const ExerciseListPage: React.FC = () => {
+
+export const ExerciseListPage: React.FC = () => {
   const [ search, setSearch ] = useState("");
 
   // Example list of exercises
@@ -28,5 +29,3 @@ const ExerciseListPage: React.FC = () => {
     </div>
   );
 };
-
-export default ExerciseListPage;

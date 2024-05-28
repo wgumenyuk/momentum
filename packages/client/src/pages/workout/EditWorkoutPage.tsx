@@ -3,7 +3,8 @@ import { Plus } from "lucide-react";
 import Workout from "$components/Workouts/Workout";
 import { InputField } from "$components/InputFields";
 
-const EditWorkoutPage: React.FC = () => {
+
+export const EditWorkoutPage: React.FC = () => {
   const [ name, setName ] = useState("");
   const [ description, setDescription ] = useState("");
 
@@ -39,5 +40,3 @@ const EditWorkoutPage: React.FC = () => {
     </div>
   );
 };
-
-export default EditWorkoutPage;

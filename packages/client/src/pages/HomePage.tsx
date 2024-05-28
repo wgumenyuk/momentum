@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const HomePage: React.FC = () => {
+export const HomePage: React.FC = () => {
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       <h1 className="text-4xl font-bold text-blue-600 mb-6">Welcome to Momentum!</h1>
@@ -20,5 +20,3 @@ const HomePage: React.FC = () => {
     </div>
   );
 };
-
-export default HomePage;

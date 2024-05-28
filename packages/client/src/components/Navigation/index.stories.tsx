@@ -1,11 +1,12 @@
-import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { BrowserRouter } from "react-router-dom";
-import NavigationBar from "./NavigationBar";
+
+// Intern
+import { Navigation } from "$components/Navigation";
 
 export default {
-  title: "Components/NavigationBar",
-  component: NavigationBar,
+  title: "Components/Navigation",
+  component: Navigation,
   decorators: [
     (Story) => (
       <BrowserRouter>
@@ -15,6 +16,6 @@ export default {
   ]
 } as Meta;
 
-const Template: StoryFn = () => <NavigationBar/>;
+const Template: StoryFn = () => <Navigation/>;
 
 export const Default = Template.bind({});
