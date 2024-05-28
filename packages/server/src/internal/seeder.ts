@@ -11,7 +11,7 @@ export const seeder = async <T extends Record<string, unknown>>(
   model: Model<T>,
   seed: T[]
 ) => {
-  const data = await model.find({}, {}, {
+  const data = await model.find({}, "-_id -__v", {
     lean: true
   });
 
