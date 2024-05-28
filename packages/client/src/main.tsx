@@ -8,8 +8,8 @@ import { LoginPage } from "$pages/auth/LoginPage";
 import { HomePage } from "$pages/HomePage";
 import { RegisterPage } from "$pages/auth/RegisterPage";
 import { MainPage } from "$pages/general/MainPage";
-import { WorkoutsPage } from "$pages/workout/WorkoutsOverview";
 import "./index.css";
+import WorkoutStack from "$pages/workout/WorkoutStack";
 
 const root = document.getElementById("root")!;
 
@@ -43,7 +43,7 @@ const router = createBrowserRouter([
     path: "/workouts",
     element: (
       <>
-        <WorkoutsPage/>
+        <WorkoutStack/>
         <Navigation/>
       </>
     )
