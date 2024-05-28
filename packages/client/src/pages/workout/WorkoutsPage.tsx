@@ -14,7 +14,7 @@ const WorkoutsPage: React.FC<WorkoutsPageProps> = ({ navigate }) => {
         <div className="flex items-center space-x-4">
           <button
             className="text-grey-500 text-4xl"
-            onClick={() => navigate("info")}
+            onClick={() => navigate("editSplit")}
           >
             <Info className="w-6 h-6"/>
           </button>

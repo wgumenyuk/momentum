@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { BackgroundLayout } from "$components/Background";
+import WorkoutsPage from "./WorkoutsPage";
 import EditWorkoutPage from "./EditWorkoutPage";
-import WorkoutsPage from "./WorkoutPage";
-
-const InfoPage: React.FC = () => (
-  <div className="min-h-screen w-full bg-gray-900 p-6 text-white">
-    <h1 className="text-2xl font-bold">Info Page</h1>
-    <p>This page is not ready yet.</p>
-  </div>
-);
+import EditSplitPage from "./EditSplitPage"; // Import the EditSplitPage
 
 const WorkoutStack: React.FC = () => {
   const [ currentView, setCurrentView ] = useState("workouts");
@@ -17,8 +11,8 @@ const WorkoutStack: React.FC = () => {
     switch (currentView) {
       case "workouts":
         return <WorkoutsPage navigate={setCurrentView}/>;
-      case "info":
-        return <InfoPage/>;
+      case "editSplit":
+        return <EditSplitPage navigate={setCurrentView}/>;
       case "editWorkout":
         return <EditWorkoutPage navigate={setCurrentView}/>;
       default:

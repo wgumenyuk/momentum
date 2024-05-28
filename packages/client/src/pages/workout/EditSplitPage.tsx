@@ -7,9 +7,13 @@ const EditSplitPage: React.FC<{ navigate: (view: string) => void }> = ({ navigat
   const [ name, setName ] = React.useState("");
   const [ description, setDescription ] = React.useState("");
 
+  const handleWorkoutClick = () => {
+    navigate("workouts");
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 p-6">
-      <button onClick={() => navigate("splits")} className="text-white mb-4">Back</button>
+      <button onClick={() => navigate("workouts")} className="text-white mb-4">Back</button>
       <div className="space-y-4">
         <InputField
           title="Name"
@@ -32,9 +36,15 @@ const EditSplitPage: React.FC<{ navigate: (view: string) => void }> = ({ navigat
           </button>
         </div>
         <div className="space-y-4">
-          <Workout title="Push" muscles="Chest, Shoulders, Triceps"/>
-          <Workout title="Pull" muscles="Back, Biceps"/>
-          <Workout title="Legs" muscles="Quads, Hamstrings, Calves"/>
+          <div onClick={handleWorkoutClick}>
+            <Workout title="Push" muscles="Chest, Shoulders, Triceps"/>
+          </div>
+          <div onClick={handleWorkoutClick}>
+            <Workout title="Pull" muscles="Back, Biceps"/>
+          </div>
+          <div onClick={handleWorkoutClick}>
+            <Workout title="Legs" muscles="Quads, Hamstrings, Calves"/>
+          </div>
         </div>
       </div>
     </div>
