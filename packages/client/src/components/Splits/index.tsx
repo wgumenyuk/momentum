@@ -6,7 +6,7 @@ export interface SplitItemProps {
   muscles: string;
 }
 
-const SplitItem: React.FC<SplitItemProps> = ({ title, muscles }) => {
+export const SplitItem: React.FC<SplitItemProps> = ({ title, muscles }) => {
   return (
     <div className="flex justify-between items-center bg-blue-800 p-4 rounded-lg shadow-md">
       <div>
@@ -19,5 +19,3 @@ const SplitItem: React.FC<SplitItemProps> = ({ title, muscles }) => {
     </div>
   );
 };
-
-export default SplitItem;

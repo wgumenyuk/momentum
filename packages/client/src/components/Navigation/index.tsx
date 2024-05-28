@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Home, Dumbbell, Users, User } from "lucide-react";
 
-const NavigationBar = () => {
+export const Navigation = () => {
   return (
     <nav className="
       fixed
@@ -35,5 +35,3 @@ const NavigationBar = () => {
     </nav>
   );
 };
-
-export default NavigationBar;

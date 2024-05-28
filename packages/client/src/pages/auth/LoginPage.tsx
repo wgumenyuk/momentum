@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { BackgroundLayout } from "$components/Background";
-import { Auth } from "$internal/api";
-import InputField from "$components/InputFields/InputField";
-import BigButton from "$components/Buttons/BigButton";
-import CheckBox from "$components/CheckBoxes/CheckBox";
 
-const LoginPage: React.FC = () => {
+// Intern
+import { Auth } from "$internal/api";
+import { BackgroundLayout } from "$components/Background";
+import { InputField } from "$components/InputField";
+import BigButton from "$components/Buttons/BigButton";
+import { Checkbox } from "$components/Checkbox";
+
+export const LoginPage: React.FC = () => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ rememberMe, setRememberMe ] = useState(false);
@@ -59,7 +61,7 @@ const LoginPage: React.FC = () => {
             title="Password"
           />
           <div className="flex justify-between">
-            <CheckBox
+            <Checkbox
               variant="rememberMe"
               checked={rememberMe}
               onChange={setRememberMe}
@@ -88,5 +90,3 @@ const LoginPage: React.FC = () => {
     </BackgroundLayout>
   );
 };
-
-export default LoginPage;

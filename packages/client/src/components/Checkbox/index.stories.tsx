@@ -1,12 +1,16 @@
-import { StoryFn, Meta } from "@storybook/react";
-import { MemoryRouter } from "react-router-dom";
-import CheckBox from "./CheckBox";
-import { CheckBoxProps } from "./CheckBox";
 import { useState } from "react";
+import { MemoryRouter } from "react-router-dom";
+import { StoryFn, Meta } from "@storybook/react";
+
+// Intern
+import { Checkbox } from "$components/Checkbox";
+
+// Types
+import type { CheckboxProps } from "$components/Checkbox";
 
 export default {
-  title: "Components/CheckBox",
-  component: CheckBox,
+  title: "Components/Checkbox",
+  component: Checkbox,
   argTypes: {
     checked: { control: "boolean" }
   },
@@ -19,7 +23,7 @@ export default {
   ]
 } as Meta;
 
-const Template: StoryFn<CheckBoxProps> = (args) => <CheckBox {...args}/>;
+const Template: StoryFn<CheckboxProps> = (args) => <Checkbox {...args}/>;
 
 export const Checked = Template.bind({});
 Checked.args = {
@@ -38,7 +42,7 @@ Unchecked.args = {
 export const Interactive = () => {
   const [ checked, setChecked ] = useState(false);
   return (
-    <CheckBox
+    <Checkbox
       variant="terms"
       checked={checked}
       onChange={(newChecked) => setChecked(newChecked)}
@@ -49,7 +53,7 @@ export const Interactive = () => {
 export const RememberMe = () => {
   const [ checked, setChecked ] = useState(false);
   return (
-    <CheckBox
+    <Checkbox
       variant="rememberMe"
       checked={checked}
       onChange={(newChecked) => setChecked(newChecked)}
@@ -60,7 +64,7 @@ export const RememberMe = () => {
 export const SubscribeToNewsletter = () => {
   const [ checked, setChecked ] = useState(false);
   return (
-    <CheckBox
+    <Checkbox
       variant="subscribe"
       checked={checked}
       onChange={(newChecked) => setChecked(newChecked)}
@@ -71,7 +75,7 @@ export const SubscribeToNewsletter = () => {
 export const TermsAndConditions = () => {
   const [ checked, setChecked ] = useState(false);
   return (
-    <CheckBox
+    <Checkbox
       variant="terms"
       checked={checked}
       onChange={(newChecked) => setChecked(newChecked)}

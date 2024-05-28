@@ -2,9 +2,9 @@ import React from "react";
 
 // Intern
 import { BackgroundLayout } from "$components/Background";
-import SplitItem from "$components/Splits/SplitItem";
+import { SplitItem } from "$components/Splits";
 
-const WorkoutsPage: React.FC = () => {
+export const WorkoutsPage: React.FC = () => {
   return (
     <BackgroundLayout>
       <div className="min-h-screen w-full bg-gray-900 p-6">
@@ -21,5 +21,3 @@ const WorkoutsPage: React.FC = () => {
     </BackgroundLayout>
   );
 };
-
-export default WorkoutsPage;

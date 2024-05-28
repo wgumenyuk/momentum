@@ -3,12 +3,12 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Intern
-import { NavigationBar } from "$components/Navigation";
-import LoginPage from "$pages/auth/LoginPage";
-import HomePage from "$pages/HomePage";
-import RegisterPage from "$pages/auth/RegisterPage";
-import MainPage from "$pages/general/MainPage";
-import WorkoutsPage from "$pages/workout/WorkoutsOverview";
+import { Navigation } from "$components/Navigation";
+import { LoginPage } from "$pages/auth/LoginPage";
+import { HomePage } from "$pages/HomePage";
+import { RegisterPage } from "$pages/auth/RegisterPage";
+import { MainPage } from "$pages/general/MainPage";
+import { WorkoutsPage } from "$pages/workout/WorkoutsOverview";
 import "./index.css";
 
 const root = document.getElementById("root")!;
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <MainPage/>
-        <NavigationBar/>
+        <Navigation/>
       </>
     )
   },
@@ -44,7 +44,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <WorkoutsPage/>
-        <NavigationBar/>
+        <Navigation/>
       </>
     )
   },
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
     element: (
       <>
         {/* <SocialPage /> - not yet developed*/}
-        <NavigationBar/>
+        <Navigation/>
       </>
     )
   },
@@ -62,7 +62,7 @@ const router = createBrowserRouter([
     element: (
       <>
         {/* <ProfilePage /> - not yet developed*/}
-        <NavigationBar/>
+        <Navigation/>
       </>
     )
   }

@@ -1,7 +1,5 @@
-// src/components/SplitItem.stories.tsx
-import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import SplitItem from "./SplitItem";
+import { SplitItem } from "$components/Splits";
 
 export default {
   title: "Components/SplitItem",

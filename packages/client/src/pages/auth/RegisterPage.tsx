@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { BackgroundLayout } from "$components/Background";
-import { Auth } from "$internal/api";
-import InputField from "$components/InputFields/InputField";
-import BigButton from "$components/Buttons/BigButton";
-import CheckBox from "$components/CheckBoxes/CheckBox";
 
-const RegisterPage: React.FC = () => {
+// Intern
+import { Auth } from "$internal/api";
+import { BackgroundLayout } from "$components/Background";
+import BigButton from "$components/Buttons/BigButton";
+import { InputField } from "$components/InputField";
+import { Checkbox } from "$components/Checkbox";
+
+export const RegisterPage: React.FC = () => {
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ termsAccepted, setTermsAccepted ] = useState(false);
@@ -56,12 +58,12 @@ const RegisterPage: React.FC = () => {
             variant="password"
             title="Password"
           />
-          <CheckBox
+          <Checkbox
             variant="terms"
             checked={termsAccepted}
             onChange={setTermsAccepted}
           />
-          <CheckBox
+          <Checkbox
             variant="subscribe"
             checked={subscribed}
             onChange={setSubscribed}
@@ -83,5 +85,3 @@ const RegisterPage: React.FC = () => {
     </BackgroundLayout>
   );
 };
-
-export default RegisterPage;

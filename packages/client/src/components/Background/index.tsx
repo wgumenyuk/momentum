@@ -4,7 +4,7 @@ interface BackgroundLayoutProps {
   children: ReactNode;
 }
 
-const BackgroundLayout: React.FC<BackgroundLayoutProps> = ({ children }) => {
+export const BackgroundLayout: React.FC<BackgroundLayoutProps> = ({ children }) => {
   return (
     <div className="
       flex
@@ -20,5 +20,3 @@ const BackgroundLayout: React.FC<BackgroundLayoutProps> = ({ children }) => {
     </div>
   );
 };
-
-export default BackgroundLayout;

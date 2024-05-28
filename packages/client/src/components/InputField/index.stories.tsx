@@ -1,5 +1,7 @@
 import { useState } from "react";
-import InputField from "./InputField";
+
+// Intern
+import { InputField } from "$components/InputField";
 
 export default {
   title: "Components/InputField",
