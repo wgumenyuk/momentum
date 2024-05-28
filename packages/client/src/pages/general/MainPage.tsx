@@ -1,8 +1,10 @@
-import { BackgroundLayout } from "$components/Background";
-import { NavigationBar } from "$components/Navigation";
 import React from "react";
 
-const MainPage: React.FC = () => {
+// Intern
+import { BackgroundLayout } from "$components/Background";
+import { Navigation } from "$components/Navigation";
+
+export const MainPage: React.FC = () => {
   return (
     <BackgroundLayout>
       <div className="flex flex-col items-center space-y-4 w-full">
@@ -15,9 +17,7 @@ const MainPage: React.FC = () => {
           Start Workout: Push
         </button>
       </div>
-      <NavigationBar/>
+      <Navigation/>
     </BackgroundLayout>
   );
 };
-
-export default MainPage;

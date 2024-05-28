@@ -9,7 +9,7 @@ interface InputFieldProps {
   title?: string;
 }
 
-const InputField: React.FC<InputFieldProps> = ({ placeholder, value, onChange, variant, title }) => {
+export const InputField: React.FC<InputFieldProps> = ({ placeholder, value, onChange, variant, title }) => {
   const [ showPassword, setShowPassword ] = useState(false);
 
   const handleTogglePasswordVisibility = () => {
@@ -51,5 +51,3 @@ const InputField: React.FC<InputFieldProps> = ({ placeholder, value, onChange, v
     </div>
   );
 };
-
-export default InputField;

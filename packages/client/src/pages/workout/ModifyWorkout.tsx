@@ -1,8 +1,10 @@
-import { BackgroundLayout } from "$components/Background";
-import { NavigationBar } from "$components/Navigation";
 import React from "react";
 
-const ModifyWorkout: React.FC = () => {
+// Intern
+import { BackgroundLayout } from "$components/Background";
+import { Navigation } from "$components/Navigation";
+
+export const ModifyWorkout: React.FC = () => {
   return (
     <>
       <BackgroundLayout>
@@ -11,9 +13,7 @@ const ModifyWorkout: React.FC = () => {
           <p className="text-lg text-black">Here you can modify your workout details.</p>
         </div>
       </BackgroundLayout>
-      <NavigationBar/>
+      <Navigation/>
     </>
   );
 };
-
-export default ModifyWorkout;

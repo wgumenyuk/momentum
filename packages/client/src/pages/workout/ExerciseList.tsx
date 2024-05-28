@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import SplitItem from "$components/Splits/SplitItem";
-import { InputField } from "$components/InputFields";
 
-const ExerciseListPage: React.FC = () => {
+// Intern
+import { SplitItem } from "$components/Splits";
+import { InputField } from "$components/InputField";
+
+export const ExerciseListPage: React.FC = () => {
   const [ search, setSearch ] = useState("");
 
   // Example list of exercises
@@ -28,5 +30,3 @@ const ExerciseListPage: React.FC = () => {
     </div>
   );
 };
-
-export default ExerciseListPage;
