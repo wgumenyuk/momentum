@@ -1,8 +1,6 @@
 import React from "react";
-
-// Intern
 import { BackgroundLayout } from "$components/Background";
-import SplitItem from "$components/Splits/SplitItem";
+import Workout from "$components/Workouts/Workout";
 
 const WorkoutsPage: React.FC = () => {
   return (
@@ -13,9 +11,9 @@ const WorkoutsPage: React.FC = () => {
           <button className="text-grey-500 text-4xl">+</button>
         </div>
         <div className="space-y-4">
-          <SplitItem title="Push" muscles="Chest, Shoulders, Triceps"/>
-          <SplitItem title="Pull" muscles="Back, Biceps"/>
-          <SplitItem title="Legs" muscles="Quads, Hamstrings, Calves"/>
+          <Workout title="Push" muscles="Chest, Shoulders, Triceps"/>
+          <Workout title="Pull" muscles="Back, Biceps"/>
+          <Workout title="Legs" muscles="Quads, Hamstrings, Calves"/>
         </div>
       </div>
     </BackgroundLayout>

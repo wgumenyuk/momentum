@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Plus } from "lucide-react";
-import SplitItem from "$components/Splits/SplitItem";
+import Workout from "$components/Workouts/Workout";
 import { InputField } from "$components/InputFields";
-
 
 const EditWorkoutPage: React.FC = () => {
   const [ name, setName ] = useState("");
@@ -32,9 +31,9 @@ const EditWorkoutPage: React.FC = () => {
           </button>
         </div>
         <div className="space-y-4">
-          <SplitItem title="Chest Fly" muscles="Chest"/>
-          <SplitItem title="Chest Fly" muscles="Chest"/>
-          <SplitItem title="Chest Fly" muscles="Chest"/>
+          <Workout title="Chest Fly" muscles="Chest"/>
+          <Workout title="Chest Fly" muscles="Chest"/>
+          <Workout title="Chest Fly" muscles="Chest"/>
         </div>
       </div>
     </div>
