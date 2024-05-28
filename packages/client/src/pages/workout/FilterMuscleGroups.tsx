@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-// Intern
 import { SplitSchema } from "@momentum/shared";
 import { Checkbox } from "$components/Checkbox";
 

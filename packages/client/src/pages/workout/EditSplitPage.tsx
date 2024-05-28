@@ -13,7 +13,6 @@ const EditSplitPage: React.FC<{ navigate: (view: string) => void }> = ({ navigat
 
   return (
     <div className="min-h-screen bg-gray-900 p-6">
-      <button onClick={() => navigate("workouts")} className="text-white mb-4">Back</button>
       <div className="space-y-4">
         <InputField
           title="Name"
