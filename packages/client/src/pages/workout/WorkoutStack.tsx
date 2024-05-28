@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { BackgroundLayout } from "$components/Background";
 import WorkoutsPage from "./WorkoutsPage";
 import EditWorkoutPage from "./EditWorkoutPage";
-import EditSplitPage from "./EditSplitPage"; // Import the EditSplitPage
+import EditSplitPage from "./EditSplitPage"; 
+import ExerciseListPage from "./ExerciseList";
 
 const WorkoutStack: React.FC = () => {
   const [ currentView, setCurrentView ] = useState("workouts");
@@ -15,6 +16,8 @@ const WorkoutStack: React.FC = () => {
         return <EditSplitPage navigate={setCurrentView}/>;
       case "editWorkout":
         return <EditWorkoutPage navigate={setCurrentView}/>;
+      case "exerciseList":
+        return <ExerciseListPage navigate={setCurrentView}/>;
       default:
         return <WorkoutsPage navigate={setCurrentView}/>;
     }

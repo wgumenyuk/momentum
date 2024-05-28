@@ -27,7 +27,10 @@ const EditWorkoutPage: React.FC<{ navigate: (view: string) => void }> = ({ navig
         />
         <div className="flex justify-between items-center mt-4">
           <h2 className="text-xl font-semibold text-white">Exercises</h2>
-          <button className="p-2 bg-blue-500 rounded-lg">
+          <button
+            className="p-2 bg-blue-500 rounded-lg"
+            onClick={() => navigate("exerciseList")}
+          >
             <Plus className="w-6 h-6 text-white"/>
           </button>
         </div>
