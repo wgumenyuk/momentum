@@ -1,27 +1,38 @@
 import React from "react";
+import { Workout } from "$components/Workouts";
+import { Info } from "lucide-react";
 
-// Intern
-import { BackgroundLayout } from "$components/Background";
-import { Navigation } from "$components/Navigation";
+type WorkoutsPageProps = {
+  navigate: (view: string) => void;
+};
 
-const WorkoutPage: React.FC = () => {
+const WorkoutsPage: React.FC<WorkoutsPageProps> = ({ navigate }) => {
   return (
-    <>
-      <BackgroundLayout>
-        <div className="flex flex-col items-center space-y-4">
-          <h1 className="text-2xl font-bold text-black">Workouts</h1>
-          <p className="text-lg text-black">Manage your workouts and splits.</p>
-          <button 
-            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded text-center"
-            onClick={() => alert("Navigate to Modify Workout Page")}
+    <div className="min-h-screen w-full bg-gray-900 p-6">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-grey-500">Workouts</h1>
+        <div className="flex items-center space-x-4">
+          <button
+            className="text-grey-500 text-4xl"
+            onClick={() => navigate("info")}
           >
-            Modify Workout
+            <Info className="w-6 h-6"/>
+          </button>
+          <button
+            className="text-grey-500 text-4xl"
+            onClick={() => navigate("editWorkout")}
+          >
+            +
           </button>
         </div>
-      </BackgroundLayout>
-      <Navigation/>
-    </>
+      </div>
+      <div className="space-y-4">
+        <Workout title="Push" muscles="Chest, Shoulders, Triceps"/>
+        <Workout title="Pull" muscles="Back, Biceps"/>
+        <Workout title="Legs" muscles="Quads, Hamstrings, Calves"/>
+      </div>
+    </div>
   );
 };
 
-export default WorkoutPage;
+export default WorkoutsPage;

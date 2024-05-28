@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
+import { InputField } from "$components/InputField";
+import { Workout } from "$components/Workouts";
 import { Plus } from "lucide-react";
 
-// Intern
-import { Workout } from "$components/Workouts";
-import { InputField } from "$components/InputField";
-
-export const EditWorkoutPage: React.FC = () => {
-  const [ name, setName ] = useState("");
-  const [ description, setDescription ] = useState("");
+const EditWorkoutPage: React.FC<{ navigate: (view: string) => void }> = ({ navigate }) => {
+  const [ name, setName ] = React.useState("");
+  const [ description, setDescription ] = React.useState("");
 
   return (
     <div className="min-h-screen bg-gray-900 p-6">
+      <button onClick={() => navigate("workouts")} className="text-white mb-4">Back</button>
       <div className="space-y-4">
         <InputField
           title="Name"
@@ -41,3 +40,5 @@ export const EditWorkoutPage: React.FC = () => {
     </div>
   );
 };
+
+export default EditWorkoutPage;
