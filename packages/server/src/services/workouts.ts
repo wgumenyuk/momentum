@@ -7,16 +7,16 @@ import {
   SplitSchema
 } from "@momentum/shared";
 import { ok, nok } from "$api/response";
-import { Split } from "$models/split";
+import { Workout } from "$models/workout";
 
 // Types
 import type { Context } from "koa";
 import type { ErrorCodeValue } from "@momentum/shared";
 
 /**
-  Erstellt einen neuen Split.
+  Erstellt einen neues Workout.
 */
-export const createSplit = async (ctx: Context) => {
+export const createWorkout = async (ctx: Context) => {
   const { success, error, data } = SplitSchema.safeParse(ctx.request.body);
 
   if(!success) {
@@ -27,57 +27,57 @@ export const createSplit = async (ctx: Context) => {
     );
   }
 
-  const split = new Split({
+  const workout = new Workout({
     ...data,
     id: nanoid(),
     userId: ctx.params.uid
   });
 
-  await split.save();
+  await workout.save();
 
   ok(ctx, StatusCode.Success, {
-    id: split.id
+    id: workout.id
   });
 };
 
 /**
-  Ruft einen Split ab. 
+  Ruft ein Workout ab. 
 */
-export const getSplit = async (ctx: Context) => {
-  const { sid } = ctx.params;
+export const getWorkout = async (ctx: Context) => {
+  const { wid } = ctx.params;
 
-  const split = await Split.findOne({
-    id: sid
+  const workout = await Workout.findOne({
+    id: wid
   });
 
-  if(!split) {
+  if(!workout) {
     return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
   }
 
   ok(ctx, StatusCode.Success, {
-    split
+    workout
   });
 };
 
 /**
-  Ruft alle Splits eines Nutzers ab.
+  Ruft alle Workouts eines Nutzers ab.
 */
-export const getSplits = async (ctx: Context) => {
+export const getWorkouts = async (ctx: Context) => {
   const { uid } = ctx.params;
 
-  const splits = await Split.find({
+  const workouts = await Workout.find({
     userId: uid
   });
 
   ok(ctx, StatusCode.Success, {
-    splits
+    workouts
   });
 };
 
 /**
-  Aktualisiert einen Split.
+  Aktualisiert ein Workout.
 */
-export const updateSplit = async (ctx: Context) => {
+export const updateWorkout = async (ctx: Context) => {
   const { sid } = ctx.params;
 
   const { success, error, data } = SplitSchema
@@ -92,7 +92,7 @@ export const updateSplit = async (ctx: Context) => {
     );
   }
 
-  const split = await Split.findOneAndUpdate(
+  const workout = await Workout.findOneAndUpdate(
     {
       id: sid
     },
@@ -102,30 +102,30 @@ export const updateSplit = async (ctx: Context) => {
     }
   );
 
-  if(!split) {
+  if(!workout) {
     return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
   }
 
   ok(ctx, StatusCode.Success, {
-    split
+    workout
   });
 };
 
 /**
-  Löscht einen Split. 
+  Löscht ein Workout. 
 */
-export const deleteSplit = async (ctx: Context) => {
+export const deleteWorkout = async (ctx: Context) => {
   const { sid } = ctx.params;
 
-  const split = await Split.findOneAndDelete({
+  const workout = await Workout.findOneAndDelete({
     id: sid
   });
 
-  if(!split) {
+  if(!workout) {
     return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
   }
 
   ok(ctx, StatusCode.Success, {
-    id: split.id
+    id: workout.id
   });
 };
