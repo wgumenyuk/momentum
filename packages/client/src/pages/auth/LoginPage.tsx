@@ -6,7 +6,7 @@ import { ErrorCode, LoginSchema } from "@momentum/shared";
 import { Auth } from "$internal/api";
 import { BackgroundLayout } from "$components/Background";
 import { InputField } from "$components/InputField";
-import BigButton from "$components/Buttons/BigButton";
+import { Button } from "$components/Button";
 import { Checkbox } from "$components/Checkbox";
 
 export const LoginPage: React.FC = () => {
@@ -98,7 +98,9 @@ export const LoginPage: React.FC = () => {
             </Link>
           </div>
           <div className="flex justify-center mt-6">
-            <BigButton text="Sign In" onClick={handleSubmit} variant="blue"/>
+            <Button onClick={handleSubmit} variant="blue">
+              Sign In
+            </Button>
           </div>
         </form>
         <div className="text-center mt-6 text-sm">

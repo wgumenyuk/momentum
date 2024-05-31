@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { ErrorCode, RegisterSchema } from "@momentum/shared";
 import { Auth } from "$internal/api";
 import { BackgroundLayout } from "$components/Background";
-import BigButton from "$components/Buttons/BigButton";
+import { Button } from "$components/Button";
 import { InputField } from "$components/InputField";
 import { Checkbox } from "$components/Checkbox";
 
@@ -96,7 +96,9 @@ export const RegisterPage: React.FC = () => {
             onChange={setSubscribed}
           />
           <div className="flex justify-center mt-6">
-            <BigButton text="Sign Up" onClick={handleSubmit} variant="blue"/>
+            <Button onClick={handleSubmit} variant="blue">
+              Sign Up
+            </Button>
           </div>
         </form>
         <div className="text-center mt-6 text-sm">
