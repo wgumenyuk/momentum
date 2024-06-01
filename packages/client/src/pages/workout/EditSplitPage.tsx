@@ -8,7 +8,7 @@ const EditSplitPage: React.FC<{ navigate: (view: string) => void }> = ({ navigat
   const [ description, setDescription ] = React.useState("");
 
   const handleWorkoutClick = () => {
-    navigate("workouts");
+    navigate("editWorkout");
   };
 
   return (

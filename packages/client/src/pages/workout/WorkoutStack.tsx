@@ -3,16 +3,24 @@ import { BackgroundLayout } from "$components/Background";
 import WorkoutsPage from "./WorkoutsPage";
 import EditWorkoutPage from "./EditWorkoutPage";
 import EditSplitPage from "./EditSplitPage";
+import SplitsOverviewPage from "./SplitsOverviewPage"; // Import the new component
 import { StackTop } from "$components/StackTop";
 import { FilterMuscleGroupsPage } from "./FilterMuscleGroups";
 import ExerciseListPage from "./ExerciseList";
 
-
 const WorkoutStack: React.FC = () => {
-  const [ currentView, setCurrentView ] = useState("workouts");
+  const [ navigationStack, setNavigationStack ] = useState([ "splitsOverview" ]); // Set initial view to splitsOverview
+
+  const currentView = navigationStack[navigationStack.length - 1];
 
   const handleCancel = () => {
-    setCurrentView("workouts");
+    setNavigationStack((prevStack) => 
+      prevStack.length > 1 ? prevStack.slice(0, -1) : prevStack
+    );
+  };
+
+  const handleNavigate = (view: string) => {
+    setNavigationStack((prevStack) => [ ...prevStack, view ]);
   };
 
   const handleAccept = () => {
@@ -21,25 +29,27 @@ const WorkoutStack: React.FC = () => {
 
   const renderView = () => {
     switch (currentView) {
+      case "splitsOverview":
+        return <SplitsOverviewPage navigate={handleNavigate}/>;
       case "workouts":
-        return <WorkoutsPage navigate={setCurrentView}/>;
+        return <WorkoutsPage navigate={handleNavigate}/>;
       case "editSplit":
-        return <EditSplitPage navigate={setCurrentView}/>;
+        return <EditSplitPage navigate={handleNavigate}/>;
       case "editWorkout":
-        return <EditWorkoutPage navigate={setCurrentView}/>;
+        return <EditWorkoutPage navigate={handleNavigate}/>;
       case "exerciseList":
-        return <ExerciseListPage navigate={setCurrentView}/>;
+        return <ExerciseListPage navigate={handleNavigate}/>;
       case "filterMuscleGroups":
         return <FilterMuscleGroupsPage/>;
       default:
-        return <WorkoutsPage navigate={setCurrentView}/>;
+        return <SplitsOverviewPage navigate={handleNavigate}/>; // Default is splitsOverview
     }
   };
 
   return (
     <BackgroundLayout>
       <div className="min-h-screen w-full bg-gray-900 p-6">
-        {currentView !== "editSplit" && (
+        {currentView !== "splitsOverview" && (
           <StackTop onCancel={handleCancel} onAccept={handleAccept}/>
         )}
         {renderView()}
