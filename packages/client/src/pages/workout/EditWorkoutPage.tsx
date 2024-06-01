@@ -9,20 +9,22 @@ const EditWorkoutPage: React.FC<{ navigate: (view: string) => void }> = ({ navig
 
   return (
     <div className="space-y-4">
-      <InputField
-        title="Name"
-        placeholder="New Workout"
-        value={name}
-        onChange={setName}
-        variant="text"
-      />
-      <InputField
-        title="Description"
-        placeholder="..."
-        value={description}
-        onChange={setDescription}
-        variant="text"
-      />
+      <div className="text-blue-900">
+        <InputField
+          title="Name"
+          placeholder="New Workout"
+          value={name}
+          onChange={setName}
+          variant="text"
+        />
+        <InputField
+          title="Description"
+          placeholder="..."
+          value={description}
+          onChange={setDescription}
+          variant="text"
+        />
+      </div>
       <div className="flex justify-between items-center mt-4">
         <h2 className="text-xl font-semibold text-white">Exercises</h2>
         <button
