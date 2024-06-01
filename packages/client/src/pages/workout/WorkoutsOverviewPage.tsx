@@ -2,11 +2,11 @@ import React from "react";
 import { Workout } from "$components/Workouts";
 import { Info } from "lucide-react";
 
-type WorkoutsPageProps = {
+type WorkoutsOverviewPageProps = {
   navigate: (view: string) => void;
 };
 
-const WorkoutsPage: React.FC<WorkoutsPageProps> = ({ navigate }) => {
+const WorkoutsOverviewPage: React.FC<WorkoutsOverviewPageProps> = ({ navigate }) => {
   return (
     <div className="min-h-screen w-full bg-gray-900 p-6">
       <div className="flex justify-between items-center mb-6">
@@ -35,4 +35,4 @@ const WorkoutsPage: React.FC<WorkoutsPageProps> = ({ navigate }) => {
   );
 };
 
-export default WorkoutsPage;
+export default WorkoutsOverviewPage;

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { BackgroundLayout } from "$components/Background";
-import WorkoutsPage from "./WorkoutsPage";
+import WorkoutsOverviewPage from "./WorkoutsOverviewPage"; // Updated import
 import EditWorkoutPage from "./EditWorkoutPage";
 import EditSplitPage from "./EditSplitPage";
-import SplitsOverviewPage from "./SplitsOverviewPage"; // Import the new component
+import SplitsOverviewPage from "./SplitsOverviewPage";
 import { StackTop } from "$components/StackTop";
 import { FilterMuscleGroupsPage } from "./FilterMuscleGroups";
 import ExerciseListPage from "./ExerciseList";
@@ -14,7 +14,7 @@ const WorkoutStack: React.FC = () => {
   const currentView = navigationStack[navigationStack.length - 1];
 
   const handleCancel = () => {
-    setNavigationStack((prevStack) => 
+    setNavigationStack((prevStack) =>
       prevStack.length > 1 ? prevStack.slice(0, -1) : prevStack
     );
   };
@@ -32,7 +32,7 @@ const WorkoutStack: React.FC = () => {
       case "splitsOverview":
         return <SplitsOverviewPage navigate={handleNavigate}/>;
       case "workouts":
-        return <WorkoutsPage navigate={handleNavigate}/>;
+        return <WorkoutsOverviewPage navigate={handleNavigate}/>; // Updated view
       case "editSplit":
         return <EditSplitPage navigate={handleNavigate}/>;
       case "editWorkout":
