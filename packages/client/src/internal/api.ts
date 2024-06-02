@@ -66,6 +66,12 @@ const request = async <T extends Record<string, unknown> = Record<string, never>
 
   try {
     const response = await fetch(url, request);
+    
+    // Check if the response is 401 Unauthorized
+    if(response.status === 401) {
+      throw new Error("Unauthorized");
+    }
+
     return response.json() as Promise<Response<T>>;
   } catch(err) {
     console.error("Failed to fetch data from API", err);
