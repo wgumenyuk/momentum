@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import { nanoid } from "nanoid";
 
 /**
   Übungseintrag im Trainingsplan.
@@ -55,8 +54,7 @@ const WorkoutSchema = new Schema<Workout>({
   id: {
     type: "string",
     required: true,
-    unique: true,
-    default: nanoid()
+    unique: true
   },
   userId: {
     type: "string",
