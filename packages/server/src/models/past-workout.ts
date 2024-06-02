@@ -18,11 +18,6 @@ type PastWorkout = {
   userId: string;
 
   /**
-    Split-ID. 
-  */
-  splitId: string;
-
-  /**
     Liste von Übungen. 
   */
   exercises: Exercise[];
@@ -45,10 +40,6 @@ const PastWorkoutSchema = new Schema<PastWorkout>({
     unique: true
   },
   userId: {
-    type: "string",
-    required: true
-  },
-  splitId: {
     type: "string",
     required: true
   },
