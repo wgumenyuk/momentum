@@ -4,7 +4,7 @@ import { nanoid } from "nanoid";
 import {
   StatusCode,
   ErrorCode,
-  WorkoutSchema
+  PastWorkoutSchema
 } from "@momentum/shared";
 import { ok, nok } from "$api/response";
 import { PastWorkout } from "$models/past-workout";
@@ -17,7 +17,7 @@ import type { ErrorCodeValue } from "@momentum/shared";
   Erstellt ein neues erledigtes Workout. 
 */
 export const createPastWorkout = async (ctx: Context) => {
-  const { success, error, data } = WorkoutSchema.safeParse(ctx.request.body);
+  const { success, error, data } = PastWorkoutSchema.safeParse(ctx.request.body);
 
   if(!success) {
     return nok(
@@ -79,7 +79,7 @@ export const getPastWorkouts = async (ctx: Context) => {
 export const updatePastWorkout = async (ctx: Context) => {
   const { id } = ctx.params;
   
-  const { success, error, data } = WorkoutSchema
+  const { success, error, data } = PastWorkoutSchema
     .partial()
     .safeParse(ctx.request.body);
 
