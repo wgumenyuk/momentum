@@ -3,12 +3,13 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Intern
-import { Navigation } from "$components/Navigation";
-import { MainPage } from "$pages/MainPage";
-import { HomePage } from "$pages/HomePage";
-import { LoginPage } from "$pages/auth/LoginPage";
-import { RegisterPage } from "$pages/auth/RegisterPage";
-import { WorkoutsPage } from "$pages/workout/WorkoutsOverview";
+import { ProtectedRoute } from "$components/ProtectedRoute";
+import { NavigationBar } from "$components/Navigation";
+import LoginPage from "$pages/auth/LoginPage";
+import HomePage from "$pages/HomePage";
+import RegisterPage from "$pages/auth/RegisterPage";
+import MainPage from "$pages/general/MainPage";
+import WorkoutsPage from "$pages/workout/WorkoutsOverview";
 import "./index.css";
 
 const root = document.getElementById("root")!;
@@ -29,10 +30,10 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: (
-      <>
-        <HomePage/>
-        <Navigation/>
-      </>
+      <ProtectedRoute>
+        <MainPage/>
+        <NavigationBar/>
+      </ProtectedRoute>
     )
   },
   {
