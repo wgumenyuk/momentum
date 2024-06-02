@@ -1,5 +1,4 @@
 import { Schema, model } from "mongoose";
-import { nanoid } from "nanoid";
 
 // Types
 import type { Exercise } from "$models/workout";
@@ -43,8 +42,7 @@ const PastWorkoutSchema = new Schema<PastWorkout>({
   id: {
     type: "string",
     required: true,
-    unique: true,
-    default: nanoid()
+    unique: true
   },
   userId: {
     type: "string",
