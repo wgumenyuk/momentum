@@ -1,7 +1,9 @@
 import React from "react";
+
+// Intern
 import { BackgroundLayout } from "$components/Background";
 
-const LogoutPage: React.FC = () => {
+export const LogoutPage: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     // Redirect to login page after logout
@@ -37,5 +39,3 @@ const LogoutPage: React.FC = () => {
     </BackgroundLayout>
   );
 };
-
-export default LogoutPage;

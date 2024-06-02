@@ -17,11 +17,7 @@ const root = document.getElementById("root")!;
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <HomePage/>
-      </>
-    )
+    element: <MainPage/>
   },
   {
     path: "/login",
@@ -45,7 +41,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <WorkoutsPage/>
-        <NavigationBar/>
+        <Navigation/>
       </>
     )
   },
@@ -54,7 +50,7 @@ const router = createBrowserRouter([
     element: (
       <>
         {/* <SocialPage /> - not yet developed*/}
-        <NavigationBar/>
+        <Navigation/>
       </>
     )
   },
@@ -63,7 +59,7 @@ const router = createBrowserRouter([
     element: (
       <>
         {/* <ProfilePage /> - not yet developed*/}
-        <NavigationBar/>
+        <Navigation/>
       </>
     )
   }

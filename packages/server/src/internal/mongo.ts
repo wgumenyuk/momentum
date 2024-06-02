@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 // Intern
 import { log } from "$internal/logger";
-import { seedEquipment } from "$internal/seeders/equipment";
-import { seedExercises } from "$internal/seeders/exercises";
-import { seedMuscles } from "$internal/seeders/muscle";
+import { seedEquipment } from "$models/seeders/equipment";
+import { seedExercises } from "$models/seeders/exercises";
+import { seedMuscles } from "$models/seeders/muscle";
 
 const { MONGODB_URL } = process.env;
 

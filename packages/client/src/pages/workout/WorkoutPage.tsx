@@ -1,6 +1,8 @@
-import { BackgroundLayout } from "$components/Background";
-import { NavigationBar } from "$components/Navigation";
 import React from "react";
+
+// Intern
+import { BackgroundLayout } from "$components/Background";
+import { Navigation } from "$components/Navigation";
 
 const WorkoutPage: React.FC = () => {
   return (
@@ -17,7 +19,7 @@ const WorkoutPage: React.FC = () => {
           </button>
         </div>
       </BackgroundLayout>
-      <NavigationBar/>
+      <Navigation/>
     </>
   );
 };
