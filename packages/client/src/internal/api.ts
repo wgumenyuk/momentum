@@ -67,9 +67,9 @@ const request = async <T extends Record<string, unknown> = Record<string, never>
   try {
     const response = await fetch(url, request);
     
-    // Check if the response is 401 Unauthorized
     if(response.status === 401) {
-      throw new Error("Unauthorized");
+      location.href = "/login";
+      return;
     }
 
     return response.json() as Promise<Response<T>>;
