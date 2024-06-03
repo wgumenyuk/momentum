@@ -12,6 +12,10 @@ import { Button } from "$components/Button";
 export const ProfilePage: React.FC = () => {
   const navigate = useNavigate();
 
+  const handleLogout = () => {
+    navigate("/logout?return_to=/profile");
+  };
+
   const handleDeleteAccount = async () => {
     const response = await User.deleteAccount();
 
@@ -34,7 +38,7 @@ export const ProfilePage: React.FC = () => {
       <div className="min-h-screen w-full bg-gray-900 p-6">
         <div className="flex justify-between items-center h-8 mb-6">
           <h1 className="text-2xl font-bold text-grey-500">Profile</h1>
-          <button className="text-grey-500" onClick={() => navigate("/logout")}>
+          <button className="text-grey-500" onClick={handleLogout}>
             <LogOutIcon size="24px"/>
           </button>
         </div>

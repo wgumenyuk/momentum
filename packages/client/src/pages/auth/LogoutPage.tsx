@@ -1,18 +1,21 @@
 import React from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 // Intern
 import { BackgroundLayout } from "$components/Background";
 
 export const LogoutPage: React.FC = () => {
+  const navigate = useNavigate();
+  const [ searchParams ] = useSearchParams();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
-    // Redirect to login page after logout
-    window.location.href = "/login";
+    navigate("/login");
   };
 
   const handleCancel = () => {
-    // Redirect to the home page or any other page you want after canceling
-    window.location.href = "/";
+    const returnTo = searchParams.get("return_to") || "/profile";
+    navigate(returnTo);
   };
 
   return (
