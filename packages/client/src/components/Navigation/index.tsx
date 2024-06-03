@@ -9,7 +9,7 @@ export const Navigation = () => {
       left-1/2
       right-0
       -translate-x-1/2
-      bg-dark-gray
+      bg-blue-900
       p-4
       flex
       justify-around
