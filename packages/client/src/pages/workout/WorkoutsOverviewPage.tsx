@@ -1,6 +1,6 @@
 import React from "react";
 import { Workout } from "$components/Workouts";
-import { Info } from "lucide-react";
+import { InfoIcon, PlusIcon } from "lucide-react";
 
 type WorkoutsOverviewPageProps = {
   navigate: (view: string) => void;
@@ -16,13 +16,13 @@ const WorkoutsOverviewPage: React.FC<WorkoutsOverviewPageProps> = ({ navigate })
             className="text-grey-500 text-4xl"
             onClick={() => navigate("editSplit")}
           >
-            <Info className="w-6 h-6"/>
+            <InfoIcon size="24px"/>
           </button>
           <button
             className="text-grey-500 text-4xl"
             onClick={() => navigate("editWorkout")}
           >
-            +
+            <PlusIcon size="32px"/> 
           </button>
         </div>
       </div>

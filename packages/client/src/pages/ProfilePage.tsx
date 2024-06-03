@@ -46,7 +46,7 @@ export const ProfilePage: React.FC = () => {
           <Card>
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-0.5">
-                <span className="text-xl">Username</span>
+                <span className="text-xl font-bold">Username</span>
                 <span className="text-sm">user@example.com</span>
               </div>
               <div className="w-16 h-16 bg-gray rounded-lg"/>

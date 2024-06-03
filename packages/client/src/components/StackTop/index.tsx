@@ -10,7 +10,7 @@ export type StackTopProps = {
 
 export const StackTop: FC<StackTopProps> = ({ onCancel, onAccept }) => {
   return (
-    <div className="flex justify-between items-align w-full">
+    <div className="flex justify-between items-align w-full h-8">
       <button onClick={onCancel}>
         <ArrowLeftIcon
           size="40px"
