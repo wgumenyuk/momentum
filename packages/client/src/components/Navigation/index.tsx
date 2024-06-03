@@ -1,5 +1,46 @@
+import clsx from "clsx";
 import { Link } from "react-router-dom";
-import { Home, Dumbbell, Users, User } from "lucide-react";
+import {
+  HomeIcon,
+  DumbbellIcon,
+  UsersIcon,
+  UserIcon
+} from "lucide-react";
+
+// Types
+import type { FC, ReactElement, ReactNode } from "react";
+
+type LocationProps = {
+  to: string;
+  icon: ReactElement;
+  children: ReactNode;
+};
+
+const Location: FC<LocationProps> = ({ to, icon, children }) => {
+  const linkClassName = clsx(
+    "flex",
+    "flex-col",
+    "justify-center",
+    "items-center",
+    "gap-2",
+    "text-gray",
+    "w-16",
+    "h-16",
+    "rounded-xl",
+    {
+      "bg-blue-800": (location.pathname === to)
+    }
+  );
+
+  return (
+    <Link to={to} className={linkClassName}>
+      {icon}
+      <span className="text-xs">
+        {children}
+      </span>
+    </Link>
+  );
+};
 
 export const Navigation = () => {
   return (
@@ -16,25 +57,18 @@ export const Navigation = () => {
       max-w-screen-md
       w-full
     ">
-      <Link to="/home" className="text-cool-gray flex flex-col items-center">
-        <Home className="w-6 h-6"/>
-        <span className="text-xs mt-1">Home</span>
-      </Link>
-
-      <Link to="/workouts" className="text-cool-gray flex flex-col items-center">
-        <Dumbbell className="w-6 h-6"/>
-        <span className="text-xs mt-1">Workouts</span>
-      </Link>
-
-      <Link to="/social" className="text-cool-gray flex flex-col items-center">
-        <Users className="w-6 h-6"/>
-        <span className="text-xs mt-1">Social</span>
-      </Link>
-
-      <Link to="/profile" className="text-cool-gray flex flex-col items-center">
-        <User className="w-6 h-6"/>
-        <span className="text-xs mt-1">Profile</span>
-      </Link>
+      <Location to="/home" icon={<HomeIcon/>}>
+        Home
+      </Location>
+      <Location to="/workouts" icon={<DumbbellIcon/>}>
+        Workouts
+      </Location>
+      <Location to="/social" icon={<UsersIcon/>}>
+        Social
+      </Location>
+      <Location to="/profile" icon={<UserIcon/>}>
+        Profile
+      </Location>
     </nav>
   );
 };
