@@ -16,18 +16,21 @@ export const Navigation = () => {
       max-w-screen-md
       w-full
     ">
-      <Link to="/" className="text-cool-gray flex flex-col items-center">
+      <Link to="/home" className="text-cool-gray flex flex-col items-center">
         <Home className="w-6 h-6"/>
         <span className="text-xs mt-1">Home</span>
       </Link>
+
       <Link to="/workouts" className="text-cool-gray flex flex-col items-center">
         <Dumbbell className="w-6 h-6"/>
         <span className="text-xs mt-1">Workouts</span>
       </Link>
+
       <Link to="/social" className="text-cool-gray flex flex-col items-center">
         <Users className="w-6 h-6"/>
         <span className="text-xs mt-1">Social</span>
       </Link>
+
       <Link to="/profile" className="text-cool-gray flex flex-col items-center">
         <User className="w-6 h-6"/>
         <span className="text-xs mt-1">Profile</span>

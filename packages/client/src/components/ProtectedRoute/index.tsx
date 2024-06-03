@@ -7,6 +7,8 @@ type ProtectedRouteProps = {
   children: ReactNode;
 };
 
+const isDev = import.meta.env.DEV;
+
 /**
   Überprüft, ob ein Token sich im Local Storage befindet.
 */
@@ -18,7 +20,7 @@ const isAuthenticated = () => {
   Geschützte Route.
 */
 export const ProtectedRoute: FC<ProtectedRouteProps> = ({ children }) => {
-  if(!isAuthenticated()) {
+  if(!isAuthenticated() && !isDev) {
     return <Navigate to="/login"/>; 
   }
 
