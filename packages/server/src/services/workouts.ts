@@ -48,7 +48,7 @@ export const getWorkout = async (ctx: Context) => {
 
   const workout = await Workout.findOne({
     id: wid
-  });
+  }, "-_id -__v");
 
   if(!workout) {
     return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
@@ -67,7 +67,7 @@ export const getWorkouts = async (ctx: Context) => {
 
   const workouts = await Workout.find({
     userId: uid
-  });
+  }, "-_id -__v");
 
   ok(ctx, StatusCode.Success, {
     workouts
@@ -107,7 +107,7 @@ export const updateWorkout = async (ctx: Context) => {
   }
 
   ok(ctx, StatusCode.Success, {
-    workout
+    id: workout.id
   });
 };
 
