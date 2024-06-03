@@ -4,20 +4,20 @@ import { nanoid } from "nanoid";
 import {
   StatusCode,
   ErrorCode,
-  WorkoutSchema
+  PastWorkoutSchema
 } from "@momentum/shared";
 import { ok, nok } from "$api/response";
-import { Workout } from "$models/workout";
+import { PastWorkout } from "$models/past-workout";
 
 // Types
 import type { Context } from "koa";
 import type { ErrorCodeValue } from "@momentum/shared";
 
 /**
-  Erstellt ein neues Workout. 
+  Erstellt ein neues erledigtes Workout. 
 */
-export const createWorkout = async (ctx: Context) => {
-  const { success, error, data } = WorkoutSchema.safeParse(ctx.request.body);
+export const createPastWorkout = async (ctx: Context) => {
+  const { success, error, data } = PastWorkoutSchema.safeParse(ctx.request.body);
 
   if(!success) {
     return nok(
@@ -27,7 +27,7 @@ export const createWorkout = async (ctx: Context) => {
     );
   }
 
-  const workout = new Workout({
+  const workout = new PastWorkout({
     ...data,
     id: nanoid()
   });
@@ -35,19 +35,19 @@ export const createWorkout = async (ctx: Context) => {
   await workout.save();
 
   ok(ctx, StatusCode.Success, {
-    workout
+    id: workout.id
   });
 };
 
 /**
-  Ruft ein Workout ab. 
+  Ruft ein erledigtes Workout ab. 
 */
-export const getWorkout = async (ctx: Context) => {
+export const getPastWorkout = async (ctx: Context) => {
   const { id } = ctx.params;
 
-  const workout = await Workout.findOne({
+  const workout = await PastWorkout.findOne({
     id
-  });
+  }, "-_id -__v");
 
   if(!workout) {
     return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
@@ -59,14 +59,14 @@ export const getWorkout = async (ctx: Context) => {
 };
 
 /**
-  Ruft alle Workouts eines Nutzers ab. 
+  Ruft alle erledigten Workouts eines Nutzers ab. 
 */
-export const getWorkouts = async (ctx: Context) => {
+export const getPastWorkouts = async (ctx: Context) => {
   const { uid } = ctx.params;
 
-  const workouts = await Workout.find({
+  const workouts = await PastWorkout.find({
     userId: uid
-  });
+  }, "-_id -__v");
 
   ok(ctx, StatusCode.Success, {
     workouts
@@ -74,12 +74,12 @@ export const getWorkouts = async (ctx: Context) => {
 };
 
 /**
-  Aktualisiert ein Workout.
+  Aktualisiert ein erledigtes Workout.
 */
-export const updateWorkout = async (ctx: Context) => {
+export const updatePastWorkout = async (ctx: Context) => {
   const { id } = ctx.params;
   
-  const { success, error, data } = WorkoutSchema
+  const { success, error, data } = PastWorkoutSchema
     .partial()
     .safeParse(ctx.request.body);
 
@@ -91,7 +91,7 @@ export const updateWorkout = async (ctx: Context) => {
     );
   }
 
-  const workout = await Workout.findOneAndUpdate(
+  const workout = await PastWorkout.findOneAndUpdate(
     {
       id
     },
@@ -106,17 +106,17 @@ export const updateWorkout = async (ctx: Context) => {
   }
 
   ok(ctx, StatusCode.Success, {
-    workout
+    id: workout.id
   });
 };
 
 /**
-  Löscht ein Workout.
+  Löscht ein erledigtes Workout.
 */
-export const deleteWorkout = async (ctx: Context) => {
+export const deletePastWorkout = async (ctx: Context) => {
   const { id } = ctx.params;
 
-  const workout = await Workout.findOneAndDelete({
+  const workout = await PastWorkout.findOneAndDelete({
     id
   });
 

@@ -1,11 +1,9 @@
 import { Schema, model } from "mongoose";
-import { nanoid } from "nanoid";
 
 /**
-  Übungseintrag im Split.
+  Übungseintrag im Trainingsplan.
 */
-// TODO Typ aus `Split` beziehen.
-type Exercise = {
+export type Exercise = {
   /**
     Übungs-ID.
   */
@@ -23,9 +21,9 @@ type Exercise = {
 };
 
 /**
-  Split. 
+  Workout. 
 */
-type Workout = {
+export type Workout = {
   /**
     ID.
   */
@@ -37,40 +35,37 @@ type Workout = {
   userId: string;
 
   /**
-    Split-ID. 
+    Name. 
   */
-  splitId: string;
+  name: string;
+
+  /**
+    Beschreibung. 
+  */
+  description: string;
 
   /**
     Liste von Übungen. 
   */
   exercises: Exercise[];
-
-  /**
-    Zeitpunkt des Starts. 
-  */
-  startedAt: number;
-
-  /**
-    Zeitpunkt des Endes. 
-  */
-  finishedAt: number;
 };
 
 const WorkoutSchema = new Schema<Workout>({
   id: {
     type: "string",
     required: true,
-    unique: true,
-    default: nanoid()
+    unique: true
   },
   userId: {
     type: "string",
     required: true
   },
-  splitId: {
+  name: {
     type: "string",
     required: true
+  },
+  description: {
+    type: "string"
   },
   exercises: {
     type: [
@@ -80,12 +75,6 @@ const WorkoutSchema = new Schema<Workout>({
         reps: "number"
       }
     ]
-  },
-  startedAt: {
-    type: "number"
-  },
-  finishedAt: {
-    type: "number"
   }
 });
 

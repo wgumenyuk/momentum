@@ -3,11 +3,14 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Intern
+import { ProtectedRoute } from "$components/ProtectedRoute";
 import { Navigation } from "$components/Navigation";
+import { MainPage } from "$pages/MainPage";
 import { LoginPage } from "$pages/auth/LoginPage";
-import { HomePage } from "$pages/HomePage";
+import { LogoutPage } from "$pages/auth/LogoutPage";
 import { RegisterPage } from "$pages/auth/RegisterPage";
-import { MainPage } from "$pages/general/MainPage";
+import { HomePage } from "$pages/HomePage";
+import { ProfilePage } from "$pages/ProfilePage";
 import "./index.css";
 import WorkoutStack from "$pages/workout/WorkoutStack";
 
@@ -16,11 +19,7 @@ const root = document.getElementById("root")!;
 const router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <>
-        <HomePage/>
-      </>
-    )
+    element: <MainPage/>
   },
   {
     path: "/login",
@@ -31,39 +30,47 @@ const router = createBrowserRouter([
     element: <RegisterPage/>
   },
   {
+    path: "/logout",
+    element: (
+      <ProtectedRoute>
+        <LogoutPage/>
+      </ProtectedRoute>
+    )
+  },
+  {
     path: "/home",
     element: (
-      <>
-        <MainPage/>
+      <ProtectedRoute>
+        <HomePage/>
         <Navigation/>
-      </>
+      </ProtectedRoute>
     )
   },
   {
     path: "/workouts",
     element: (
-      <>
+      <ProtectedRoute>
         <WorkoutStack/>
         <Navigation/>
-      </>
+      </ProtectedRoute>
     )
   },
   {
     path: "/social",
     element: (
-      <>
+      <ProtectedRoute>
         {/* <SocialPage /> - not yet developed*/}
         <Navigation/>
-      </>
+      </ProtectedRoute>
     )
   },
   {
     path: "/profile",
     element: (
-      <>
-        {/* <ProfilePage /> - not yet developed*/}
+      <ProtectedRoute>
+        <ProfilePage/>
         <Navigation/>
-      </>
+      </ProtectedRoute>
     )
   }
 ]);

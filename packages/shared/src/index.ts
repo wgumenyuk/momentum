@@ -134,115 +134,56 @@ export const LoginSchema = z.object({
 export type LoginSchemaType = z.infer<typeof LoginSchema>;
 
 /**
-  Schema für eine Übung.
-*/
-export const ExerciseSchema = z.object({
-  /**
-    ID.
-  */
-  id: z.string(),
-
-  /**
-    Name.
-  */
-  name: z.string(),
-
-  /**
-    Anzahl der Wiederholdungen.
-  */
-  repetitions: z.number().int().positive(),
-
-  /**
-    Anzahl der Sätze.
-  */
-  sets: z.number().int().positive(),
-
-  /**
-    Verwendendes Gewicht.
-  */
-  weight: z.number().nonnegative().optional(),
-
-  /**
-    Dauer.
-  */
-  duration: z.number().nonnegative().optional(),
-
-  /**
-    Liste von beanspruchten Muskelgruppen.
-  */
-  muscleGroups: z.array(z.string()),
-
-  /**
-    Gerätinstellungen.
-  */
-  deviceSetting: z.string().optional(),
-
-  /**
-    Notiz.
-  */
-  note: z.string().optional()
-});
-
-export type ExerciseSchemaType = z.infer<typeof ExerciseSchema>;
-
-/**
-  Schema für ein Workout.
+  Schema für einen Trainingsplan.
 */
 export const WorkoutSchema = z.object({
   /**
-    ID.
+    Name.
   */
-  id: z.string(),
+  name: z
+    .string()
+    .min(1)
+    .max(64),
 
   /**
-    Datum.
+    Beschreibung.
   */
-  date: z.string(),
+  description: z
+    .string()
+    .max(256)
+    .optional(),
 
   /**
-    Übungen.
+    Liste von Übungen.
   */
-  exercises: z.array(ExerciseSchema)
+  exercises: z.array(
+    z.object({
+      exerciseId: z.string(),
+      sets: z
+        .number()
+        .positive(),
+      reps: z
+        .number()
+        .positive()
+    })
+  )
 });
 
 export type WorkoutSchemaType = z.infer<typeof WorkoutSchema>;
 
 /**
-  Schema für einen Split.
+  Schema für erledigte Workouts.
 */
-export const SplitSchema = z.object({
+export const PastWorkoutSchema = WorkoutSchema.extend({
   /**
-    ID.
+    Zeitpunkt des Starts.
   */
-  id: z.string(),
+  startedAt: z.date(),
 
   /**
-    Name.
+    Zeitpunkt des Endes.
   */
-  name: z.string(),
-
-  /**
-    Workouts.
-  */
-  workouts: z.array(z.object({
-    type: z.enum([
-      "Push", 
-      "Pull", 
-      "Legs", 
-      "Upper Body", 
-      "Lower Body", 
-      "Full Body", 
-      "Cardio", 
-      "Rest",
-      "Arms",
-      "Chest and Back",
-      "Shoulders and Arms",
-      "Chest",
-      "Back",
-      "Shoulders"
-    ]),
-    workout: WorkoutSchema
-  }))
+  finishedAt: z.date()
 });
 
-export type SplitSchemaType = z.infer<typeof SplitSchema>;
+export type PastWorkoutSchemaType = z.infer<typeof PastWorkoutSchema>;

@@ -7,17 +7,17 @@ import {
   getWorkouts,
   updateWorkout,
   deleteWorkout
-} from "$services/workout";
+} from "$services/workouts";
 
 export const workoutRouter = new Router({
-  prefix: "/:uid/workouts"
+  prefix: "/:uid/splits"
 });
 
 workoutRouter.post("/", async (ctx) => {
   await createWorkout(ctx);
 });
 
-workoutRouter.get("/:id", async (ctx) => {
+workoutRouter.get("/:wid", async (ctx) => {
   await getWorkout(ctx);
 });
 
@@ -25,10 +25,10 @@ workoutRouter.get("/", async (ctx) => {
   await getWorkouts(ctx);
 });
 
-workoutRouter.put("/:id", async (ctx) => {
+workoutRouter.put("/:wid", async (ctx) => {
   await updateWorkout(ctx);
 });
 
-workoutRouter.delete("/:id", async (ctx) => {
+workoutRouter.delete("/:wid", async (ctx) => {
   await deleteWorkout(ctx);
 });

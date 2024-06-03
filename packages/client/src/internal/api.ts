@@ -66,6 +66,12 @@ const request = async <T extends Record<string, unknown> = Record<string, never>
 
   try {
     const response = await fetch(url, request);
+    
+    if(response.status === 401) {
+      location.href = "/login";
+      return;
+    }
+
     return response.json() as Promise<Response<T>>;
   } catch(err) {
     console.error("Failed to fetch data from API", err);

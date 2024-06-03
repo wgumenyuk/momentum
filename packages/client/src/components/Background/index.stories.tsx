@@ -1,6 +1,5 @@
-import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
-import BackgroundLayout from "./BackgroundLayout";
+import { BackgroundLayout } from "$components/Background";
 
 export default {
   title: "Components/BackgroundLayout",
