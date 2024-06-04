@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-import { SplitSchema } from "@momentum/shared";
 import { Checkbox } from "$components/Checkbox";
 
-// Extract muscle groups from SplitSchema
-const MuscleGroupsEnum = SplitSchema.shape.workouts.element.shape.type;
+const MuscleGroupsEnum = [
+  "Push", 
+  "Pull", 
+  "Legs", 
+  "Upper Body", 
+  "Lower Body", 
+  "Full Body", 
+  "Cardio", 
+  "Rest",
+  "Arms",
+  "Chest and Back",
+  "Shoulders and Arms",
+  "Chest",
+  "Back",
+  "Shoulders"
+] as const;
 
-type MuscleGroupsType = Zod.infer<typeof MuscleGroupsEnum>;
+type MuscleGroupsType = typeof MuscleGroupsEnum[number];
 
 // Create initial state dynamically
 const createInitialMuscleGroupsState = (): Record<MuscleGroupsType, boolean> => {
-  return MuscleGroupsEnum.options.reduce((acc, group) => {
+  return MuscleGroupsEnum.reduce((acc, group) => {
     acc[group] = false;
     return acc;
   }, {} as Record<MuscleGroupsType, boolean>);

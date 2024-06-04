@@ -27,6 +27,7 @@ export const Switch: FC<SwitchProps> = ({
   const labelClassName = useMemo(() => {
     return clsx(
       "relative",
+      "block",
       "w-12",
       "h-6",
       "rounded-md",

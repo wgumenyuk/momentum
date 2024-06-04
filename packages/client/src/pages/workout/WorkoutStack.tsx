@@ -45,7 +45,7 @@ const WorkoutStack: React.FC = () => {
 
   return (
     <BackgroundLayout>
-      <div className="min-h-screen w-full bg-gray-900 p-6">
+      <div className="min-h-screen w-full bg-gray-900">
         {currentView !== "workouts" && (
           <StackTop onCancel={handleCancel} onAccept={handleAccept}/>
         )}
