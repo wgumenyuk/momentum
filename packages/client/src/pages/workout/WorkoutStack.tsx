@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { BackgroundLayout } from "$components/Background";
-import WorkoutsOverviewPage from "./WorkoutsOverviewPage"; // Updated import
+import WorkoutsOverviewPage from "./WorkoutsOverviewPage";
 import EditWorkoutPage from "./EditWorkoutPage";
-import EditSplitPage from "./EditSplitPage";
 import { StackTop } from "$components/StackTop";
 import { FilterMuscleGroupsPage } from "./FilterMuscleGroups";
 import ExerciseListPage from "./ExerciseList";
@@ -23,15 +22,13 @@ const WorkoutStack: React.FC = () => {
   };
 
   const handleAccept = () => {
-    // Implement your accept logic here, if needed
+    // Implement accept logic here
   };
 
   const renderView = () => {
     switch (currentView) {
       case "workouts":
         return <WorkoutsOverviewPage navigate={handleNavigate}/>; // Updated view
-      case "editSplit":
-        return <EditSplitPage navigate={handleNavigate}/>;
       case "editWorkout":
         return <EditWorkoutPage navigate={handleNavigate}/>;
       case "exerciseList":
