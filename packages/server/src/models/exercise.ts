@@ -5,7 +5,7 @@ import { Schema, model } from "mongoose";
 */
 export type Exercise = {
   /**
-    Übung.
+    ID.
   */
   id: string;
 
