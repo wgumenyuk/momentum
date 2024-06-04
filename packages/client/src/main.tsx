@@ -10,6 +10,7 @@ import { LoginPage } from "$pages/auth/LoginPage";
 import { RegisterPage } from "$pages/auth/RegisterPage";
 import { WorkoutsPage } from "$pages/workout/WorkoutsOverview";
 import "./index.css";
+import LandingPage from "$pages/general/landing_page";
 
 const root = document.getElementById("root")!;
 
@@ -18,6 +19,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainPage/>
   },
+  {
+    path: "landing_page",
+    element: <LandingPage/>
+  },
+  
+
+ 
   {
     path: "/login",
     element: <LoginPage/>
