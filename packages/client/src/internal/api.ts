@@ -2,8 +2,8 @@ import type {
   Response,
   LoginSchemaType,
   RegisterSchemaType,
-  SplitSchemaType,
-  WorkoutSchemaType
+  WorkoutSchemaType,
+  PastWorkoutSchemaType
 } from "@momentum/shared";
 
 /**
@@ -108,52 +108,7 @@ export const Auth = {
 };
 
 /**
-  Splits-API.
-*/
-export const Splits = {
-  /**
-    Erstellt einen Split.
-  */
-  create: (userId: string, data: SplitSchemaType) => request(
-    "POST",
-    `/users/${userId}/splits`,
-    data
-  ),
-
-  /**
-    Ruft alle Splits eines Nutzers ab.
-  */
-  getAll: (userId: string) => request("GET", `/users/${userId}/splits`),
-
-  /**
-    Ruft einen Split ab.
-  */
-  get: (userId: string, splitId: string) => request(
-    "GET",
-    `/users/${userId}/splits/${splitId}`
-  ),
-
-  /**
-    Aktualisiert einen Split.
-  */
-  update: (userId: string, splitId: string, data: SplitSchemaType) => request(
-    "PUT",
-    `/users/${userId}/splits/${splitId}`,
-    data
-  ),
-
-  /**
-    Löscht einen Split.
-  */
-  delete: (userId: string, splitId: string, data: SplitSchemaType) => request(
-    "DELETE",
-    `/users/${userId}/splits/${splitId}`,
-    data
-  )
-};
-
-/**
-  Workout-API.
+  Workouts-API.
 */
 export const Workouts = {
   /**
@@ -173,34 +128,92 @@ export const Workouts = {
   /**
     Ruft ein Workout ab.
   */
-  get: (userId: string, workoutId: string) => request(
+  get: (userId: string, splitId: string) => request(
     "GET",
-    `/users/${userId}/workouts/${workoutId}`
+    `/users/${userId}/workouts/${splitId}`
   ),
 
   /**
     Aktualisiert ein Workout.
   */
-  update: (userId: string, workoutId: string, data: WorkoutSchemaType) => request(
+  update: (userId: string, splitId: string, data: WorkoutSchemaType) => request(
     "PUT",
-    `/users/${userId}/workouts/${workoutId}`,
+    `/users/${userId}/workouts/${splitId}`,
     data
   ),
 
   /**
     Löscht ein Workout.
   */
-  delete: (userId: string, workoutId: string, data: WorkoutSchemaType) => request(
+  delete: (userId: string, splitId: string, data: WorkoutSchemaType) => request(
     "DELETE",
-    `/users/${userId}/workout/${workoutId}`,
+    `/users/${userId}/workouts/${splitId}`,
     data
   )
+};
+
+/**
+  API für erledigte Workouts.
+*/
+export const PastWorkouts = {
+  /**
+    Erstellt ein erledgites Workout.
+  */
+  create: (userId: string, data: PastWorkoutSchemaType) => request(
+    "POST",
+    `/users/${userId}/past-workouts`,
+    data
+  ),
+
+  /**
+    Ruft alle erledigten Workouts eines Nutzers ab.
+  */
+  getAll: (userId: string) => request("GET", `/users/${userId}/past-workouts`),
+
+  /**
+    Ruft ein erledigtes Workout ab.
+  */
+  get: (userId: string, workoutId: string) => request(
+    "GET",
+    `/users/${userId}/past-workouts/${workoutId}`
+  ),
+
+  /**
+    Aktualisiert ein erledigtes Workout.
+  */
+  update: (userId: string, workoutId: string, data: PastWorkoutSchemaType) => request(
+    "PUT",
+    `/users/${userId}/past-workouts/${workoutId}`,
+    data
+  ),
+
+  /**
+    Löscht ein erledigtes Workout.
+  */
+  delete: (userId: string, workoutId: string, data: PastWorkoutSchemaType) => request(
+    "DELETE",
+    `/users/${userId}/past-workouts/${workoutId}`,
+    data
+  )
+};
+
+type UserGetData = {
+  user: {
+    id: string;
+    email: string;
+    createdAt: number;
+  };
 };
 
 /**
   Nutzer-API.
 */
 export const User = {
+  /**
+    Ruft ein Nutzerprofil ab.
+  */
+  get: (userId: string) => request<UserGetData>("GET", `/users/${userId}`),
+
   /**
     Löscht das eigene Nutzerkonto.
   */
