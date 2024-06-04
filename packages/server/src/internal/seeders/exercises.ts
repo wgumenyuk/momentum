@@ -530,9 +530,10 @@ const seed: ExerciseType[] = [
   Führt einen Seeding-Prozess für das `Exercise`-Modell durch.
 */
 export const seedExercises = async () => {
-  const data = await Exercise.find({}, {}, {
+  const data = await Exercise.find({},  "-_id -__v", {
     lean: true
   });
+  
 
   const [ dataHash, seedHash ] = await Promise.all([
     blake2b(JSON.stringify(data)),
