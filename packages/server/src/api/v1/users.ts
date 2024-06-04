@@ -18,7 +18,7 @@ usersRouter.use(isAuthenticated);
 usersRouter.use(pastWorkoutRouter.routes());
 usersRouter.use(workoutRouter.routes());
 
-usersRouter.use("/:uid", async (ctx) => {
+usersRouter.get("/:uid", async (ctx) => {
   await getUser(ctx);
 });
 
