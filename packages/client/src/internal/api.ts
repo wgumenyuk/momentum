@@ -1,6 +1,7 @@
 import type {
   Response,
   LoginSchemaType,
+  SplitSchemaType,
   RegisterSchemaType,
   WorkoutSchemaType,
   PastWorkoutSchemaType
@@ -105,6 +106,51 @@ export const Auth = {
     Meldet den Nutzer ab.
   */
   logout: () => request( "POST", "/auth/logout")
+};
+
+/**
+  Splits-API.
+*/
+export const Splits = {
+  /**
+    Erstellt einen Split.
+  */
+  create: (userId: string, data: SplitSchemaType) => request(
+    "POST",
+    `/users/${userId}/splits`,
+    data
+  ),
+
+  /**
+    Ruft alle Splits eines Nutzers ab.
+  */
+  getAll: (userId: string) => request("GET", `/users/${userId}/splits`),
+
+  /**
+    Ruft einen Split ab.
+  */
+  get: (userId: string, splitId: string) => request(
+    "GET",
+    `/users/${userId}/splits/${splitId}`
+  ),
+
+  /**
+    Aktualisiert einen Split.
+  */
+  update: (userId: string, splitId: string, data: SplitSchemaType) => request(
+    "PUT",
+    `/users/${userId}/splits/${splitId}`,
+    data
+  ),
+
+  /**
+    Löscht einen Split.
+  */
+  delete: (userId: string, splitId: string, data: SplitSchemaType) => request(
+    "DELETE",
+    `/users/${userId}/splits/${splitId}`,
+    data
+  )
 };
 
 /**
@@ -218,4 +264,24 @@ export const User = {
     Löscht das eigene Nutzerkonto.
   */
   deleteAccount: () => request("DELETE", "/users/delete")
+};
+
+/**
+  Exercises-API.
+*/
+export const Exercises = {
+
+  /**
+    Erstellt ein Workout.
+  */
+  create: (userId: string, data: WorkoutSchemaType) => request(
+    "POST",
+    `/users/${userId}/exercises`,
+    data
+  ),
+
+  /**
+    Ruft alle Exercises ab.
+  */
+  getAll: () => request("GET", "/exercises")
 };
