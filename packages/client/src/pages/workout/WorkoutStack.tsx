@@ -8,6 +8,7 @@ import ExerciseListPage from "./ExerciseList";
 
 const WorkoutStack: React.FC = () => {
   const [ navigationStack, setNavigationStack ] = useState([ "workouts" ]); // Set initial view to workouts
+  const [ userId ] = useState("2"); // Replace the 2 with an user ID
 
   const currentView = navigationStack[navigationStack.length - 1];
 
@@ -28,7 +29,7 @@ const WorkoutStack: React.FC = () => {
   const renderView = () => {
     switch (currentView) {
       case "workouts":
-        return <WorkoutsOverviewPage navigate={handleNavigate}/>; // Updated view
+        return <WorkoutsOverviewPage navigate={handleNavigate} userId={userId}/>; // Pass userId prop
       case "editWorkout":
         return <EditWorkoutPage navigate={handleNavigate}/>;
       case "exerciseList":
@@ -36,7 +37,7 @@ const WorkoutStack: React.FC = () => {
       case "filterMuscleGroups":
         return <FilterMuscleGroupsPage/>;
       default:
-        return <WorkoutsOverviewPage navigate={handleNavigate}/>; // Default is workoutsOverview
+        return <WorkoutsOverviewPage navigate={handleNavigate} userId={userId}/>; // Default is workoutsOverview
     }
   };
 
