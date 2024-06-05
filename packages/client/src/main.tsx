@@ -11,8 +11,9 @@ import { LogoutPage } from "$pages/auth/LogoutPage";
 import { RegisterPage } from "$pages/auth/RegisterPage";
 import { HomePage } from "$pages/HomePage";
 import { ProfilePage } from "$pages/ProfilePage";
-import "./index.css";
 import WorkoutStack from "$pages/workout/WorkoutStack";
+import { NotFoundPage } from "$pages/NotFound";
+import "./index.css";
 
 const root = document.getElementById("root")!;
 
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
         <Navigation/>
       </ProtectedRoute>
     )
+  },
+  {
+    path: "*",
+    element: <NotFoundPage/>
   }
 ]);
 
