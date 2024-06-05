@@ -10,7 +10,7 @@ import {
 } from "$services/workouts";
 
 export const workoutRouter = new Router({
-  prefix: "/:uid/splits"
+  prefix: "/:uid/workouts"
 });
 
 workoutRouter.post("/", async (ctx) => {
