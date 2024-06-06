@@ -30,6 +30,11 @@ type User = {
   password: string;
 
   /**
+    Ob das Nutzerprofil privat ist.
+  */
+  isPrivate: boolean;
+
+  /**
     Erstellungsdatum des Kontos.
   */
   createdAt: number;
@@ -55,6 +60,11 @@ const UserSchema = new Schema<User>({
   password: {
     type: "string",
     required: true
+  },
+  isPrivate: {
+    type: "boolean",
+    required: true,
+    default: false
   },
   createdAt: {
     type: "number",
