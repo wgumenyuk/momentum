@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 // Intern
 import { StatusCode, ErrorCode } from "@momentum/shared";
 import { ok, nok } from "$api/response";
+import { User } from "$models/user";
 import { Friendship } from "$models/friendship";
 
 // Types
@@ -11,19 +12,18 @@ import type { Context } from "koa";
 /**
   Ruft alle Freundschaften eines Nutzers ab.
 */
-export const getFriendships = async (
-  ctx: Context,
-  userId: string,
-  includePending: boolean = false
-) => {
+export const getFriendships = async (ctx: Context) => {
+  const userId = ctx.state.user.id;
+  const includePending = (ctx.query["include_pending"] === "true");
+
   const friendships = await Friendship.find(
     {
       $or: [
         {
-          senderId: userId
+          userId1: userId
         },
         {
-          recipientId: userId
+          userId2: userId
         }
       ],
       ...((includePending) ? { isConfirmed: true } : {})
@@ -42,11 +42,26 @@ export const getFriendships = async (
 /**
   Erstellt eine neue Freundschaftsanfrage.
 */
-export const createFriendship = async (
-  ctx: Context,
-  senderId: string, 
-  recipientId: string
-) => {
+export const createFriendship = async (ctx: Context) => {
+  const senderId = ctx.state.user.id;
+  const { recipientId } = ctx.req.body; 
+
+  if(!recipientId) {
+    // TODO: Passenden Fehlercode zurücksenden.
+    return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
+  }
+
+  const userExists = !!(
+    await User.exists({
+      id: recipientId
+    })
+  );
+
+  if(!userExists) {
+    // TODO: Passenden Fehlercode zurücksenden.
+    return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
+  }
+
   const isFriends = !!(
     await Friendship.exists({
       $or: [
@@ -83,19 +98,37 @@ export const createFriendship = async (
 /**
   Akzeptiert eine Freundschaftsnafrage eines Nutzers.
 */
-export const acceptFriendship = async (
-  ctx: Context,
-  userId: string,
-  senderId: string
-) => {
+export const acceptFriendship = async (ctx: Context) => {
+  const userId = ctx.state.user.id;
+  const { id: friendshipId } = ctx.params;
+
+  if(!friendshipId) {
+    // TODO: Passenden Fehlercode zurücksenden.
+    return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
+  }
+
   const friendship = await Friendship.findOne({
-    // `userId1` ist immer der Sender, und `userId2` der Empfänger.
-    userId1: senderId,
-    userId2: userId,
+    id: friendshipId,
     isConfirmed: false
   });
 
   if(!friendship) {
+    // TODO: Passenden Fehlercode zurücksenden.
+    return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
+  }
+
+  const senderId = (userId === friendship.userId1) ?
+    friendship.userId2 :
+    friendship.userId1;
+
+  const userExists = !!(
+    await User.exists({
+      id: senderId
+    })
+  );
+
+  if(!userExists) {
+    await friendship.deleteOne();
     // TODO: Passenden Fehlercode zurücksenden.
     return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
   }
@@ -113,16 +146,21 @@ export const acceptFriendship = async (
 /**
   Lehnt eine Freundschaftsanfrage eines Nutzers ab.
 */
-export const declineFriendship = async (
-  ctx: Context,
-  userId: string,
-  senderId: string
-) => {
+export const declineFriendship = async (ctx: Context) => {
+  const userId = ctx.state.user.id;
+  const { id: friendshipId } = ctx.params;
+
   const friendship = await Friendship.findOne({
-    // `userId1` ist immer der Sender, und `userId2` der Empfänger.
-    userId1: senderId,
-    userId2: userId,
-    isConfirmed: false
+    id: friendshipId,
+    isConfirmed: false,
+    $or: [
+      {
+        userId1: userId
+      },
+      {
+        userId2: userId
+      }
+    ]
   });
 
   if(!friendship) {
@@ -138,23 +176,21 @@ export const declineFriendship = async (
 /**
   Entfernt eine bestehende Freundschaft zwischen zwei Nutzern.
 */
-export const deleteFriendship = async (
-  ctx: Context,
-  userId: string,
-  friendId: string
-) => {
+export const deleteFriendship = async (ctx: Context) => {
+  const userId = ctx.state.user.id;
+  const { id: friendshipId } = ctx.params;
+
   const friendship = await Friendship.findOne({
+    id: friendshipId,
+    isConfirmed: true,
     $or: [
       {
-        userId1: userId,
-        userId2: friendId
+        userId1: userId
       },
       {
-        userId1: friendId,
         userId2: userId
       }
-    ],
-    isConfirmed: true
+    ]
   });
 
   if(!friendship) {
