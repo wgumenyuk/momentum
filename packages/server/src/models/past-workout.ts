@@ -18,6 +18,12 @@ type PastWorkout = {
   userId: string;
 
   /**
+   trainingsplan  
+   */
+
+  workoutId: string;
+
+  /**
     Liste von Übungen. 
   */
   exercises: Exercise[];
@@ -40,6 +46,10 @@ const PastWorkoutSchema = new Schema<PastWorkout>({
     unique: true
   },
   userId: {
+    type: "string",
+    required: true
+  },
+  workoutId: {
     type: "string",
     required: true
   },
