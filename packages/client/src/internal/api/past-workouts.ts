@@ -21,38 +21,37 @@ export const PastWorkouts = {
   /**
     Erstellt ein erledigtes Workout.
   */
-  create: (userId: string, data: PastWorkoutSchemaType) => request(
+  create: (data: PastWorkoutSchemaType) => request(
     "POST",
-    `/users/${userId}/past-workouts`,
+    "/past-workouts",
     data
   ),
 
   /**
     Ruft alle erledigten Workouts eines Nutzers ab.
   */
-  getAll: (userId: string) => request<GetAllResponse>(
+  getAll: () => request<GetAllResponse>(
     "GET",
-    `/users/${userId}/past-workouts`
+    "/past-workouts"
   ),
 
   /**
     Ruft ein erledigtes Workout ab.
   */
-  get: (userId: string, workoutId: string) => request<GetResponse>(
+  get: (workoutId: string) => request<GetResponse>(
     "GET",
-    `/users/${userId}/past-workouts/${workoutId}`
+    `/past-workouts/${workoutId}`
   ),
 
   /**
     Aktualisiert ein erledigtes Workout.
   */
   update: (
-    userId: string,
     workoutId: string,
     data: PastWorkoutSchemaType
   ) => request(
     "PUT",
-    `/users/${userId}/past-workouts/${workoutId}`,
+    `/past-workouts/${workoutId}`,
     data
   ),
 
@@ -60,13 +59,9 @@ export const PastWorkouts = {
     Löscht ein erledigtes Workout.
   */
   delete: (
-    userId: string,
-    workoutId: string,
-    data: PastWorkoutSchemaType
+    workoutId: string
   ) => request(
     "DELETE",
-    `/users/${userId}/past-workouts/${workoutId}`,
-    data
+    `/past-workouts/${workoutId}`
   )
 };
-
