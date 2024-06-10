@@ -187,3 +187,149 @@ export const PastWorkoutSchema = WorkoutSchema.extend({
 });
 
 export type PastWorkoutSchemaType = z.infer<typeof PastWorkoutSchema>;
+
+/**
+  Übung.
+*/
+export type Exercise = {
+  /**
+    ID.
+  */
+  id: string;
+
+  /**
+    Betroffene Muskeln.
+  */
+  muscleGroups: string[];
+
+  /**
+    Benötige Ausrüstung.
+  */
+  equipment: string[];
+
+  /**
+    Schwierigkeitsgrad.
+  */
+  difficulty: "easy" | "intermediate" | "advanced";
+};
+
+/**
+  Übungseintrag im Trainingsplan.
+*/
+export type ExerciseEntry = {
+  /**
+    Übungs-ID.
+  */
+  exerciseId: string;
+
+  /**
+    Anzahl der Sätze. 
+  */
+  sets: number;
+
+  /**
+    Anzahl der Wiederholdungen. 
+  */
+  reps: number;
+};
+
+/**
+  Erledigtes Workout. 
+*/
+export type PastWorkout = {
+  /**
+    ID.
+  */
+  id: string;
+
+  /**
+    Nutzer-ID.
+  */
+  userId: string;
+
+  /**
+   trainingsplan  
+   */
+
+  workoutId: string;
+
+  /**
+    Liste von Übungen. 
+  */
+  exercises: ExerciseEntry[];
+
+  /**
+    Zeitpunkt des Starts. 
+  */
+  startedAt: number;
+
+  /**
+    Zeitpunkt des Endes. 
+  */
+  finishedAt: number;
+};
+
+/**
+  Workout. 
+*/
+export type Workout = {
+  /**
+    ID.
+  */
+  id: string;
+
+  /**
+    Nutzer-ID.
+  */
+  userId: string;
+
+  /**
+    Name. 
+  */
+  name: string;
+
+  /**
+    Beschreibung. 
+  */
+  description: string;
+
+  /**
+    Liste von Übungen. 
+  */
+  exercises: Exercise[];
+};
+
+/**
+  Freundschaft zwischen zwei Nutzern.
+*/
+export type Friendship = {
+  /**
+    ID.
+  */
+  id: string;
+
+  /**
+    ID des ersten Nutzers.
+  */
+  userId1: string;
+
+  /**
+    ID des zweiten Nutzers.
+  */
+  userId2: string;
+
+  /**
+    Ob die Freundschaft bestätigt ist.
+  */
+  isConfirmed: boolean;
+
+  /**
+    Datum, an dem die Freundschaftsanfrage akzeptiert wurde. 
+  */
+  confirmedAt: Date;
+
+  /**
+    Erstelldatum der Freundschaftsanfrage.
+  */
+  createdAt: Date;
+};

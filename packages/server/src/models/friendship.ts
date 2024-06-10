@@ -1,41 +1,9 @@
 import { Schema, model } from "mongoose";
 
-/**
-  Freundschaft zwischen zwei Nutzern.
-*/
-type Friendship = {
-  /**
-    ID.
-  */
-  id: string;
+// Types
+import type { Friendship as FriendshipType } from "@momentum/shared";
 
-  /**
-    ID des ersten Nutzers.
-  */
-  userId1: string;
-
-  /**
-    ID des zweiten Nutzers.
-  */
-  userId2: string;
-
-  /**
-    Ob die Freundschaft bestätigt ist.
-  */
-  isConfirmed: boolean;
-
-  /**
-    Datum, an dem die Freundschaftsanfrage akzeptiert wurde. 
-  */
-  confirmedAt: Date;
-
-  /**
-    Erstelldatum der Freundschaftsanfrage.
-  */
-  createdAt: Date;
-};
-
-const FriendshipSchema = new Schema<Friendship>({
+const FriendshipSchema = new Schema<FriendshipType>({
   id: {
     type: "string",
     required: true,
@@ -65,4 +33,4 @@ const FriendshipSchema = new Schema<Friendship>({
 /**
   `Friendship`-Modell.
 */
-export const Friendship = model<Friendship>("Friendship", FriendshipSchema);
+export const Friendship = model<FriendshipType>("Friendship", FriendshipSchema);

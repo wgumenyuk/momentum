@@ -1,45 +1,9 @@
 import { Schema, model } from "mongoose";
 
 // Types
-import type { Exercise } from "$models/workout";
+import type { PastWorkout as PastWorkoutType } from "@momentum/shared";
 
-/**
-  Erledigtes Workout. 
-*/
-type PastWorkout = {
-  /**
-    ID.
-  */
-  id: string;
-
-  /**
-    Nutzer-ID.
-  */
-  userId: string;
-
-  /**
-   trainingsplan  
-   */
-
-  workoutId: string;
-
-  /**
-    Liste von Übungen. 
-  */
-  exercises: Exercise[];
-
-  /**
-    Zeitpunkt des Starts. 
-  */
-  startedAt: number;
-
-  /**
-    Zeitpunkt des Endes. 
-  */
-  finishedAt: number;
-};
-
-const PastWorkoutSchema = new Schema<PastWorkout>({
+const PastWorkoutSchema = new Schema<PastWorkoutType>({
   id: {
     type: "string",
     required: true,
@@ -73,4 +37,4 @@ const PastWorkoutSchema = new Schema<PastWorkout>({
 /**
   `PastWorkout`-Modell. 
 */
-export const PastWorkout = model<PastWorkout>("PastWorkout", PastWorkoutSchema);
+export const PastWorkout = model<PastWorkoutType>("PastWorkout", PastWorkoutSchema);
