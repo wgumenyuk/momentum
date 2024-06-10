@@ -2,8 +2,6 @@ import Router from "@koa/router";
 
 // Intern
 import { isAuthenticated } from "$api/middleware/auth";
-import { workoutRouter } from "$api/v1/workouts";
-import { pastWorkoutRouter } from "$api/v1/past-workouts";
 import { getUser, deleteUser } from "$services/user";
 
 /**
@@ -14,9 +12,6 @@ export const usersRouter = new Router({
 });
 
 usersRouter.use(isAuthenticated);
-
-usersRouter.use(pastWorkoutRouter.routes());
-usersRouter.use(workoutRouter.routes());
 
 usersRouter.get("/:uid", async (ctx) => {
   await getUser(ctx);

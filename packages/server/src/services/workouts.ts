@@ -17,6 +17,7 @@ import type { ErrorCodeValue } from "@momentum/shared";
   Erstellt einen neues Workout.
 */
 export const createWorkout = async (ctx: Context) => {
+  const userId = ctx.state.user.id;
   const { success, error, data } = WorkoutSchema.safeParse(ctx.request.body);
 
   if(!success) {
@@ -30,7 +31,7 @@ export const createWorkout = async (ctx: Context) => {
   const workout = new Workout({
     ...data,
     id: nanoid(),
-    userId: ctx.params.uid
+    userId 
   });
 
   await workout.save();
@@ -44,10 +45,12 @@ export const createWorkout = async (ctx: Context) => {
   Ruft ein Workout ab. 
 */
 export const getWorkout = async (ctx: Context) => {
-  const { wid } = ctx.params;
+  const userId = ctx.state.user.id;
+  const { id } = ctx.params;
 
   const workout = await Workout.findOne({
-    id: wid
+    id,
+    userId
   }, "-_id -__v");
 
   if(!workout) {
@@ -63,10 +66,10 @@ export const getWorkout = async (ctx: Context) => {
   Ruft alle Workouts eines Nutzers ab.
 */
 export const getWorkouts = async (ctx: Context) => {
-  const { uid } = ctx.params;
+  const userId = ctx.state.user.id;
 
   const workouts = await Workout.find({
-    userId: uid
+    userId
   }, "-_id -__v");
 
   ok(ctx, StatusCode.Success, {
@@ -78,7 +81,8 @@ export const getWorkouts = async (ctx: Context) => {
   Aktualisiert ein Workout.
 */
 export const updateWorkout = async (ctx: Context) => {
-  const { sid } = ctx.params;
+  const userId = ctx.state.user.id;
+  const { id } = ctx.params;
 
   const { success, error, data } = WorkoutSchema
     .partial()
@@ -94,7 +98,8 @@ export const updateWorkout = async (ctx: Context) => {
 
   const workout = await Workout.findOneAndUpdate(
     {
-      id: sid
+      id,
+      userId
     },
     data,
     {
@@ -115,10 +120,12 @@ export const updateWorkout = async (ctx: Context) => {
   Löscht ein Workout. 
 */
 export const deleteWorkout = async (ctx: Context) => {
-  const { sid } = ctx.params;
+  const userId = ctx.state.user.id;
+  const { id } = ctx.params;
 
   const workout = await Workout.findOneAndDelete({
-    id: sid
+    id,
+    userId
   });
 
   if(!workout) {
