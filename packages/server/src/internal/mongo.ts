@@ -5,6 +5,8 @@ import { log } from "$internal/logger";
 import { seedEquipment } from "$models/seeders/equipment";
 import { seedExercises } from "$models/seeders/exercises";
 import { seedMuscles } from "$models/seeders/muscle";
+import { seedUsers } from "$models/seeders/dev_user";
+import { seedWorkouts } from "$models/seeders/dev_workout";
 
 const { MONGODB_URL } = process.env;
 
@@ -25,7 +27,9 @@ export const initMongo = async () => {
   await Promise.all([
     seedEquipment(),
     seedExercises(),
-    seedMuscles()
+    seedMuscles(),
+    seedUsers(),    // Add user seeder here
+    seedWorkouts()  // Add workout seeder here
   ]);
 
   log.info("connected to MongoDB");
