@@ -333,3 +333,66 @@ export type Friendship = {
   */
   createdAt: Date;
 };
+
+// shared/index.ts
+
+export const MacroNutrientInfoSchema = z.object({
+  carbohydrates: z.number(),
+  protein: z.number(),
+  fat: z.number(),
+  calories: z.number()
+});
+
+export type MacroNutrientInfoType = z.infer<typeof MacroNutrientInfoSchema>;
+
+export const MicroNutrientVitaminInfoSchema = z.object({
+  VitaminA: z.number(),
+  VitaminBThiamine: z.number(),
+  VitaminBRiboflavine: z.number(),
+  VitaminBNiacin: z.number(),
+  VitaminBPantothenicAcid: z.number(),
+  VitaminBBiotin: z.number(),
+  VitaminB6: z.number(),
+  VitaminB12: z.number(),
+  VitaminBFolate: z.number(),
+  VitaminC: z.number(),
+  VitaminD: z.number(),
+  VitaminE: z.number(),
+  VitaminK: z.number()
+});
+
+export type MicroNutrientVitaminInfoType = z.infer<typeof MicroNutrientVitaminInfoSchema>;
+
+export const MicroNutrientMineralInfoSchema = z.object({
+  Calcium: z.number(),
+  Chloride: z.number(),
+  Chromium: z.number(),
+  Copper: z.number(),
+  Fluoride: z.number(),
+  Iodine: z.number(),
+  Iron: z.number(),
+  Magnesium: z.number(),
+  Manganese: z.number(),
+  Molybdenum: z.number(),
+  Phosphorus: z.number(),
+  Potassium: z.number(),
+  Selenium: z.number(),
+  Sodium: z.number(),
+  Zinc: z.number()
+});
+
+export type MicroNutrientMineralInfoType = z.infer<typeof MicroNutrientMineralInfoSchema>;
+
+export const FoodItemSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  brand: z.string().optional(),
+  universalProductCode: z.string().optional(),
+  macroNutrients: MacroNutrientInfoSchema,
+  vitamins: MicroNutrientVitaminInfoSchema,
+  minerals: MicroNutrientMineralInfoSchema,
+  servingSize: z.number(),
+  servingUnit: z.string()
+});
+
+export type FoodItemType = z.infer<typeof FoodItemSchema>;
