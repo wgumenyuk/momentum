@@ -362,3 +362,41 @@ export type Friendship = {
   */
   createdAt: Date;
 };
+
+/**
+  Art des Events.
+*/
+export const EventKind = {
+  FriendRequestReceived: "friend_request.received",
+  FriendRequestAccepted: "friend_request.accepted"
+};
+
+/**
+  Event.
+*/
+export type Event = {
+  /**
+    ID.
+  */
+  id: string;
+
+  /**
+    Nutzer-ID.
+  */
+  userId: string;
+
+  /**
+    Art des Events.
+  */
+  kind: typeof EventKind[keyof typeof EventKind];
+
+  /**
+    Zugehörige Daten.
+  */
+  data: Record<string, string | number>;
+
+  /**
+    Erstelldatum des Events.
+  */
+  createdAt: Date;
+};
