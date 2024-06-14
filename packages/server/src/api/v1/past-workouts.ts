@@ -10,7 +10,7 @@ import {
 } from "$services/past-workouts";
 
 export const pastWorkoutRouter = new Router({
-  prefix: "/:uid/workouts"
+  prefix: "/workouts"
 });
 
 pastWorkoutRouter.post("/", async (ctx) => {

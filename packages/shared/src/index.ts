@@ -76,7 +76,14 @@ export const ErrorCode = {
   LoginInvalidPassword: "login.invalid_password",
   TokenInvalid: "token.invalid",
   TokenAlreadyBlacklisted: "token.already_blacklisted",
-  TokenExpired: "token.expired"
+  TokenExpired: "token.expired",
+  WorkoutInvalidName: "workout.invalid_name",
+  WorkoutNameTooShort: "workout.name_too_short",
+  WorkoutNameTooLong: "workout.name_too_long",
+  WorkoutInvalidDescription: "workout.invalid_description",
+  WorkoutDescriptionTooLong: "workout.description_too_long",
+  InvalidNumber: "invalid_number",
+  InvalidDate: "invalid_date"
 } as const;
 
 /**
@@ -141,16 +148,26 @@ export const WorkoutSchema = z.object({
     Name.
   */
   name: z
-    .string()
-    .min(1)
-    .max(64),
+    .string({
+      message: ErrorCode.WorkoutInvalidName
+    })
+    .min(1, {
+      message: ErrorCode.WorkoutNameTooShort
+    })
+    .max(64, {
+      message: ErrorCode.WorkoutNameTooLong
+    }),
 
   /**
     Beschreibung.
   */
   description: z
-    .string()
-    .max(256)
+    .string({
+      message: ErrorCode.WorkoutInvalidDescription
+    })
+    .max(256, {
+      message: ErrorCode.WorkoutDescriptionTooLong
+    })
     .optional(),
 
   /**
@@ -160,11 +177,19 @@ export const WorkoutSchema = z.object({
     z.object({
       exerciseId: z.string(),
       sets: z
-        .number()
-        .positive(),
+        .number({
+          message: ErrorCode.InvalidNumber
+        })
+        .positive({
+          message: ErrorCode.InvalidNumber
+        }),
       reps: z
-        .number()
-        .positive()
+        .number({
+          message: ErrorCode.InvalidNumber
+        })
+        .positive({
+          message: ErrorCode.InvalidNumber
+        })
     })
   )
 });
@@ -178,12 +203,16 @@ export const PastWorkoutSchema = WorkoutSchema.extend({
   /**
     Zeitpunkt des Starts.
   */
-  startedAt: z.date(),
+  startedAt: z.date({
+    message: ErrorCode.InvalidDate
+  }),
 
   /**
     Zeitpunkt des Endes.
   */
-  finishedAt: z.date()
+  finishedAt: z.date({
+    message: ErrorCode.InvalidDate
+  })
 });
 
 export type PastWorkoutSchemaType = z.infer<typeof PastWorkoutSchema>;
@@ -334,8 +363,6 @@ export type Friendship = {
   createdAt: Date;
 };
 
-// shared/index.ts
-
 export const MacroNutrientInfoSchema = z.object({
   carbohydrates: z.number(),
   protein: z.number(),
@@ -396,3 +423,41 @@ export const FoodItemSchema = z.object({
 });
 
 export type FoodItemType = z.infer<typeof FoodItemSchema>;
+
+/**
+  Art des Events.
+*/
+export const EventKind = {
+  FriendRequestReceived: "friend_request.received",
+  FriendRequestAccepted: "friend_request.accepted"
+};
+
+/**
+  Event.
+*/
+export type Event = {
+  /**
+    ID.
+  */
+  id: string;
+
+  /**
+    Nutzer-ID.
+  */
+  userId: string;
+
+  /**
+    Art des Events.
+  */
+  kind: typeof EventKind[keyof typeof EventKind];
+
+  /**
+    Zugehörige Daten.
+  */
+  data: Record<string, string | number>;
+
+  /**
+    Erstelldatum des Events.
+  */
+  createdAt: Date;
+};

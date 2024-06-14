@@ -22,44 +22,43 @@ export const Workouts = {
   /**
     Erstellt ein Workout.
   */
-  create: (userId: string, data: WorkoutSchemaType) => request<CreateResponse>(
+  create: (data: WorkoutSchemaType) => request<CreateResponse>(
     "POST",
-    `/users/${userId}/workouts`,
+    "/workouts",
     data
   ),
 
   /**
     Ruft alle Workouts eines Nutzers ab.
   */
-  getAll: (userId: string) => request<GetAllResponse>(
+  getAll: () => request<GetAllResponse>(
     "GET",
-    `/users/${userId}/workouts`
+    "/workouts"
   ),
 
   /**
     Ruft ein Workout ab.
   */
-  get: (userId: string, splitId: string) => request<GetResponse>(
+  get: (workoutId: string) => request<GetResponse>(
     "GET",
-    `/users/${userId}/workouts/${splitId}`
+    `/workouts/${workoutId}`
   ),
 
   /**
     Aktualisiert ein Workout.
   */
-  update: (userId: string, splitId: string, data: WorkoutSchemaType) => request(
+  update: (workoutId: string, data: WorkoutSchemaType) => request(
     "PUT",
-    `/users/${userId}/workouts/${splitId}`,
+    `/workouts/${workoutId}`,
     data
   ),
 
   /**
     Löscht ein Workout.
   */
-  delete: (userId: string, splitId: string, data: WorkoutSchemaType) => request(
+  delete: (workoutId: string) => request(
     "DELETE",
-    `/users/${userId}/workouts/${splitId}`,
-    data
+    `/workouts/${workoutId}`
   )
 };
 
