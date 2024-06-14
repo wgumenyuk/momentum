@@ -24,11 +24,11 @@ export const Graph = () => {
   const [ data, setData ] = useState<FormattedData[]>([]);
 
   const loadData = async () => {
-    const response = await PastWorkouts.getAll("");
+    const response = await PastWorkouts.getAll();
 
     if(!response || !response.ok) {
       return null;
-    };
+    }
 
     const formattedData = response.data.workouts.map((pastWorkout) => {
       const from = new Date(pastWorkout.startedAt).toLocaleDateString();
