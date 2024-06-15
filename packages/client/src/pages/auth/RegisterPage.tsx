@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 // Intern
 import { ErrorCode, RegisterSchema } from "@momentum/shared";
 import { Auth } from "$internal/api";
+import { useJwt } from "$components/JwtContext";
 import { BackgroundLayout } from "$components/Background";
 import { Button } from "$components/Button";
 import { InputField } from "$components/InputField";
@@ -17,6 +18,13 @@ export const RegisterPage: React.FC = () => {
   const [ subscribed, setSubscribed ] = useState(false);
 
   const navigate = useNavigate();
+  const jwt = useJwt();
+
+  useEffect(() => {
+    if(jwt) {
+      navigate("/home");
+    }
+  }, []);
 
   // TODO: Diese Fehlernachrichten werden zu einem späteren Zeitpunkt in einer
   // zentralen internationalisierten Datei gespeichert.

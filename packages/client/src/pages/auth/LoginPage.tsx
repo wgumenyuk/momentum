@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 // Intern
 import { ErrorCode, LoginSchema } from "@momentum/shared";
 import { Auth } from "$internal/api";
+import { useJwt } from "$components/JwtContext";
 import { BackgroundLayout } from "$components/Background";
 import { InputField } from "$components/InputField";
 import { Button } from "$components/Button";
@@ -16,6 +17,13 @@ export const LoginPage: React.FC = () => {
   const [ rememberMe, setRememberMe ] = useState(false);
 
   const navigate = useNavigate();
+  const jwt = useJwt();
+
+  useEffect(() => {
+    if(jwt) {
+      navigate("/home");
+    }
+  }, []);
 
   // TODO: Diese Fehlernachrichten werden zu einem späteren Zeitpunkt in einer
   // zentralen internationalisierten Datei gespeichert.
