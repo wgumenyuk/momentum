@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Intern
+import { JwtProvider } from "$components/JwtContext";
 import { ProtectedRoute } from "$components/ProtectedRoute";
 import { Navigation } from "$components/Navigation";
 import { MainPage } from "$pages/MainPage";
@@ -82,6 +83,8 @@ const router = createBrowserRouter([
 
 createRoot(root).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <JwtProvider>
+      <RouterProvider router={router}/>
+    </JwtProvider>
   </React.StrictMode>
 );
