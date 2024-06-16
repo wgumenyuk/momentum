@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
+import { LogOutIcon } from "lucide-react";
 
 // Intern
 import { User } from "$internal/api";
-import { LogOutIcon } from "lucide-react";
+import { useJwt } from "$components/JwtContext";
 import { BackgroundLayout } from "$components/Background";
 import { Card } from "$components/Card";
 import { Switch } from "$components/Switch";
 import { Button } from "$components/Button";
 
 export const ProfilePage: React.FC = () => {
-  const [ email, setEmail ] = useState("");
   const navigate = useNavigate();
+  const jwt = useJwt();
 
   const handleLogout = () => {
     navigate("/logout?return_to=/profile");
@@ -35,29 +35,6 @@ export const ProfilePage: React.FC = () => {
     navigate("/login");
   };
 
-  useEffect(() => {
-    (async () => {
-      const token = localStorage.getItem("token");
-      
-      if(!token) {
-        return;
-      }
-
-      const { id: userId } = jwtDecode<Record<string, string>>(token);
-
-      const response = await User.get(userId);
-
-      if(!response || !response.ok) {
-        // TODO Fehlernachricht.
-        return;
-      }
-
-      const { user } = response.data;
-
-      setEmail(user.email);
-    })();
-  }, []);
-
   return (
     <BackgroundLayout>
       <div className="min-h-screen w-full bg-gray-900 p-6">
@@ -72,7 +49,7 @@ export const ProfilePage: React.FC = () => {
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-0.5">
                 <span className="text-xl font-bold">Username</span>
-                <span className="text-sm">{email}</span>
+                <span className="text-sm">{jwt!.email}</span>
               </div>
               <div className="w-16 h-16 bg-gray rounded-lg"/>
             </div> 

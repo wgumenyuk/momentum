@@ -9,7 +9,12 @@ type JwtProviderProps = {
   children: ReactNode;
 };
 
-const JwtContext = createContext<JwtPayload | null>(null);
+type Payload = JwtPayload & {
+  id: string;
+  email: string;
+};
+
+const JwtContext = createContext<Payload | null>(null);
 
 /**
   Provider für den dekodierten JWT-Payload.
@@ -22,10 +27,10 @@ export const JwtProvider: FC<JwtProviderProps> = ({ children }) => {
       return null;
     }
 
-    return jwtDecode(token);
+    return jwtDecode<Payload>(token);
   };
 
-  const [ payload, setPayload ] = useState<JwtPayload | null>(decodeJwt());
+  const [ payload, setPayload ] = useState<Payload | null>(decodeJwt());
 
   useEffect(() => {
     const onStorage = () => {
