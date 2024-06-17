@@ -23,5 +23,10 @@ export const Events = {
   /**
     Ruft ein Event ab.
   */
-  get: (id: string) => request<GetResponse>("GET", `/events/${id}`)
+  get: (id: string) => request<GetResponse>("GET", `/events/${id}`),
+
+  /**
+    Löscht alle Events.
+  */
+  delete: () => request("DELETE", "/events")
 };
