@@ -296,7 +296,7 @@ export type Workout = {
   /**
     Liste von Übungen. 
   */
-  exercises: Exercise[];
+  exercises: ExerciseEntry[];
 };
 
 /**
