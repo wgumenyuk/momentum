@@ -1,13 +1,14 @@
 import { seeder } from "../../internal/seeder.js";
 import { User } from "../user.js";
+import { hashPassword } from "$services/crypto";
 
-const userSeeds = [
+const userSeeds = async () => [
   {
     id: "test_user",
     email: "testuser@example.com",
     displayName: "Test User",
     weight: 70, // Example weight
-    password: "securepassword123",
+    password: await hashPassword("securepassword123"),  // Using existing hashPassword function
     isPrivate: false,
     createdAt: Date.now()
   }
@@ -16,6 +17,7 @@ const userSeeds = [
 /**
   Seeding process for the `User` model.
 */
-export const seedUsers = () => {
-  return seeder(User, userSeeds);
+export const seedUsers = async () => {
+  const seeds = await userSeeds();
+  return seeder(User, seeds);
 };
