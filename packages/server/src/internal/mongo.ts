@@ -28,8 +28,8 @@ export const initMongo = async () => {
     seedEquipment(),
     seedExercises(),
     seedMuscles(),
-    seedUsers(),    // Add user seeder here
-    seedWorkouts()  // Add workout seeder here
+    seedUsers(),
+    seedWorkouts()
   ]);
 
   log.info("connected to MongoDB");

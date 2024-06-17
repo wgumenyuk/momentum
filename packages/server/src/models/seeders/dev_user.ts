@@ -7,8 +7,8 @@ const userSeeds = async () => [
     id: "test_user",
     email: "testuser@example.com",
     displayName: "Test User",
-    weight: 70, // Example weight
-    password: await hashPassword("securepassword123"),  // Using existing hashPassword function
+    weight: 70,
+    password: await hashPassword("securepassword123"),  // Use hashPassword function
     isPrivate: false,
     createdAt: Date.now()
   }
