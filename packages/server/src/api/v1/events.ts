@@ -2,7 +2,11 @@ import Router from "@koa/router";
 
 // Intern
 import { isAuthenticated } from "$api/middleware/auth";
-import { getEvents, getEvent } from "$services/events";
+import {
+  getEvents,
+  getEvent,
+  deleteEvents
+} from "$services/events";
 
 export const eventsRouter = new Router({
   prefix: "/events"
@@ -16,4 +20,8 @@ eventsRouter.get("/", async (ctx) => {
 
 eventsRouter.get("/:id", async (ctx) => {
   await getEvent(ctx);
+});
+
+eventsRouter.delete("/", async (ctx) => {
+  await deleteEvents(ctx);
 });

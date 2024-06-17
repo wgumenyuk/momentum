@@ -47,5 +47,17 @@ export const getEvents = async (ctx: Context) => {
   ok(ctx, StatusCode.Success, {
     events
   });
+};
 
+/**
+  Löscht Events.
+*/
+export const deleteEvents = async (ctx: Context) => {
+  const userId = ctx.state.user.id;
+
+  await Event.deleteMany({
+    userId
+  });
+
+  ok(ctx, StatusCode.Success);
 };
