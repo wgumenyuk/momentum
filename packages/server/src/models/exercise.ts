@@ -1,31 +1,9 @@
 import { Schema, model } from "mongoose";
 
-/**
-  Übung.
-*/
-export type Exercise = {
-  /**
-    Übung.
-  */
-  id: string;
+// Types
+import type { Exercise as ExerciseType } from "@momentum/shared";
 
-  /**
-    Betroffene Muskeln.
-  */
-  muscleGroups: string[];
-
-  /**
-    Benötige Ausrüstung.
-  */
-  equipment: string[];
-
-  /**
-    Schwierigkeitsgrad.
-  */
-  difficulty: "easy" | "intermediate" | "advanced";
-};
-
-const ExerciseSchema = new Schema<Exercise>({
+const ExerciseSchema = new Schema<ExerciseType>({
   id: {
     type: "string",
     required: true,
@@ -53,4 +31,4 @@ const ExerciseSchema = new Schema<Exercise>({
 /**
   `Exercise`-Modell.
 */
-export const Exercise = model<Exercise>("Exercise", ExerciseSchema);
+export const Exercise = model<ExerciseType>("Exercise", ExerciseSchema);

@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 /**
   Nutzer.
 */
-type User = {
+export type User = {
   /**
     ID.
   */
@@ -28,6 +28,11 @@ type User = {
     Passwort-Hash.
   */
   password: string;
+
+  /**
+    Ob das Nutzerprofil privat ist.
+  */
+  isPrivate: boolean;
 
   /**
     Erstellungsdatum des Kontos.
@@ -55,6 +60,11 @@ const UserSchema = new Schema<User>({
   password: {
     type: "string",
     required: true
+  },
+  isPrivate: {
+    type: "boolean",
+    required: true,
+    default: false
   },
   createdAt: {
     type: "number",

@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Intern
+import { JwtProvider } from "$components/JwtContext";
 import { ProtectedRoute } from "$components/ProtectedRoute";
 import { Navigation } from "$components/Navigation";
 import { MainPage } from "$pages/MainPage";
@@ -11,8 +12,9 @@ import { LogoutPage } from "$pages/auth/LogoutPage";
 import { RegisterPage } from "$pages/auth/RegisterPage";
 import { HomePage } from "$pages/HomePage";
 import { ProfilePage } from "$pages/ProfilePage";
-import "./index.css";
 import WorkoutStack from "$pages/workout/WorkoutStack";
+import { NotFoundPage } from "$pages/NotFound";
+import "./index.css";
 
 const root = document.getElementById("root")!;
 
@@ -72,11 +74,17 @@ const router = createBrowserRouter([
         <Navigation/>
       </ProtectedRoute>
     )
+  },
+  {
+    path: "*",
+    element: <NotFoundPage/>
   }
 ]);
 
 createRoot(root).render(
   <React.StrictMode>
-    <RouterProvider router={router}/>
+    <JwtProvider>
+      <RouterProvider router={router}/>
+    </JwtProvider>
   </React.StrictMode>
 );

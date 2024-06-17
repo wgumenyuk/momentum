@@ -1,56 +1,9 @@
 import { Schema, model } from "mongoose";
 
-/**
-  Übungseintrag im Trainingsplan.
-*/
-export type Exercise = {
-  /**
-    Übungs-ID.
-  */
-  exerciseId: string;
+// Types
+import type { Workout as WorkoutType } from "@momentum/shared";
 
-  /**
-    Anzahl der Sätze. 
-  */
-  sets: number;
-
-  /**
-    Anzahl der Wiederholdungen. 
-  */
-  reps: number;
-};
-
-/**
-  Workout. 
-*/
-export type Workout = {
-  /**
-    ID.
-  */
-  id: string;
-
-  /**
-    Nutzer-ID.
-  */
-  userId: string;
-
-  /**
-    Name. 
-  */
-  name: string;
-
-  /**
-    Beschreibung. 
-  */
-  description: string;
-
-  /**
-    Liste von Übungen. 
-  */
-  exercises: Exercise[];
-};
-
-const WorkoutSchema = new Schema<Workout>({
+const WorkoutSchema = new Schema<WorkoutType>({
   id: {
     type: "string",
     required: true,
@@ -81,4 +34,4 @@ const WorkoutSchema = new Schema<Workout>({
 /**
   `Workout`-Modell. 
 */
-export const Workout = model<Workout>("Workout", WorkoutSchema);
+export const Workout = model<WorkoutType>("Workout", WorkoutSchema);
