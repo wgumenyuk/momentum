@@ -1,7 +1,8 @@
+import { Workout as WorkoutType } from "@momentum/shared";
 import { seeder } from "../../internal/seeder.js";
 import { Workout } from "../workout.js";
 
-const workoutSeeds = [
+const workoutSeeds: WorkoutType[] = [
   {
     id: "workout1",
     userId: "test_user",  // Reference the test user
