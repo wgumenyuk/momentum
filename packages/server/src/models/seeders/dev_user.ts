@@ -1,23 +1,25 @@
-import { seeder } from "../../internal/seeder.js";
-import { User } from "../user.js";
+import { seeder } from "$internal/seeder";
 import { hashPassword } from "$services/crypto";
+import { User } from "$models/user";
 
-const userSeeds = async () => [
+// Types
+import type { User as UserType } from "$models/user.js";
+
+const userSeeds: UserType[] = [
   {
     id: "test_user",
     email: "testuser@example.com",
     displayName: "Test User",
     weight: 70,
-    password: await hashPassword("securepassword123"),  // Use hashPassword function
+    password: await hashPassword("securepassword123"),
     isPrivate: false,
     createdAt: Date.now()
-  }
+  } 
 ];
 
 /**
   Seeding process for the `User` model.
 */
 export const seedUsers = async () => {
-  const seeds = await userSeeds();
-  return seeder(User, seeds);
+  return seeder(User, userSeeds);
 };

@@ -1,6 +1,6 @@
 import { Workout as WorkoutType } from "@momentum/shared";
-import { seeder } from "../../internal/seeder.js";
-import { Workout } from "../workout.js";
+import { seeder } from "$internal/seeder";
+import { Workout } from "$models/workout";
 
 const workoutSeeds: WorkoutType[] = [
   {
