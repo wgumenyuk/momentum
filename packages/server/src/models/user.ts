@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 /**
   Nutzer.
 */
-type User = {
+export type User = {
   /**
     ID.
   */
