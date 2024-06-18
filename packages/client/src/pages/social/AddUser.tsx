@@ -3,12 +3,14 @@ import { XIcon } from "lucide-react";
 
 // Intern
 import { Friendships } from "$internal/api";
-import { InputField } from "$components/InputField";
+import { FingerprintIcon } from "lucide-react";
+import { Card } from "$components/Card";
+import { Input } from "$components/Input";
+import { Button } from "$components/Button";
 
 // Types
 import type { FC } from "react";
 import type { NavStack } from "$pages/social";
-import { Button } from "$components/Button";
 
 type AddUserProps = {
   setNavStack: (navStack: NavStack) => void;
@@ -19,13 +21,23 @@ type AddUserProps = {
 */
 export const AddUser: FC<AddUserProps> = ({ setNavStack }) => {
   const [ value, setValue ] = useState("");
+  const [ error, setError ] = useState("");
+  const [ isSent, setIsSent ] = useState(false);
 
   const sendRequest = async () => {
     if(!value) {
       return;
     }
 
-    await Friendships.create(value);
+    const response = await Friendships.create(value);
+
+    if(!response || response.ok) {
+      // TODO Genauere Fehlernachrichten hinzufügen.
+      setError("Failed to send friend request.");
+      return;
+    }
+
+    setIsSent(true);
   };
 
   return (
@@ -40,11 +52,17 @@ export const AddUser: FC<AddUserProps> = ({ setNavStack }) => {
         <span>
           Add a friend with their ID.
         </span>
-        <InputField
-          variant="text"
+
+        {error && <Card className="bg-red-400">{error}</Card>}
+        {isSent && <Card className="bg-green-400">Friend request sent.</Card>}
+
+        <Input
+          type="text"
           value={value}
           onChange={(input) => setValue(input)}
+          icon={FingerprintIcon}
           placeholder="Recipient ID"
+          className="bg-blue-800"
         /> 
         <Button variant="blue" onClick={sendRequest}>
           Add friend
