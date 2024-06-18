@@ -8,10 +8,10 @@ import type { User as UserType } from "$models/user.js";
 const userSeeds: UserType[] = [
   {
     id: "test_user",
-    email: "testuser@example.com",
+    email: "123",
     displayName: "Test User",
     weight: 70,
-    password: await hashPassword("securepassword123"),
+    password: await hashPassword("123"),
     isPrivate: false,
     createdAt: Date.now()
   } 
