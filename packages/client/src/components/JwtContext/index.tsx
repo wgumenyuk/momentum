@@ -9,38 +9,33 @@ type JwtProviderProps = {
   children: ReactNode;
 };
 
-const JwtContext = createContext<JwtPayload | null>(null);
+type JwtContextType = {
+  jwt: JwtPayload | null;
+  setToken: (token: string | null) => void;
+};
+
+const JwtContext = createContext<JwtContextType | null>(null);
 
 /**
   Provider für den dekodierten JWT-Payload.
 */
 export const JwtProvider: FC<JwtProviderProps> = ({ children }) => {
-  const decodeJwt = () => {
-    const token = localStorage.getItem("token");
-    
-    if(!token) {
-      return null;
-    }
-
-    return jwtDecode<JwtPayload>(token);
-  };
-
-  const [ payload, setPayload ] = useState<JwtPayload | null>(decodeJwt());
+  const [ token, setToken ] = useState<string | null>(localStorage.getItem("token"));
+  const [ payload, setPayload ] = useState<JwtPayload | null>(null);
 
   useEffect(() => {
-    const onStorage = () => {
-      setPayload(decodeJwt());
-    };
-
-    window.addEventListener("storage", onStorage);
-
-    return () => {
-      window.removeEventListener("storage", onStorage);
-    };
-  }, []);
+    if(token) {
+      const decoded = jwtDecode(token) as JwtPayload;
+      localStorage.setItem("token", token);
+      setPayload(decoded);
+    } else {
+      localStorage.removeItem("token");
+      setPayload(null);
+    }
+  }, [ token ]);
 
   return (
-    <JwtContext.Provider value={payload}>
+    <JwtContext.Provider value={{ jwt: payload, setToken }}>
       {children}
     </JwtContext.Provider>
   );
