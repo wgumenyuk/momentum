@@ -28,7 +28,6 @@ const messages = {
 */
 export const Feed: FC<FeedProps> = ({ setNavStack }) => {
   const [ events, setEvents ] = useState<Event[]>([]);
-
   const [ hasFailed, setHasFailed ] = useState(false);
 
   const fetchEvents = async () => {

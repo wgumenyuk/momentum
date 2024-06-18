@@ -3,6 +3,7 @@ import { useState } from "react";
 // Intern
 import { BackgroundLayout } from "$components/Background";
 import { Feed } from "$pages/social/Feed";
+import { AddUser } from "$pages/social/AddUser";
 
 // Types
 import type { FC } from "react";
@@ -23,7 +24,7 @@ export const SocialPage: FC = () => {
       {
         (navStack === "feed") ?
           <Feed setNavStack={setNavStack}/> :
-          <></>
+          <AddUser setNavStack={setNavStack}/> 
       }
     </BackgroundLayout>
   );
