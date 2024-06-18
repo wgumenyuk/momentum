@@ -4,9 +4,11 @@ import { useNavigate, Link } from "react-router-dom";
 // Intern
 import { ErrorCode, LoginSchema } from "@momentum/shared";
 import { Auth } from "$internal/api";
+import { MailIcon } from "lucide-react";
 import { useJwt } from "$components/JwtContext";
 import { BackgroundLayout } from "$components/Background";
-import { InputField } from "$components/InputField";
+import { Input } from "$components/Input";
+import { PasswordInput } from "$components/PasswordInput";
 import { Button } from "$components/Button";
 import { Checkbox } from "$components/Checkbox";
 
@@ -78,19 +80,18 @@ export const LoginPage: React.FC = () => {
         }
 
         <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-          <InputField
+          <Input
+            type="text"
             placeholder="you@example.com"
             value={email}
-            onChange={setEmail}
-            variant="email"
-            title="E-Mail"
+            onChange={(value) => setEmail(value)}
+            icon={MailIcon}
+            className="bg-white shadow-sm"
           />
-          <InputField
-            placeholder="********"
+          <PasswordInput
             value={password}
-            onChange={setPassword}
-            variant="password"
-            title="Password"
+            onChange={(value) => setPassword(value)}
+            className="bg-white shadow-sm"
           />
           <div className="flex justify-between">
             <Checkbox
