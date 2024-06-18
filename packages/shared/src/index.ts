@@ -461,3 +461,13 @@ export type Event = {
   */
   createdAt: Date;
 };
+
+/**
+  JWT-Payload.
+*/
+export type JwtPayload = {
+  /**
+    Nutzer-ID.
+  */
+  id: string;
+};

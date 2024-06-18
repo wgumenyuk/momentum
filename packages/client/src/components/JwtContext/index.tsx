@@ -3,18 +3,13 @@ import { jwtDecode } from "jwt-decode";
 
 // Types
 import type { FC, ReactNode } from "react";
-import type { JwtPayload } from "jwt-decode";
+import type { JwtPayload } from "@momentum/shared";
 
 type JwtProviderProps = {
   children: ReactNode;
 };
 
-type Payload = JwtPayload & {
-  id: string;
-  email: string;
-};
-
-const JwtContext = createContext<Payload | null>(null);
+const JwtContext = createContext<JwtPayload | null>(null);
 
 /**
   Provider für den dekodierten JWT-Payload.
@@ -27,10 +22,10 @@ export const JwtProvider: FC<JwtProviderProps> = ({ children }) => {
       return null;
     }
 
-    return jwtDecode<Payload>(token);
+    return jwtDecode<JwtPayload>(token);
   };
 
-  const [ payload, setPayload ] = useState<Payload | null>(decodeJwt());
+  const [ payload, setPayload ] = useState<JwtPayload | null>(decodeJwt());
 
   useEffect(() => {
     const onStorage = () => {
