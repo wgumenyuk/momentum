@@ -54,7 +54,9 @@ export const Feed: FC<FeedProps> = ({ setNavStack }) => {
       </div>
       <div className="flex flex-col gap-6 w-full">
         {hasFailed && (
-          <span className="text-red-400 font-bold">We couldn't fetch your feed.</span>
+          <span className="bg-red-400 p-4 rounded font-bold">
+            We couldn't fetch your feed.
+          </span>
         )}
 
         {!hasFailed && events.map((event) => {
