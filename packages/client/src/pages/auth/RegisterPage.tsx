@@ -20,7 +20,7 @@ export const RegisterPage: React.FC = () => {
   const [ subscribed, setSubscribed ] = useState(false);
 
   const navigate = useNavigate();
-  const jwt = useJwt();
+  const { jwt } = useJwt()!;
 
   useEffect(() => {
     if(jwt) {

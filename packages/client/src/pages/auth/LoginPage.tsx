@@ -19,7 +19,7 @@ export const LoginPage: React.FC = () => {
   const [ rememberMe, setRememberMe ] = useState(false);
 
   const navigate = useNavigate();
-  const jwt = useJwt();
+  const { setToken, jwt } = useJwt()!;
 
   useEffect(() => {
     if(jwt) {
@@ -61,7 +61,7 @@ export const LoginPage: React.FC = () => {
 
     const { token } = response.data;
 
-    localStorage.setItem("token", token);
+    setToken(token);
     navigate("/home");
   };
 

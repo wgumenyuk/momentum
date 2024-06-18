@@ -2,14 +2,16 @@ import React from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 // Intern
+import { useJwt } from "$components/JwtContext";
 import { BackgroundLayout } from "$components/Background";
 
 export const LogoutPage: React.FC = () => {
   const navigate = useNavigate();
   const [ searchParams ] = useSearchParams();
+  const { setToken } = useJwt()!;
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    setToken(null);
     navigate("/login");
   };
 
