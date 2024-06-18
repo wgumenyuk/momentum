@@ -10,17 +10,6 @@ type WorkoutsOverviewPageProps = {
   userId: string;
 };
 
-// Type guard to check if an object is an array of WorkoutType
-/* const isWorkoutArray = (data: unknown): data is WorkoutType[] => {
-  return Array.isArray(data) && data.every((item) => 
-    typeof item === "object" &&
-    item !== null &&
-    "id" in item &&
-    "name" in item &&
-    "muscles" in item
-  );
-}; */
-
 const WorkoutsOverviewPage: React.FC<WorkoutsOverviewPageProps> = ({ navigate, userId }) => {
   const [ workouts, setWorkouts ] = useState<WorkoutType[]>([]);
   const [ loading, setLoading ] = useState(true);
@@ -48,13 +37,6 @@ const WorkoutsOverviewPage: React.FC<WorkoutsOverviewPageProps> = ({ navigate, u
         if(response.ok) {
           const data = response.data;
           setWorkouts(data.workouts);
-          console.log(data);
-          /*           if(isWorkoutArray(data)) {
-            setWorkouts(data);
-          } else {
-            setError("Invalid data format received from server.");
-            console.log(data)
-          } */
         } else {
           setError(errorMessages[response.err] || "An unknown error occurred.");
         }
@@ -96,7 +78,7 @@ const WorkoutsOverviewPage: React.FC<WorkoutsOverviewPageProps> = ({ navigate, u
       )}
       <div className="space-y-4">
         {workouts.map((workout) => (
-          <Workout key={workout.id} title={workout.name} muscles={"muscle_test"}/>
+          <Workout key={workout.id} title={workout.name} muscles={""}/>
         ))}
       </div>
     </div>
