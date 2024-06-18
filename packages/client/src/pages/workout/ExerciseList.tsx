@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { InputField } from "$components/InputField";
+import { Input } from "$components/Input";
 import { Workout } from "$components/Workouts";
 import { Filter } from "lucide-react";
 
@@ -16,12 +16,11 @@ const ExerciseListPage: React.FC<ExerciseListPageProps> = ({ navigate }) => {
     <div className="min-h-screen bg-gray-900 p-6">
       <div className="space-y-4">
         <div className="flex justify-between items-center">
-          <InputField
-            title=""
+          <Input
+            type="text"
             placeholder="Search"
             value={search}
-            onChange={setSearch}
-            variant="search"
+            onChange={(value) => setSearch(value)}
           />
           <button
             className="p-2 bg-blue-500 rounded-lg"

@@ -1,5 +1,5 @@
 import React from "react";
-import { InputField } from "$components/InputField";
+import { Input } from "$components/Input";
 import { Workout } from "$components/Workouts";
 import { Plus } from "lucide-react";
 
@@ -10,19 +10,17 @@ const EditWorkoutPage: React.FC<{ navigate: (view: string) => void }> = ({ navig
   return (
     <div className="space-y-4">
       <div className="text-blue-900">
-        <InputField
-          title="Name"
+        <Input
+          type="text"
           placeholder="New Workout"
           value={name}
-          onChange={setName}
-          variant="text"
+          onChange={(value) => setName(value)}
         />
-        <InputField
-          title="Description"
+        <Input
+          type="text"
           placeholder="..."
           value={description}
-          onChange={setDescription}
-          variant="text"
+          onChange={(value) => setDescription(value)}
         />
       </div>
       <div className="flex justify-between items-center mt-4">
