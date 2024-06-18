@@ -5,10 +5,14 @@ import EditWorkoutPage from "./EditWorkoutPage";
 import { StackTop } from "$components/StackTop";
 import { FilterMuscleGroupsPage } from "./FilterMuscleGroups";
 import ExerciseListPage from "./ExerciseList";
+import { useJwt } from "$components/JwtContext";
 
 const WorkoutStack: React.FC = () => {
   const [ navigationStack, setNavigationStack ] = useState([ "workouts" ]); // Set initial view to workouts
-  const [ userId ] = useState("2"); // Replace the 2 with an user ID
+  const jwt = useJwt();
+  const userId =  jwt!.id;
+
+  console.log(userId);
 
   const currentView = navigationStack[navigationStack.length - 1];
 

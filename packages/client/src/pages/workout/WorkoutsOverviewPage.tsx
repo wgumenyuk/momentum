@@ -3,13 +3,7 @@ import { Workout } from "$components/Workouts";
 import { InfoIcon, PlusIcon } from "lucide-react";
 import { ErrorCode } from "@momentum/shared";
 import { Workouts } from "$internal/api";
-
-// Define a type for the workout
-interface WorkoutType {
-  id: string;
-  name: string;
-  muscles: string;
-}
+import { Workout as WorkoutType } from "@momentum/shared";
 
 type WorkoutsOverviewPageProps = {
   navigate: (view: string) => void;
@@ -17,7 +11,7 @@ type WorkoutsOverviewPageProps = {
 };
 
 // Type guard to check if an object is an array of WorkoutType
-const isWorkoutArray = (data: unknown): data is WorkoutType[] => {
+/* const isWorkoutArray = (data: unknown): data is WorkoutType[] => {
   return Array.isArray(data) && data.every((item) => 
     typeof item === "object" &&
     item !== null &&
@@ -25,7 +19,7 @@ const isWorkoutArray = (data: unknown): data is WorkoutType[] => {
     "name" in item &&
     "muscles" in item
   );
-};
+}; */
 
 const WorkoutsOverviewPage: React.FC<WorkoutsOverviewPageProps> = ({ navigate, userId }) => {
   const [ workouts, setWorkouts ] = useState<WorkoutType[]>([]);
@@ -45,7 +39,7 @@ const WorkoutsOverviewPage: React.FC<WorkoutsOverviewPageProps> = ({ navigate, u
       setLoading(true);
       setError(null);
       try {
-        const response = await Workouts.getAll(userId);
+        const response = await Workouts.getAll();
         if(!response) {
           setError(errorMessages["server_connection_failed"]);
           return;
@@ -53,11 +47,14 @@ const WorkoutsOverviewPage: React.FC<WorkoutsOverviewPageProps> = ({ navigate, u
 
         if(response.ok) {
           const data = response.data;
-          if(isWorkoutArray(data)) {
+          setWorkouts(data.workouts);
+          console.log(data);
+          /*           if(isWorkoutArray(data)) {
             setWorkouts(data);
           } else {
             setError("Invalid data format received from server.");
-          }
+            console.log(data)
+          } */
         } else {
           setError(errorMessages[response.err] || "An unknown error occurred.");
         }
@@ -82,25 +79,24 @@ const WorkoutsOverviewPage: React.FC<WorkoutsOverviewPageProps> = ({ navigate, u
   return (
     <div className="min-h-screen w-full bg-gray-900 p-6">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold text-grey-500">Workouts</h1>
+        <h1 className="text-2xl font-bold text-gray-500">Workouts</h1>
         <div className="flex items-center space-x-4">
-          <button className="text-grey-500 text-4xl" onClick={() => navigate("editSplit")}>
+          <button className="text-gray-500 text-4xl" onClick={() => navigate("editSplit")}>
             <InfoIcon size="24px"/>
           </button>
-          <button className="text-grey-500 text-4xl" onClick={() => navigate("editWorkout")}>
+          <button className="text-gray-500 text-4xl" onClick={() => navigate("editWorkout")}>
             <PlusIcon size="32px"/>
           </button>
         </div>
       </div>
-      {
-        error &&
+      {error && (
         <span className="block text-red-500 font-bold text-center pb-6">
           {error}
         </span>
-      }
+      )}
       <div className="space-y-4">
         {workouts.map((workout) => (
-          <Workout key={workout.id} title={workout.name} muscles={workout.muscles}/>
+          <Workout key={workout.id} title={workout.name} muscles={"muscle_test"}/>
         ))}
       </div>
     </div>
