@@ -11,7 +11,7 @@ import {
 import { isAuthenticated } from "$api/middleware/auth";
 
 export const pastWorkoutRouter = new Router({
-  prefix: "/workouts"
+  prefix: "/past-workouts"
 });
 
 pastWorkoutRouter.use(isAuthenticated);

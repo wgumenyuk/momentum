@@ -12,7 +12,7 @@ import {
 } from "$services/workouts";
 
 export const workoutRouter = new Router({
-  prefix: "/splits"
+  prefix: "/workouts"
 });
 
 workoutRouter.use(isAuthenticated);
