@@ -32,11 +32,11 @@ function LandingPage() {
           <p className="text-gray-500">
             Momentum bietet Ihnen alles, was Sie für ein gesünderes Leben brauchen. Unsere App unterstützt Sie nicht nur bei Ihrem Training, sondern hilft Ihnen auch, sich gesund zu ernähren.
           </p>
-          <ul className="text-gray-500 space-y-2">
-            <li><strong>Ernährungsunterstützung:</strong> Verfolgen Sie Ihre Mahlzeiten und erhalten Sie personalisierte Ernährungstipps.</li>
-            <li><strong>Set-Dokumentation:</strong> Behalten Sie den Überblick über Ihre Trainingseinheiten und Fortschritte.</li>
-            <li><strong>Trendanalysen:</strong> Sehen Sie auf einen Blick, ob Sie sich verbessert haben und in welchen Bereichen noch Potenzial besteht.</li>
-            <li><strong>Einfache Handhabung:</strong> Alle Daten werden klar und verständlich dargestellt, damit Sie sich auf das Wesentliche konzentrieren können – Ihre Gesundheit.</li>
+          <ul>
+            <li className="text-gray-200 mt-4"><strong>Ernährungsunterstützung:</strong> Verfolgen Sie Ihre Mahlzeiten und erhalten Sie personalisierte Ernährungstipps.</li>
+            <li className="text-gray-400 mt-4"><strong>Set-Dokumentation:</strong> Behalten Sie den Überblick über Ihre Trainingseinheiten und Fortschritte.</li>
+            <li className="text-gray-200 mt-4"><strong>Trendanalysen:</strong> Sehen Sie auf einen Blick, ob Sie sich verbessert haben und in welchen Bereichen noch Potenzial besteht.</li>
+            <li className="text-gray-400 mt-4"><strong>Einfache Handhabung:</strong> Alle Daten werden klar und verständlich dargestellt, damit Sie sich auf das Wesentliche konzentrieren können – Ihre Gesundheit.</li>
           </ul>
           <p className="text-gray-500">
             Starten Sie jetzt und erleben Sie, wie einfach es sein kann, fit und gesund zu bleiben!
