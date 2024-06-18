@@ -13,6 +13,7 @@ import { RegisterPage } from "$pages/auth/RegisterPage";
 import { HomePage } from "$pages/HomePage";
 import { ProfilePage } from "$pages/ProfilePage";
 import WorkoutStack from "$pages/workout/WorkoutStack";
+import { SocialPage } from "$pages/social";
 import { NotFoundPage } from "$pages/NotFound";
 import "./index.css";
 
@@ -61,7 +62,7 @@ const router = createBrowserRouter([
     path: "/social",
     element: (
       <ProtectedRoute>
-        {/* <SocialPage /> - not yet developed*/}
+        <SocialPage/>
         <Navigation/>
       </ProtectedRoute>
     )
