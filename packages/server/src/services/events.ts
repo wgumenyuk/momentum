@@ -40,10 +40,6 @@ export const getEvents = async (ctx: Context) => {
     lean: true
   });
 
-  if(!events || events.length === 0) {
-    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
-  }
-
   ok(ctx, StatusCode.Success, {
     events
   });
