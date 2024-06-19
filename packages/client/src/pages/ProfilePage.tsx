@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { LogOutIcon } from "lucide-react";
 
@@ -10,9 +10,16 @@ import { Card } from "$components/Card";
 import { Switch } from "$components/Switch";
 import { Button } from "$components/Button";
 
-export const ProfilePage: React.FC = () => {
+// Types
+import type { FC } from "react";
+
+export const ProfilePage: FC = () => {
+  const [ displayName, setDisplayName ] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ hasFailed, setHasFailed ] = useState(false);
+
   const navigate = useNavigate();
-  const jwt = useJwt();
+  const { jwt } = useJwt()!;
 
   const handleLogout = () => {
     navigate("/logout?return_to=/profile");
@@ -35,6 +42,24 @@ export const ProfilePage: React.FC = () => {
     navigate("/login");
   };
 
+  const fetchProfile = async () => {
+    const response = await User.get(jwt!.id);
+
+    if(!response || !response.ok) {
+      setHasFailed(true); 
+      return;
+    }
+
+    const { user } = response.data;
+
+    setDisplayName(user.displayName || "");
+    setEmail(user.email);
+  };
+
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+
   return (
     <BackgroundLayout>
       <div className="min-h-screen w-full bg-gray-900 p-6">
@@ -45,11 +70,17 @@ export const ProfilePage: React.FC = () => {
           </button>
         </div>
         <div className="flex flex-col gap-6 w-full">
+          {hasFailed && (
+            <Card className="bg-red-400">
+              <span>Failed to fetch your profile data.</span>
+            </Card>
+          )}
+
           <Card>
             <div className="flex justify-between items-center">
               <div className="flex flex-col gap-0.5">
-                <span className="text-xl font-bold">Username</span>
-                <span className="text-sm">{jwt!.email}</span>
+                <span className="text-xl font-bold">{displayName}</span>
+                <span className="text-sm">{email}</span>
               </div>
               <div className="w-16 h-16 bg-gray rounded-lg"/>
             </div> 

@@ -3,6 +3,7 @@ import { request } from "$internal/api/request";
 type GetResponse = {
   user: {
     id: string;
+    displayName?: string;
     email: string;
     createdAt: number;
   };
