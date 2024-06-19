@@ -9,7 +9,7 @@ const EditWorkoutPage: React.FC<{ navigate: (view: string) => void }> = ({ navig
 
   return (
     <div className="space-y-4">
-      <div className="text-blue-900">
+      <div className="text-white">
         <Input
           type="text"
           placeholder="New Workout"
