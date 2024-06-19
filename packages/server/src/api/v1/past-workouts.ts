@@ -8,10 +8,14 @@ import {
   updatePastWorkout,
   deletePastWorkout
 } from "$services/past-workouts";
+import { isAuthenticated } from "$api/middleware/auth";
 
 export const pastWorkoutRouter = new Router({
-  prefix: "/workouts"
+  prefix: "/past-workouts"
 });
+
+pastWorkoutRouter.use(isAuthenticated);
+
 
 pastWorkoutRouter.post("/", async (ctx) => {
   await createPastWorkout(ctx);

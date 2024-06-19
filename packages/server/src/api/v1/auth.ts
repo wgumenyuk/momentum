@@ -12,7 +12,7 @@ authRouter.post("/login", isUnauthenticated, async (ctx) => {
   await login(ctx);
 });
 
-authRouter.post("/register", isUnauthenticated, async (ctx) => {
+authRouter.post("/register", async (ctx) => {
   await register(ctx);
 });
 

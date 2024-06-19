@@ -5,9 +5,14 @@ import EditWorkoutPage from "./EditWorkoutPage";
 import { StackTop } from "$components/StackTop";
 import { FilterMuscleGroupsPage } from "./FilterMuscleGroups";
 import ExerciseListPage from "./ExerciseList";
+import { useJwt } from "$components/JwtContext";
 
 const WorkoutStack: React.FC = () => {
   const [ navigationStack, setNavigationStack ] = useState([ "workouts" ]); // Set initial view to workouts
+  const jwt = useJwt();
+  const userId =  jwt!.id;
+
+  console.log(userId);
 
   const currentView = navigationStack[navigationStack.length - 1];
 
@@ -28,7 +33,7 @@ const WorkoutStack: React.FC = () => {
   const renderView = () => {
     switch (currentView) {
       case "workouts":
-        return <WorkoutsOverviewPage navigate={handleNavigate}/>; // Updated view
+        return <WorkoutsOverviewPage navigate={handleNavigate} userId={userId}/>; // Pass userId prop
       case "editWorkout":
         return <EditWorkoutPage navigate={handleNavigate}/>;
       case "exerciseList":
@@ -36,7 +41,7 @@ const WorkoutStack: React.FC = () => {
       case "filterMuscleGroups":
         return <FilterMuscleGroupsPage/>;
       default:
-        return <WorkoutsOverviewPage navigate={handleNavigate}/>; // Default is workoutsOverview
+        return <WorkoutsOverviewPage navigate={handleNavigate} userId={userId}/>; // Default is workoutsOverview
     }
   };
 

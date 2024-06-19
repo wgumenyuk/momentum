@@ -1,4 +1,6 @@
 import Router from "@koa/router";
+import { isAuthenticated } from "$api/middleware/auth";
+
 
 // Intern
 import {
@@ -10,8 +12,10 @@ import {
 } from "$services/workouts";
 
 export const workoutRouter = new Router({
-  prefix: "/splits"
+  prefix: "/workouts"
 });
+
+workoutRouter.use(isAuthenticated);
 
 workoutRouter.post("/", async (ctx) => {
   await createWorkout(ctx);
