@@ -59,6 +59,9 @@ export default {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-btn": "linear-gradient(to right, #7BC1D2, #327F92)"
+      },
+      fontFamily: {
+        sans: [ "Outfit", "system-ui", "sans-serif" ]
       }
     }
   },

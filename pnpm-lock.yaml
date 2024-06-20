@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@fontsource/outfit':
+        specifier: ^5.0.13
+        version: 5.0.13
     devDependencies:
       '@commitlint/cli':
         specifier: ^19.3.0
@@ -1147,6 +1151,9 @@ packages:
   '@fastify/busboy@2.1.1':
     resolution: {integrity: sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA==}
     engines: {node: '>=14'}
+
+  '@fontsource/outfit@5.0.13':
+    resolution: {integrity: sha512-wIPcryKAs7Vu1/FyG0qSsrzN0SWq/oclGSZNIspuZXR6/lsCerFrHoMdMyDcidg+KTWE68/Du2qGz2B4Gtrg4w==}
 
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
@@ -6646,6 +6653,8 @@ snapshots:
   '@fal-works/esbuild-plugin-global-externals@2.1.2': {}
 
   '@fastify/busboy@2.1.1': {}
+
+  '@fontsource/outfit@5.0.13': {}
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
