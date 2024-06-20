@@ -59,6 +59,10 @@ export const Feed: FC<FeedProps> = ({ setNavStack }) => {
           </Card>
         )}
 
+        {(!hasFailed && events.length === 0) && (
+          <span className="text-blue-600">It's pretty empty here...</span>
+        )}
+
         {!hasFailed && events.map((event) => {
           if(event.kind === EventKind.FriendRequestReceived) {
             return <FriendRequest eventData={event.data}/>;
