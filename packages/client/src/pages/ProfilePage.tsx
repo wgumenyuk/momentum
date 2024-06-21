@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import {
   LogOutIcon,
   UserIcon,
-  CheckIcon
+  CheckIcon,
+  FingerprintIcon
 } from "lucide-react";
 
 // Intern
@@ -18,8 +19,34 @@ import { Button } from "$components/Button";
 // Types
 import type { FC } from "react";
 
+type UserIdProps = {
+  userId: string;
+};
+
 type DisplayNameProps = {
   displayName: string;
+};
+
+const UserId: FC<UserIdProps> = ({ userId }) => {
+  return (
+    <Card>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-0.5">
+          <span className="font-bold">User ID</span>
+          <span className="text-sm">
+            Others can use this ID to add you as a friend. 
+          </span>
+        </div>
+        <Input
+          type="text"
+          className="bg-blue-700 pointer-events-none"
+          icon={FingerprintIcon}
+          value={userId}
+          onChange={() => { /* noop */ }}
+        />
+      </div> 
+    </Card>
+  );
 };
 
 const DisplayName: FC<DisplayNameProps> = ({
@@ -159,6 +186,7 @@ export const ProfilePage: FC = () => {
                 </div> 
               </Card>
 
+              <UserId userId={jwt!.id}/>
               <DisplayName displayName={displayName}/>
 
               <Card>
