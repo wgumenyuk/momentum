@@ -114,7 +114,7 @@ const DisplayName: FC<DisplayNameProps> = ({
 export const ProfilePage: FC = () => {
   const [ displayName, setDisplayName ] = useState("");
   const [ email, setEmail ] = useState("");
-  const [ hasFailed, setHasFailed ] = useState(false);
+  const [ isSuccessful, setIsSuccessful ] = useState<boolean>();
 
   const navigate = useNavigate();
   const { jwt } = useJwt()!;
@@ -144,7 +144,7 @@ export const ProfilePage: FC = () => {
     const response = await User.get(jwt!.id);
 
     if(!response || !response.ok) {
-      setHasFailed(true); 
+      setIsSuccessful(false); 
       return;
     }
 
@@ -152,6 +152,7 @@ export const ProfilePage: FC = () => {
 
     setDisplayName(user.displayName || "");
     setEmail(user.email);
+    setIsSuccessful(true);
   };
 
   useEffect(() => {
@@ -168,13 +169,13 @@ export const ProfilePage: FC = () => {
           </button>
         </div>
         <div className="flex flex-col gap-6 w-full">
-          {hasFailed && (
+          {!isSuccessful && (
             <Card className="bg-red-400">
               <span>Failed to fetch your profile data.</span>
             </Card>
           )}
 
-          {!hasFailed && (
+          {isSuccessful === true && (
             <>
               <Card>
                 <div className="flex justify-between items-center">
