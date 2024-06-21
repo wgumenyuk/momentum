@@ -19,6 +19,17 @@ export const User = {
   get: (userId: string) => request<GetResponse>("GET", `/users/${userId}`),
 
   /**
+    Aktualisiert den Anzeigenamen.
+  */
+  updateDisplayName: (displayName: string) => request(
+    "PUT",
+    "/users/display-name",
+    {
+      displayName
+    }
+  ),
+
+  /**
     Löscht das eigene Nutzerkonto.
   */
   deleteAccount: () => request("DELETE", "/users/delete")
