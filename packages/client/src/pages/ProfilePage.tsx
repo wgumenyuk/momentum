@@ -76,33 +76,37 @@ export const ProfilePage: FC = () => {
             </Card>
           )}
 
-          <Card>
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-xl font-bold">{displayName}</span>
-                <span className="text-sm">{email}</span>
-              </div>
-              <div className="w-16 h-16 bg-gray rounded-lg"/>
-            </div> 
-          </Card>
+          {!hasFailed && (
+            <>
+              <Card>
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-xl font-bold">{displayName}</span>
+                    <span className="text-sm">{email}</span>
+                  </div>
+                  <div className="w-16 h-16 bg-gray rounded-lg"/>
+                </div> 
+              </Card>
 
-          <Card>
-            <div className="flex justify-between items-center gap-4">
-              <div className="flex flex-col gap-0.5">
-                <span className="font-bold">Private Profile</span>
-                <span className="text-sm">
-                  Your profile won't show up in any searches.
-                </span>
-              </div>
-              <Switch onChange={() => {}}/>
-            </div>
-          </Card>
+              <Card>
+                <div className="flex justify-between items-center gap-4">
+                  <div className="flex flex-col gap-0.5">
+                    <span className="font-bold">Private Profile</span>
+                    <span className="text-sm">
+                      Your profile won't show up in any searches.
+                    </span>
+                  </div>
+                  <Switch onChange={() => {}}/>
+                </div>
+              </Card>
 
-          <span className="block w-full h-px bg-gray rounded"/>
+              <span className="block w-full h-px bg-gray rounded"/>
 
-          <Button variant="red" onClick={handleDeleteAccount}>
-            Delete Account
-          </Button> 
+              <Button variant="red" onClick={handleDeleteAccount}>
+                Delete Account
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </BackgroundLayout>
