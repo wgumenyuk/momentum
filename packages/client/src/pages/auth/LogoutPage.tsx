@@ -2,6 +2,7 @@ import React from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 // Intern
+import { LogOutIcon } from "lucide-react";
 import { useJwt } from "$components/JwtContext";
 import { BackgroundLayout } from "$components/Background";
 import { Card } from "$components/Card";
@@ -21,13 +22,16 @@ export const LogoutPage: React.FC = () => {
   return (
     <BackgroundLayout>
       <Card className="flex flex-col items-center gap-8 p-8">
-        <span className="text-xl">You're about to log out</span>
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-2">
+          <LogOutIcon/>
+          <span className="text-xl">You're about to log out &ndash; proceed?</span>
+        </div>
+        <div className="flex justify-between items-center gap-8">
           <Button
             variant="blue"
             onClick={handleLogout}
           >
-            Log out
+            Yes, log out
           </Button>
           <Link
             to={searchParams.get("return_to") || "/profile"}
