@@ -5,10 +5,10 @@ import { log } from "$internal/logger";
 import { seedEquipment } from "$models/seeders/equipment";
 import { seedExercises } from "$models/seeders/exercises";
 import { seedMuscles } from "$models/seeders/muscle";
-import { seedUsers } from "$models/seeders/dev_user";
-import { seedWorkouts } from "$models/seeders/dev_workout";
+import { seedUsers } from "$models/seeders/users";
+import { seedWorkouts } from "$models/seeders/workouts";
 
-const { MONGODB_URL } = process.env;
+const { NODE_ENV, MONGODB_URL } = process.env;
 
 /**
   Stellt eine Verbindung zu Mongo her.
@@ -23,13 +23,14 @@ export const initMongo = async () => {
     process.exit(1);
   }
 
+  const isDev = (NODE_ENV === "development");
+
   // Seeder ausführen.
   await Promise.all([
     seedEquipment(),
     seedExercises(),
     seedMuscles(),
-    seedUsers(),
-    seedWorkouts()
+    ...(isDev ? [ seedUsers(), seedWorkouts() ] : [])
   ]);
 
   log.info("connected to MongoDB");
