@@ -117,7 +117,7 @@ export const ProfilePage: FC = () => {
   const [ isSuccessful, setIsSuccessful ] = useState<boolean>();
 
   const navigate = useNavigate();
-  const { jwt } = useJwt()!;
+  const { jwt, setToken } = useJwt()!;
 
   const handleLogout = () => {
     navigate("/logout?return_to=/profile");
@@ -136,7 +136,7 @@ export const ProfilePage: FC = () => {
       return;
     }
 
-    localStorage.removeItem("token");
+    setToken(null);
     navigate("/login");
   };
 

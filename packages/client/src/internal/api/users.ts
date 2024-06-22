@@ -32,5 +32,5 @@ export const User = {
   /**
     Löscht das eigene Nutzerkonto.
   */
-  deleteAccount: () => request("DELETE", "/users/delete")
+  deleteAccount: () => request("DELETE", "/users")
 };
