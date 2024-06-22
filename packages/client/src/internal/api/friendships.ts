@@ -35,12 +35,18 @@ export const Friendships = {
   /**
     Akzeptiert eine Freundschaftsanfrage.
   */
-  accept: (friendshipId: string) => request("PUT", `/friendships/${friendshipId}`),
+  accept: (friendshipId: string) => request(
+    "PUT",
+    `/friendships/${friendshipId}/accept`
+  ),
 
   /**
     Lehnt eine Freundschaftsanfrage ab.
   */
-  decline: (friendshipId: string) => request("PUT", `/friendships/${friendshipId}`),
+  decline: (friendshipId: string) => request(
+    "PUT",
+    `/friendships/${friendshipId}/decline`
+  ),
 
   /**
     Entfernt eine Freundschaft.
