@@ -44,7 +44,7 @@ export const getFriendships = async (ctx: Context) => {
 */
 export const createFriendship = async (ctx: Context) => {
   const senderId = ctx.state.user.id;
-  const { recipientId } = ctx.req.body; 
+  const { recipientId } = ctx.request.body; 
 
   if(!recipientId) {
     // TODO: Passenden Fehlercode zurücksenden.
