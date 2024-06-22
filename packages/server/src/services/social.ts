@@ -1,10 +1,11 @@
 import { nanoid } from "nanoid";
 
 // Intern
-import { StatusCode, ErrorCode } from "@momentum/shared";
+import { StatusCode, ErrorCode, EventKind } from "@momentum/shared";
 import { ok, nok } from "$api/response";
 import { User } from "$models/user";
 import { Friendship } from "$models/friendship";
+import { Event } from "$models/event";
 
 // Types
 import type { Context } from "koa";
@@ -46,7 +47,7 @@ export const createFriendship = async (ctx: Context) => {
   const senderId = ctx.state.user.id;
   const { recipientId } = ctx.request.body; 
 
-  if(!recipientId) {
+  if(!recipientId || senderId === recipientId) {
     // TODO: Passenden Fehlercode zurücksenden.
     return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
   }
@@ -60,6 +61,14 @@ export const createFriendship = async (ctx: Context) => {
   if(!userExists) {
     // TODO: Passenden Fehlercode zurücksenden.
     return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
+  }
+
+  const sender = await User.findOne({
+    id: senderId
+  });
+
+  if(!sender) {
+    return;
   }
 
   const isFriends = !!(
@@ -89,6 +98,19 @@ export const createFriendship = async (ctx: Context) => {
   });
 
   await friendship.save();
+
+  const event = new Event({
+    id: nanoid(),
+    userId: recipientId,
+    kind: EventKind.FriendRequestReceived,
+    data: {
+      friendshipId: friendship.id,
+      senderName: sender.displayName
+    },
+    createdAt: new Date()
+  });
+
+  await event.save();
 
   ok(ctx, StatusCode.Success, {
     id: friendship.id
@@ -121,6 +143,18 @@ export const acceptFriendship = async (ctx: Context) => {
     friendship.userId2 :
     friendship.userId1;
 
+  const recipientId = (friendship.userId1 === senderId) ?
+    friendship.userId2 :
+    friendship.userId1;
+
+  const recipient = await User.findOne({
+    id: recipientId
+  });
+
+  if(!recipient) {
+    return;
+  }
+
   const userExists = !!(
     await User.exists({
       id: senderId
@@ -138,7 +172,18 @@ export const acceptFriendship = async (ctx: Context) => {
 
   await friendship.save();
 
-  // TODO Benachrichtigung an Sender schicken.
+  const event = new Event({
+    id: nanoid(),
+    userId: senderId,
+    kind: EventKind.FriendRequestAccepted,
+    data: {
+      friendshipId: friendship.id,
+      recipientName: recipient.displayName
+    },
+    createdAt: new Date()
+  });
+
+  await event.save();
 
   ok(ctx, StatusCode.Success);
 };
