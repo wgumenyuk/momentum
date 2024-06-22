@@ -31,7 +31,7 @@ export const AddUser: FC<AddUserProps> = ({ setNavStack }) => {
 
     const response = await Friendships.create(value);
 
-    if(!response || response.ok) {
+    if(!response || !response.ok) {
       // TODO Genauere Fehlernachrichten hinzufügen.
       setError("Failed to send friend request.");
       return;
