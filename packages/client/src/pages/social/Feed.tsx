@@ -65,7 +65,13 @@ export const Feed: FC<FeedProps> = ({ setNavStack }) => {
 
         {!hasFailed && events.map((event) => {
           if(event.kind === EventKind.FriendRequestReceived) {
-            return <FriendRequest key={event.id} eventData={event.data}/>;
+            return (
+              <FriendRequest
+                key={event.id}
+                eventId={event.id}
+                eventData={event.data}
+              />
+            );
           }
 
           return (

@@ -5,6 +5,7 @@ import { isAuthenticated } from "$api/middleware/auth";
 import {
   getEvents,
   getEvent,
+  deleteEvent,
   deleteEvents
 } from "$services/events";
 
@@ -24,4 +25,8 @@ eventsRouter.get("/:id", async (ctx) => {
 
 eventsRouter.delete("/", async (ctx) => {
   await deleteEvents(ctx);
+});
+
+eventsRouter.delete("/:id", async (ctx) => {
+  await deleteEvent(ctx);
 });

@@ -123,6 +123,7 @@ export const createFriendship = async (ctx: Context) => {
 export const acceptFriendship = async (ctx: Context) => {
   const userId = ctx.state.user.id;
   const { id: friendshipId } = ctx.params;
+  const { eventId } = ctx.request.body;
 
   if(!friendshipId) {
     // TODO: Passenden Fehlercode zurücksenden.
@@ -143,12 +144,8 @@ export const acceptFriendship = async (ctx: Context) => {
     friendship.userId2 :
     friendship.userId1;
 
-  const recipientId = (friendship.userId1 === senderId) ?
-    friendship.userId2 :
-    friendship.userId1;
-
   const recipient = await User.findOne({
-    id: recipientId
+    id: userId
   });
 
   if(!recipient) {
@@ -172,6 +169,13 @@ export const acceptFriendship = async (ctx: Context) => {
 
   await friendship.save();
 
+  // Benachrichtigung löschen, nachdem die Freundschaftsanfrage akzeptiert wurde.
+  await Event.deleteOne({
+    id: eventId,
+    userId,
+    kind: EventKind.FriendRequestReceived
+  });
+
   const event = new Event({
     id: nanoid(),
     userId: senderId,
@@ -194,6 +198,7 @@ export const acceptFriendship = async (ctx: Context) => {
 export const declineFriendship = async (ctx: Context) => {
   const userId = ctx.state.user.id;
   const { id: friendshipId } = ctx.params;
+  const { eventId } = ctx.request.body;
 
   const friendship = await Friendship.findOne({
     id: friendshipId,
@@ -212,6 +217,13 @@ export const declineFriendship = async (ctx: Context) => {
     // TODO: Passenden Fehlercode zurücksenden.
     return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
   }
+
+  // Benachrichtigung löschen.
+  await Event.deleteOne({
+    id: eventId,
+    userId,
+    kind: EventKind.FriendRequestReceived
+  });
 
   await friendship.deleteOne();
 
