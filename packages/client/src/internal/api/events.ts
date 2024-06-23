@@ -28,5 +28,10 @@ export const Events = {
   /**
     Löscht alle Events.
   */
-  delete: () => request("DELETE", "/events")
+  deleteAll: () => request("DELETE", "/events"),
+
+  /**
+    Löscht ein Event.
+  */
+  delete: (id: string) => request("DELETE", `/events/${id}`)
 };
