@@ -35,7 +35,6 @@ usersRouter.delete("/", async (ctx) => {
   await deleteUser(ctx);
 });
 
-// New endpoint for updating user weight
-usersRouter.put("/update-weight", async (ctx) => {
+usersRouter.put("/weight", async (ctx) => {
   await updateWeight(ctx);
 });

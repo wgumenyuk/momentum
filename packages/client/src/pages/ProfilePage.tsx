@@ -5,7 +5,8 @@ import {
   LogOutIcon,
   UserIcon,
   CheckIcon,
-  FingerprintIcon
+  FingerprintIcon,
+  WeightIcon
 } from "lucide-react";
 
 // Intern
@@ -26,6 +27,10 @@ type UserIdProps = {
 
 type DisplayNameProps = {
   displayName: string;
+};
+
+type WeightProps = {
+  initialWeight: number;
 };
 
 type PrivacyProps = {
@@ -117,6 +122,69 @@ const DisplayName: FC<DisplayNameProps> = ({
   );
 };
 
+const Weight: FC<WeightProps> = ({
+  initialWeight
+}) => {
+  const [ weight, setWeight ] = useState(initialWeight);
+  const [ showSuccess, setShowSuccess ] = useState(false);
+  const [ error, setError ] = useState(false);
+
+  const updateWeight = async () => {
+    const response = await User.updateWeight(weight);
+
+    if(!response || !response.ok) {
+      console.log(response);
+      setError(true);
+      return;
+    }
+
+    setShowSuccess(true);
+    setError(false);
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, 1500);
+    });
+
+    setShowSuccess(false);
+  };
+
+  return (
+    <Card>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-0.5">
+          <span className="font-bold">Weight</span>
+          <span className="text-sm">
+            Track your weight.
+          </span>
+        </div>
+        <Input
+          type="text"
+          className="bg-blue-700"
+          icon={WeightIcon}
+          value={weight.toString()}
+          onChange={(value) => setWeight(Number(value))}
+        />
+        {error && (
+          <span className="text-red-400 text-sm">
+            Invalid weight. 
+          </span>
+        )}
+        <Button
+          variant="blue"
+          onClick={updateWeight}
+        >
+          <span className="flex justify-center items-center gap-2">
+            Save
+            {showSuccess && (
+              <CheckIcon size="24px" className="text-green-300"/>
+            )}
+          </span>
+        </Button>
+      </div>
+    </Card>
+  );
+};
+
 const Privacy: FC<PrivacyProps> = ({ isPrivate, setIsPrivate }) => {
   const toggleAndSaveValue = async (value: boolean) => {
     setIsPrivate(value);
@@ -142,8 +210,10 @@ const Privacy: FC<PrivacyProps> = ({ isPrivate, setIsPrivate }) => {
 };
 
 export const ProfilePage: FC = () => {
+  // TODO: States kombinieren
   const [ displayName, setDisplayName ] = useState("");
   const [ email, setEmail ] = useState("");
+  const [ initialWeight, setInitialWeight ] = useState(0);
   const [ isPrivate, setIsPrivate ] = useState(false);
   const [ isSuccessful, setIsSuccessful ] = useState<boolean>();
 
@@ -183,6 +253,7 @@ export const ProfilePage: FC = () => {
 
     setDisplayName(user.displayName || "");
     setEmail(user.email);
+    setInitialWeight(user.weight || NaN);
     setIsPrivate(user.isPrivate);
     setIsSuccessful(true);
   };
@@ -221,6 +292,7 @@ export const ProfilePage: FC = () => {
 
               <UserId userId={jwt!.id}/>
               <DisplayName displayName={displayName}/>
+              <Weight initialWeight={initialWeight}/>
               <Privacy isPrivate={isPrivate} setIsPrivate={setIsPrivate}/>
 
               <span className="block w-full h-px bg-gray rounded"/>
