@@ -4,6 +4,7 @@ import Router from "@koa/router";
 import { isAuthenticated } from "$api/middleware/auth";
 import {
   getUser,
+  updateWeight,
   updateDisplayName,
   updateProfilePrivacy,
   deleteUser
@@ -32,4 +33,8 @@ usersRouter.put("/privacy", async (ctx) => {
 
 usersRouter.delete("/", async (ctx) => {
   await deleteUser(ctx);
+});
+
+usersRouter.put("/weight", async (ctx) => {
+  await updateWeight(ctx);
 });

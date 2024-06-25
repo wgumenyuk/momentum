@@ -15,6 +15,7 @@ export const BackgroundLayout: React.FC<BackgroundLayoutProps> = ({ children }) 
       mx-auto
       p-4
       lg:p-0
+      mb-20
     ">
       {children}
     </div>

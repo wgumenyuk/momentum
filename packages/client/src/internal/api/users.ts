@@ -4,6 +4,7 @@ type GetResponse = {
   user: {
     id: string;
     displayName?: string;
+    weight?: number;
     email: string;
     createdAt: number;
     isPrivate: boolean;
@@ -44,5 +45,16 @@ export const User = {
   /**
     Löscht das eigene Nutzerkonto.
   */
-  deleteAccount: () => request("DELETE", "/users")
+  deleteAccount: () => request("DELETE", "/users"),
+
+  /**
+    Aktualisiert das Gewicht.
+  */
+  updateWeight: (weight: number) => request(
+    "PUT",
+    "/users/weight",
+    {
+      weight
+    }
+  )
 };

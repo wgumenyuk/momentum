@@ -104,3 +104,28 @@ export const deleteUser = async (ctx: Context) => {
 
   ok(ctx, StatusCode.Success);
 };
+
+/**
+  Aktualisiert das Gewicht eines Nutzers.
+*/
+export const updateWeight = async (ctx: Context) => {
+  const userId = ctx.state.user.id;
+  const { weight } = ctx.request.body;
+
+  if(!weight || typeof weight !== "number" || weight < 0 || weight > 300) {
+    return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
+  }
+
+  const user = await User.findOne({
+    id: userId
+  });
+
+  if(!user) {
+    return nok(ctx, StatusCode.BadRequest, ErrorCode.NotFound);
+  }
+
+  user.weight = weight;
+  await user.save();
+
+  ok(ctx, StatusCode.Success, { message: "Weight updated successfully." });
+};
