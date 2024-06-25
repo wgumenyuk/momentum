@@ -5,6 +5,7 @@ import { isAuthenticated } from "$api/middleware/auth";
 import {
   getUser,
   updateDisplayName,
+  updateProfilePrivacy,
   deleteUser
 } from "$services/user";
 
@@ -23,6 +24,10 @@ usersRouter.get("/:uid", async (ctx) => {
 
 usersRouter.put("/display-name", async (ctx) => {
   await updateDisplayName(ctx);
+});
+
+usersRouter.put("/privacy", async (ctx) => {
+  await updateProfilePrivacy(ctx);
 });
 
 usersRouter.delete("/", async (ctx) => {
