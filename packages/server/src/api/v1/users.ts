@@ -2,7 +2,7 @@ import Router from "@koa/router";
 
 // Intern
 import { isAuthenticated } from "$api/middleware/auth";
-import { getUser, deleteUser } from "$services/user";
+import { getUser, deleteUser, updateWeight } from "$services/user";
 
 /**
   Nutzer-Router.
@@ -19,4 +19,9 @@ usersRouter.get("/:uid", async (ctx) => {
 
 usersRouter.delete("/", async (ctx) => {
   await deleteUser(ctx);
+});
+
+// New endpoint for updating user weight
+usersRouter.put("/update-weight", async (ctx) => {
+  await updateWeight(ctx);
 });
