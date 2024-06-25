@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import debounce from "lodash.debounce";
 import {
   LogOutIcon,
   UserIcon,
@@ -25,6 +26,11 @@ type UserIdProps = {
 
 type DisplayNameProps = {
   displayName: string;
+};
+
+type PrivacyProps = {
+  isPrivate: boolean;
+  setIsPrivate: (value: boolean) => void;
 };
 
 const UserId: FC<UserIdProps> = ({ userId }) => {
@@ -111,9 +117,34 @@ const DisplayName: FC<DisplayNameProps> = ({
   );
 };
 
+const Privacy: FC<PrivacyProps> = ({ isPrivate, setIsPrivate }) => {
+  const toggleAndSaveValue = async (value: boolean) => {
+    setIsPrivate(value);
+    await User.updateProfilePrivacy(value);
+  };
+
+  return (
+    <Card>
+      <div className="flex justify-between items-center gap-4">
+        <div className="flex flex-col gap-0.5">
+          <span className="font-bold">Private Profile</span>
+          <span className="text-sm">
+            People won't be able to add you as a friend.
+          </span>
+        </div>
+        <Switch
+          isActive={isPrivate}
+          onChange={debounce(toggleAndSaveValue, 1000)}
+        />
+      </div>
+    </Card>
+  );
+};
+
 export const ProfilePage: FC = () => {
   const [ displayName, setDisplayName ] = useState("");
   const [ email, setEmail ] = useState("");
+  const [ isPrivate, setIsPrivate ] = useState(false);
   const [ isSuccessful, setIsSuccessful ] = useState<boolean>();
 
   const navigate = useNavigate();
@@ -152,6 +183,7 @@ export const ProfilePage: FC = () => {
 
     setDisplayName(user.displayName || "");
     setEmail(user.email);
+    setIsPrivate(user.isPrivate);
     setIsSuccessful(true);
   };
 
@@ -189,18 +221,7 @@ export const ProfilePage: FC = () => {
 
               <UserId userId={jwt!.id}/>
               <DisplayName displayName={displayName}/>
-
-              <Card>
-                <div className="flex justify-between items-center gap-4">
-                  <div className="flex flex-col gap-0.5">
-                    <span className="font-bold">Private Profile</span>
-                    <span className="text-sm">
-                      Your profile won't show up in any searches.
-                    </span>
-                  </div>
-                  <Switch onChange={() => {}}/>
-                </div>
-              </Card>
+              <Privacy isPrivate={isPrivate} setIsPrivate={setIsPrivate}/>
 
               <span className="block w-full h-px bg-gray rounded"/>
 
