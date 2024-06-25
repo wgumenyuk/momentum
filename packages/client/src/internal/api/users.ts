@@ -6,6 +6,7 @@ type GetResponse = {
     displayName?: string;
     email: string;
     createdAt: number;
+    isPrivate: boolean;
   };
 };
 
@@ -26,6 +27,17 @@ export const User = {
     "/users/display-name",
     {
       displayName
+    }
+  ),
+
+  /**
+    Aktualisiert die Privatsphäreeinstellungen.
+  */
+  updateProfilePrivacy: (isPrivate: boolean) => request(
+    "PUT",
+    "/users/privacy",
+    {
+      isPrivate
     }
   ),
 
