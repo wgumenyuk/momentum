@@ -57,6 +57,32 @@ export const updateDisplayName = async (ctx: Context) => {
 };
 
 /**
+  Aktualisiert die Privatsphäreeinstellungen.
+*/
+export const updateProfilePrivacy = async (ctx: Context) => {
+  const userId = ctx.state.user.id;
+  const { isPrivate } = (ctx.request.body || {});
+
+  if(typeof isPrivate !== "boolean") {
+    // TODO: Passenden Fehlercode zurücksenden.
+    return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
+  }
+
+  const user = await User.findOne({
+    id: userId
+  });
+
+  if(!user) {
+    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
+  }
+
+  user.isPrivate = isPrivate;
+  await user.save();
+
+  ok(ctx, StatusCode.Success);
+};
+
+/**
   Löscht ein Nutzerkonto.
 */
 export const deleteUser = async (ctx: Context) => {
