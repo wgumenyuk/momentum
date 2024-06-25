@@ -2,7 +2,13 @@ import Router from "@koa/router";
 
 // Intern
 import { isAuthenticated } from "$api/middleware/auth";
-import { getUser, deleteUser, updateWeight } from "$services/user";
+import {
+  getUser,
+  updateWeight,
+  updateDisplayName,
+  updateProfilePrivacy,
+  deleteUser
+} from "$services/user";
 
 /**
   Nutzer-Router.
@@ -15,6 +21,14 @@ usersRouter.use(isAuthenticated);
 
 usersRouter.get("/:uid", async (ctx) => {
   await getUser(ctx);
+});
+
+usersRouter.put("/display-name", async (ctx) => {
+  await updateDisplayName(ctx);
+});
+
+usersRouter.put("/privacy", async (ctx) => {
+  await updateProfilePrivacy(ctx);
 });
 
 usersRouter.delete("/", async (ctx) => {

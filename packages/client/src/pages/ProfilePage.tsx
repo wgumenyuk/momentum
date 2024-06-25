@@ -1,25 +1,154 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOutIcon } from "lucide-react";
+import debounce from "lodash.debounce";
+import {
+  LogOutIcon,
+  UserIcon,
+  CheckIcon,
+  FingerprintIcon
+} from "lucide-react";
 
 // Intern
 import { User } from "$internal/api";
 import { useJwt } from "$components/JwtContext";
 import { BackgroundLayout } from "$components/Background";
 import { Card } from "$components/Card";
+import { Input } from "$components/Input";
 import { Switch } from "$components/Switch";
 import { Button } from "$components/Button";
 
 // Types
 import type { FC } from "react";
 
+type UserIdProps = {
+  userId: string;
+};
+
+type DisplayNameProps = {
+  displayName: string;
+};
+
+type PrivacyProps = {
+  isPrivate: boolean;
+  setIsPrivate: (value: boolean) => void;
+};
+
+const UserId: FC<UserIdProps> = ({ userId }) => {
+  return (
+    <Card>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-0.5">
+          <span className="font-bold">User ID</span>
+          <span className="text-sm">
+            Others can use this ID to add you as a friend. 
+          </span>
+        </div>
+        <Input
+          type="text"
+          className="bg-blue-700 pointer-events-none"
+          icon={FingerprintIcon}
+          value={userId}
+          onChange={() => { /* noop */ }}
+        />
+      </div> 
+    </Card>
+  );
+};
+
+const DisplayName: FC<DisplayNameProps> = ({
+  displayName: _displayName
+}) => {
+  const [ displayName, setDisplayName ] = useState(_displayName);
+  const [ showSuccess, setShowSuccess ] = useState(false);
+  const [ error, setError ] = useState(false);
+
+  const updateDisplayName = async () => {
+    const response = await User.updateDisplayName(displayName);
+
+    if(!response || !response.ok) {
+      setError(true);
+      return;
+    }
+
+    setShowSuccess(true);
+    setError(false);
+
+    await new Promise((resolve) => {
+      setTimeout(resolve, 1500);
+    });
+
+    setShowSuccess(false);
+  };
+
+  return (
+    <Card>
+      <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-0.5">
+          <span className="font-bold">Display name</span>
+          <span className="text-sm">
+            This name will be seen publicly.
+          </span>
+        </div>
+        <Input
+          type="text"
+          className="bg-blue-700"
+          icon={UserIcon}
+          value={displayName}
+          onChange={(value) => setDisplayName(value)}
+        />
+        {error && (
+          <span className="text-red-400 text-sm">
+            Invalid display name. 
+          </span>
+        )}
+        <Button
+          variant="blue"
+          onClick={updateDisplayName}
+        >
+          <span className="flex justify-center items-center gap-2">
+            Save
+            {showSuccess && (
+              <CheckIcon size="24px" className="text-green-300"/>
+            )}
+          </span>
+        </Button>
+      </div>
+    </Card>
+  );
+};
+
+const Privacy: FC<PrivacyProps> = ({ isPrivate, setIsPrivate }) => {
+  const toggleAndSaveValue = async (value: boolean) => {
+    setIsPrivate(value);
+    await User.updateProfilePrivacy(value);
+  };
+
+  return (
+    <Card>
+      <div className="flex justify-between items-center gap-4">
+        <div className="flex flex-col gap-0.5">
+          <span className="font-bold">Private Profile</span>
+          <span className="text-sm">
+            People won't be able to add you as a friend.
+          </span>
+        </div>
+        <Switch
+          isActive={isPrivate}
+          onChange={debounce(toggleAndSaveValue, 1000)}
+        />
+      </div>
+    </Card>
+  );
+};
+
 export const ProfilePage: FC = () => {
   const [ displayName, setDisplayName ] = useState("");
   const [ email, setEmail ] = useState("");
-  const [ hasFailed, setHasFailed ] = useState(false);
+  const [ isPrivate, setIsPrivate ] = useState(false);
+  const [ isSuccessful, setIsSuccessful ] = useState<boolean>();
 
   const navigate = useNavigate();
-  const { jwt } = useJwt()!;
+  const { jwt, setToken } = useJwt()!;
 
   const handleLogout = () => {
     navigate("/logout?return_to=/profile");
@@ -38,7 +167,7 @@ export const ProfilePage: FC = () => {
       return;
     }
 
-    localStorage.removeItem("token");
+    setToken(null);
     navigate("/login");
   };
 
@@ -46,7 +175,7 @@ export const ProfilePage: FC = () => {
     const response = await User.get(jwt!.id);
 
     if(!response || !response.ok) {
-      setHasFailed(true); 
+      setIsSuccessful(false); 
       return;
     }
 
@@ -54,6 +183,8 @@ export const ProfilePage: FC = () => {
 
     setDisplayName(user.displayName || "");
     setEmail(user.email);
+    setIsPrivate(user.isPrivate);
+    setIsSuccessful(true);
   };
 
   useEffect(() => {
@@ -70,39 +201,35 @@ export const ProfilePage: FC = () => {
           </button>
         </div>
         <div className="flex flex-col gap-6 w-full">
-          {hasFailed && (
+          {!isSuccessful && (
             <Card className="bg-red-400">
               <span>Failed to fetch your profile data.</span>
             </Card>
           )}
 
-          <Card>
-            <div className="flex justify-between items-center">
-              <div className="flex flex-col gap-0.5">
-                <span className="text-xl font-bold">{displayName}</span>
-                <span className="text-sm">{email}</span>
-              </div>
-              <div className="w-16 h-16 bg-gray rounded-lg"/>
-            </div> 
-          </Card>
+          {isSuccessful === true && (
+            <>
+              <Card>
+                <div className="flex justify-between items-center">
+                  <div className="flex flex-col gap-0.5">
+                    <span className="text-xl font-bold">{displayName}</span>
+                    <span className="text-sm">{email}</span>
+                  </div>
+                  <div className="w-16 h-16 bg-gray rounded-lg"/>
+                </div> 
+              </Card>
 
-          <Card>
-            <div className="flex justify-between items-center gap-4">
-              <div className="flex flex-col gap-0.5">
-                <span className="font-bold">Private Profile</span>
-                <span className="text-sm">
-                  Your profile won't show up in any searches.
-                </span>
-              </div>
-              <Switch onChange={() => {}}/>
-            </div>
-          </Card>
+              <UserId userId={jwt!.id}/>
+              <DisplayName displayName={displayName}/>
+              <Privacy isPrivate={isPrivate} setIsPrivate={setIsPrivate}/>
 
-          <span className="block w-full h-px bg-gray rounded"/>
+              <span className="block w-full h-px bg-gray rounded"/>
 
-          <Button variant="red" onClick={handleDeleteAccount}>
-            Delete Account
-          </Button> 
+              <Button variant="red" onClick={handleDeleteAccount}>
+                Delete Account
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </BackgroundLayout>

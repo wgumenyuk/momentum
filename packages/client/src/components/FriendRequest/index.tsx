@@ -9,26 +9,27 @@ import { Card } from "$components/Card";
 import type { FC } from "react";
 
 type FriendRequestProps = {
+  eventId: string;
   eventData: Record<string, string | number>;
 };
 
 /**
   Freundschaftsanfrage.
 */
-export const FriendRequest: FC<FriendRequestProps> = ({ eventData }) => {
+export const FriendRequest: FC<FriendRequestProps> = ({ eventId, eventData }) => {
   const [ isAckd, setIsAckd ] = useState<boolean>();
   const [ isAccepted, setIsAccepted ] = useState<boolean>();
 
   const { friendshipId, senderName } = eventData;
 
   const accept = async () => {
-    await Friendships.accept(friendshipId as string);
+    await Friendships.accept(friendshipId as string, eventId);
     setIsAckd(true);
     setIsAccepted(true);
   };
 
   const decline = async () => {
-    await Friendships.decline(friendshipId as string);
+    await Friendships.decline(friendshipId as string, eventId);
     setIsAckd(true);
     setIsAccepted(false);
   };

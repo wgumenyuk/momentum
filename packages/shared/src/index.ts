@@ -83,7 +83,10 @@ export const ErrorCode = {
   WorkoutInvalidDescription: "workout.invalid_description",
   WorkoutDescriptionTooLong: "workout.description_too_long",
   InvalidNumber: "invalid_number",
-  InvalidDate: "invalid_date"
+  InvalidDate: "invalid_date",
+  DisplayNameInvalid: "display_name.invalid",
+  DisplayNameTooShort: "display_name.too_short",
+  DisplayNameTooLong: "display_name.too_long"
 } as const;
 
 /**
@@ -423,6 +426,19 @@ export const FoodItemSchema = z.object({
 });
 
 export type FoodItemType = z.infer<typeof FoodItemSchema>;
+
+export const DisplayNameSchema = z.object({
+  displayName: z
+    .string({
+      message: ErrorCode.DisplayNameInvalid
+    })
+    .min(1, {
+      message: ErrorCode.DisplayNameTooShort
+    })
+    .max(18, {
+      message: ErrorCode.DisplayNameTooLong
+    })
+});
 
 /**
   Art des Events.

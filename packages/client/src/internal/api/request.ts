@@ -62,6 +62,7 @@ export const request = async <T extends Record<string, unknown> = Record<string,
     const response = await fetch(url, request);
     
     if(response.status === 401) {
+      localStorage.removeItem("token");
       location.href = "/login";
       return;
     }

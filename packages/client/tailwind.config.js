@@ -6,6 +6,9 @@ export default {
     "src/**/*.{css,js,jsx,ts,tsx}"
   ],
   theme: {
+    fontFamily: {
+      sans: "Outfit, system-ui, sans-serif"
+    },
     extend: {
       colors: {
         gray: "#D4D9E3",

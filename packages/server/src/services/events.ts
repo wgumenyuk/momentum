@@ -40,17 +40,13 @@ export const getEvents = async (ctx: Context) => {
     lean: true
   });
 
-  if(!events || events.length === 0) {
-    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
-  }
-
   ok(ctx, StatusCode.Success, {
     events
   });
 };
 
 /**
-  Löscht Events.
+  Löscht alle Events.
 */
 export const deleteEvents = async (ctx: Context) => {
   const userId = ctx.state.user.id;
@@ -58,6 +54,27 @@ export const deleteEvents = async (ctx: Context) => {
   await Event.deleteMany({
     userId
   });
+
+  ok(ctx, StatusCode.Success);
+};
+
+/**
+  Löscht ein Event.
+*/
+export const deleteEvent = async (ctx: Context) => {
+  const userId = ctx.state.user.id;
+  const { id: eventId } = ctx.params;
+
+  const event = await Event.findOne({
+    id: eventId,
+    userId
+  });
+
+  if(!event) {
+    return nok(ctx, StatusCode.NotFound, ErrorCode.NotFound);
+  }
+
+  await event.deleteOne();
 
   ok(ctx, StatusCode.Success);
 };

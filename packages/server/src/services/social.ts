@@ -1,10 +1,11 @@
 import { nanoid } from "nanoid";
 
 // Intern
-import { StatusCode, ErrorCode } from "@momentum/shared";
+import { StatusCode, ErrorCode, EventKind } from "@momentum/shared";
 import { ok, nok } from "$api/response";
 import { User } from "$models/user";
 import { Friendship } from "$models/friendship";
+import { Event } from "$models/event";
 
 // Types
 import type { Context } from "koa";
@@ -44,9 +45,9 @@ export const getFriendships = async (ctx: Context) => {
 */
 export const createFriendship = async (ctx: Context) => {
   const senderId = ctx.state.user.id;
-  const { recipientId } = ctx.req.body; 
+  const { recipientId } = ctx.request.body; 
 
-  if(!recipientId) {
+  if(!recipientId || senderId === recipientId) {
     // TODO: Passenden Fehlercode zurücksenden.
     return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
   }
@@ -60,6 +61,14 @@ export const createFriendship = async (ctx: Context) => {
   if(!userExists) {
     // TODO: Passenden Fehlercode zurücksenden.
     return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
+  }
+
+  const sender = await User.findOne({
+    id: senderId
+  });
+
+  if(!sender) {
+    return;
   }
 
   const isFriends = !!(
@@ -90,6 +99,19 @@ export const createFriendship = async (ctx: Context) => {
 
   await friendship.save();
 
+  const event = new Event({
+    id: nanoid(),
+    userId: recipientId,
+    kind: EventKind.FriendRequestReceived,
+    data: {
+      friendshipId: friendship.id,
+      senderName: sender.displayName
+    },
+    createdAt: new Date()
+  });
+
+  await event.save();
+
   ok(ctx, StatusCode.Success, {
     id: friendship.id
   });
@@ -101,6 +123,7 @@ export const createFriendship = async (ctx: Context) => {
 export const acceptFriendship = async (ctx: Context) => {
   const userId = ctx.state.user.id;
   const { id: friendshipId } = ctx.params;
+  const { eventId } = ctx.request.body;
 
   if(!friendshipId) {
     // TODO: Passenden Fehlercode zurücksenden.
@@ -121,6 +144,14 @@ export const acceptFriendship = async (ctx: Context) => {
     friendship.userId2 :
     friendship.userId1;
 
+  const recipient = await User.findOne({
+    id: userId
+  });
+
+  if(!recipient) {
+    return;
+  }
+
   const userExists = !!(
     await User.exists({
       id: senderId
@@ -138,7 +169,25 @@ export const acceptFriendship = async (ctx: Context) => {
 
   await friendship.save();
 
-  // TODO Benachrichtigung an Sender schicken.
+  // Benachrichtigung löschen, nachdem die Freundschaftsanfrage akzeptiert wurde.
+  await Event.deleteOne({
+    id: eventId,
+    userId,
+    kind: EventKind.FriendRequestReceived
+  });
+
+  const event = new Event({
+    id: nanoid(),
+    userId: senderId,
+    kind: EventKind.FriendRequestAccepted,
+    data: {
+      friendshipId: friendship.id,
+      recipientName: recipient.displayName
+    },
+    createdAt: new Date()
+  });
+
+  await event.save();
 
   ok(ctx, StatusCode.Success);
 };
@@ -149,6 +198,7 @@ export const acceptFriendship = async (ctx: Context) => {
 export const declineFriendship = async (ctx: Context) => {
   const userId = ctx.state.user.id;
   const { id: friendshipId } = ctx.params;
+  const { eventId } = ctx.request.body;
 
   const friendship = await Friendship.findOne({
     id: friendshipId,
@@ -167,6 +217,13 @@ export const declineFriendship = async (ctx: Context) => {
     // TODO: Passenden Fehlercode zurücksenden.
     return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
   }
+
+  // Benachrichtigung löschen.
+  await Event.deleteOne({
+    id: eventId,
+    userId,
+    kind: EventKind.FriendRequestReceived
+  });
 
   await friendship.deleteOne();
 

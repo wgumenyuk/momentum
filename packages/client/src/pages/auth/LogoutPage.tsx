@@ -1,13 +1,17 @@
 import React from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 // Intern
+import { LogOutIcon } from "lucide-react";
 import { useJwt } from "$components/JwtContext";
 import { BackgroundLayout } from "$components/Background";
+import { Card } from "$components/Card";
+import { Button } from "$components/Button";
 
 export const LogoutPage: React.FC = () => {
   const navigate = useNavigate();
   const [ searchParams ] = useSearchParams();
+
   const { setToken } = useJwt()!;
 
   const handleLogout = () => {
@@ -15,32 +19,28 @@ export const LogoutPage: React.FC = () => {
     navigate("/login");
   };
 
-  const handleCancel = () => {
-    const returnTo = searchParams.get("return_to") || "/profile";
-    navigate(returnTo);
-  };
-
   return (
     <BackgroundLayout>
-      <div className="flex justify-center items-center h-full w-full">
-        <div className="w-90 h-40 bg-[#D4D9E3] rounded-lg flex flex-col items-center justify-between p-5 box-border">
-          <div className="text-[#011518] text-lg text-center mt-2.5">Are you sure you want to log out?</div>
-          <div className="flex justify-between w-full mt-4">
-            <div
-              className="w-32 h-12 bg-gradient-to-r from-[#40A3BC] to-[#245A68] rounded-lg flex justify-center items-center text-white text-lg cursor-pointer transition duration-300 hover:bg-gradient-to-r hover:from-[#245A68] hover:to-[#40A3BC] mx-2"
-              onClick={handleLogout}
-            >
-              Yes
-            </div>
-            <div
-              className="w-32 h-12 bg-gradient-to-r from-[#40A3BC] to-[#245A68] rounded-lg flex justify-center items-center text-white text-lg cursor-pointer transition duration-300 hover:bg-gradient-to-r hover:from-[#245A68] hover:to-[#40A3BC] mx-2"
-              onClick={handleCancel}
-            >
-              No
-            </div>
-          </div>
+      <Card className="flex flex-col items-center gap-8 p-8">
+        <div className="flex items-center gap-2">
+          <LogOutIcon/>
+          <span className="text-xl">You're about to log out &ndash; proceed?</span>
         </div>
-      </div>
+        <div className="flex justify-between items-center gap-8">
+          <Button
+            variant="blue"
+            onClick={handleLogout}
+          >
+            Yes, log out
+          </Button>
+          <Link
+            to={searchParams.get("return_to") || "/profile"}
+            className="text-red-400 text-xl"
+          >
+            Cancel
+          </Link>
+        </div>
+      </Card>
     </BackgroundLayout>
   );
 };

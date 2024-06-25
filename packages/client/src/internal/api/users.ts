@@ -6,6 +6,7 @@ type GetResponse = {
     displayName?: string;
     email: string;
     createdAt: number;
+    isPrivate: boolean;
   };
 };
 
@@ -19,9 +20,31 @@ export const User = {
   get: (userId: string) => request<GetResponse>("GET", `/users/${userId}`),
 
   /**
+    Aktualisiert den Anzeigenamen.
+  */
+  updateDisplayName: (displayName: string) => request(
+    "PUT",
+    "/users/display-name",
+    {
+      displayName
+    }
+  ),
+
+  /**
+    Aktualisiert die Privatsphäreeinstellungen.
+  */
+  updateProfilePrivacy: (isPrivate: boolean) => request(
+    "PUT",
+    "/users/privacy",
+    {
+      isPrivate
+    }
+  ),
+
+  /**
     Löscht das eigene Nutzerkonto.
   */
-  deleteAccount: () => request("DELETE", "/users/delete"),
+  deleteAccount: () => request("DELETE", "/users"),
 
   updateWeight: () => request("PUT", "/users/update-weight")
 };

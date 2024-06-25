@@ -9,6 +9,7 @@ import { workoutRouter } from "$api/v1/workouts";
 import { pastWorkoutRouter } from "$api/v1/past-workouts";
 import { friendshipRouter } from "$api/v1/friendship";
 import { eventsRouter } from "$api/v1/events";
+import { exerciseRouter } from "$api/v1/exercises";
 
 /**
   Router.
@@ -23,6 +24,7 @@ router.use(workoutRouter.routes());
 router.use(pastWorkoutRouter.routes());
 router.use(friendshipRouter.routes());
 router.use(eventsRouter.routes());
+router.use(exerciseRouter.routes());
 
 router.get("/status", (ctx) => {
   ok(ctx, StatusCode.Success);

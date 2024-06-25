@@ -16,6 +16,7 @@ import WorkoutStack from "$pages/workout/WorkoutStack";
 import { SocialPage } from "$pages/social";
 import { NotFoundPage } from "$pages/NotFound";
 import "./index.css";
+import LandingPage from "$pages/general/landing_page";
 
 const root = document.getElementById("root")!;
 
@@ -24,6 +25,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <MainPage/>
   },
+  {
+    path: "landing_page",
+    element: <LandingPage/>
+  },
+  
+
+ 
   {
     path: "/login",
     element: <LoginPage/>
