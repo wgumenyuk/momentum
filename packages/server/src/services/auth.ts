@@ -90,7 +90,7 @@ export const login = async (ctx: Context) => {
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: "1h"
+      expiresIn: "1w"
     }
   );
 
