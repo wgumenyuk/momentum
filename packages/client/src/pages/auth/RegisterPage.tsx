@@ -26,7 +26,7 @@ export const RegisterPage: React.FC = () => {
     if(jwt) {
       navigate("/home");
     }
-  }, []);
+  }, [ jwt, navigate ]);
 
   // TODO: Diese Fehlernachrichten werden zu einem späteren Zeitpunkt in einer
   // zentralen internationalisierten Datei gespeichert.
@@ -66,6 +66,13 @@ export const RegisterPage: React.FC = () => {
     navigate("/login");
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLFormElement>) => {
+    if(e.key === "Enter") {
+      e.preventDefault();
+      handleSubmit();
+    }
+  };
+
   return (
     <BackgroundLayout>
       <div className="w-96 mx-auto p-6 bg-gray text-blue-900 rounded-xl shadow-lg">
@@ -80,7 +87,7 @@ export const RegisterPage: React.FC = () => {
           </span>
         }
 
-        <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-4" onKeyDown={handleKeyDown} onSubmit={(e) => e.preventDefault()}>
           <Input
             type="text"
             placeholder="you@example.com"
