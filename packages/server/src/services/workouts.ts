@@ -12,7 +12,6 @@ import { Workout } from "$models/workout";
 // Types
 import type { Context } from "koa";
 import type { ErrorCodeValue } from "@momentum/shared";
-import { log } from "$internal/logger";
 
 /**
   Erstellt einen neues Workout.
@@ -67,13 +66,11 @@ export const getWorkout = async (ctx: Context) => {
   Ruft alle Workouts eines Nutzers ab.
 */
 export const getWorkouts = async (ctx: Context) => {
-  log.debug("get workout called");
   const userId = ctx.state.user.id;
 
   const workouts = await Workout.find({
     userId
   }, "-_id -__v");
-  log.debug(workouts);
 
   ok(ctx, StatusCode.Success, {
     workouts
