@@ -9,8 +9,8 @@ import { useJwt } from "$components/JwtContext";
 
 const WorkoutStack: React.FC = () => {
   const [ navigationStack, setNavigationStack ] = useState([ "workouts" ]); // Set initial view to workouts
-  const jwt = useJwt();
-  const userId =  jwt!.id;
+  const { jwt } = useJwt()!;
+  const userId = jwt!.id;
 
   console.log(userId);
 
