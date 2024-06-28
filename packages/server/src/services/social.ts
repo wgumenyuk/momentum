@@ -52,13 +52,16 @@ export const createFriendship = async (ctx: Context) => {
     return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
   }
 
-  const userExists = !!(
-    await User.exists({
-      id: recipientId
-    })
-  );
+  const recipient = await User.findOne({
+    id: recipientId
+  });
 
-  if(!userExists) {
+  if(!recipient) {
+    // TODO: Passenden Fehlercode zurücksenden.
+    return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
+  }
+
+  if(recipient.isPrivate) {
     // TODO: Passenden Fehlercode zurücksenden.
     return nok(ctx, StatusCode.BadRequest, ErrorCode.InternalError);
   }
