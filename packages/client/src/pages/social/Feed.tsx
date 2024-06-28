@@ -55,7 +55,7 @@ export const Feed: FC<FeedProps> = ({ setNavStack }) => {
       <div className="flex flex-col gap-6 w-full">
         {hasFailed && (
           <Card className="bg-red-400">
-            We couldn't fetch your feed.
+            Failed to fetch your feed.
           </Card>
         )}
 
