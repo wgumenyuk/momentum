@@ -46,6 +46,7 @@ export const Input: FC<InputProps> = ({
         onChange={handleChange}
         value={value}
         placeholder={placeholder}
+        spellCheck={false}
         className="bg-transparent w-full h-full px-4 py-3.5 focus:outline-none"
       />
       {children}
