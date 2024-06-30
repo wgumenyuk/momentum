@@ -197,7 +197,7 @@ const Privacy: FC<PrivacyProps> = ({ isPrivate, setIsPrivate }) => {
         <div className="flex flex-col gap-0.5">
           <span className="font-bold">Private Profile</span>
           <span className="text-sm">
-            People won't be able to add you as a friend.
+            Other users won't be able to add you as a friend.
           </span>
         </div>
         <Switch
