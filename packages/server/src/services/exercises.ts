@@ -4,7 +4,7 @@ import { StatusCode } from "@momentum/shared";
 import { ok } from "$api/response";
 import { Exercise } from "$models/exercise";
 
-// Types
+// Types.
 import type { Context } from "koa";
 
 /**
