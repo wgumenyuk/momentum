@@ -42,5 +42,5 @@ export const seeder = async <T extends Record<string, unknown>>(
 
   await model.bulkWrite(writes);
 
-  log.info(`finalized seeding for "${model.modelName} model"`);
+  log.info(`finalized seeding for "${model.modelName}" model`);
 };
