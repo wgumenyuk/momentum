@@ -1,4 +1,5 @@
 import React from "react";
+import { Edit } from "lucide-react";
 
 export interface BlueprintItemProps {
   name: string;
@@ -13,7 +14,7 @@ export const BlueprintItem: React.FC<BlueprintItemProps> = ({ name, description 
         <p className="text-sm text-gray-600">{description}</p>
       </div>
       <button className="p-2 bg-white rounded-lg shadow-md">
-        {/* Add action buttons here */}
+        <Edit className="w-7 h-7 text-current"/>
       </button>
     </div>
   );
