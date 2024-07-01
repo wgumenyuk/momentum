@@ -17,8 +17,8 @@ export const TagFilterModal: React.FC<TagFilterModalProps> = ({
 }) => {
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-        <h2 className="text-xl font-bold mb-4">Filter by Tags</h2>
+      <div className="bg-gray-800 p-6 rounded-lg shadow-lg w-96">
+        <h2 className="text-xl font-bold text-white mb-4">Filter by Tags</h2>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
             <button
@@ -26,7 +26,7 @@ export const TagFilterModal: React.FC<TagFilterModalProps> = ({
               onClick={() =>
                 selectedTags.includes(tag) ? onDeselectTag(tag) : onSelectTag(tag)
               }
-              className={`p-2 rounded-lg ${selectedTags.includes(tag) ? "bg-blue-500 text-white" : "bg-gray-200"}`}
+              className={`p-2 rounded-lg ${selectedTags.includes(tag) ? "bg-blue-500 text-white" : "bg-gray-600 text-gray-200"}`}
             >
               {tag}
             </button>
