@@ -86,7 +86,12 @@ export const ErrorCode = {
   InvalidDate: "invalid_date",
   DisplayNameInvalid: "display_name.invalid",
   DisplayNameTooShort: "display_name.too_short",
-  DisplayNameTooLong: "display_name.too_long"
+  DisplayNameTooLong: "display_name.too_long",
+  BlueprintInvalidName: "blueprint.invalid_name",
+  BlueprintNameTooShort: "blueprint.name_too_short",
+  BlueprintNameTooLong: "blueprint.name_too_long",
+  BlueprintInvalidDescription: "blueprint.invalid_description",
+  BlueprintDescriptionTooLong: "blueprint.description_too_long"
 } as const;
 
 /**
@@ -486,4 +491,100 @@ export type JwtPayload = {
     Nutzer-ID.
   */
   id: string;
+};
+
+/**
+  Schema für Blueprints.
+*/
+export const BlueprintSchema = z.object({
+  /**
+    Name.
+  */
+  name: z
+    .string({
+      message: ErrorCode.BlueprintInvalidName
+    })
+    .min(1, {
+      message: ErrorCode.BlueprintNameTooShort
+    })
+    .max(64, {
+      message: ErrorCode.BlueprintNameTooLong
+    }),
+
+  /**
+    Beschreibung.
+  */
+  description: z
+    .string({
+      message: ErrorCode.BlueprintInvalidDescription
+    })
+    .max(256, {
+      message: ErrorCode.BlueprintDescriptionTooLong
+    })
+    .optional(),
+
+  /**
+    Tags.
+  */
+  tags: z.array(z.string()),
+
+  /**
+    Liste von Übungen.
+  */
+  exercises: z.array(
+    z.object({
+      exerciseId: z.string(),
+      sets: z
+        .number({
+          message: ErrorCode.InvalidNumber
+        })
+        .positive({
+          message: ErrorCode.InvalidNumber
+        }),
+      reps: z
+        .number({
+          message: ErrorCode.InvalidNumber
+        })
+        .positive({
+          message: ErrorCode.InvalidNumber
+        })
+    })
+  )
+});
+
+export type BlueprintSchemaType = z.infer<typeof BlueprintSchema>;
+
+/**
+  Blueprint.
+*/
+export type Blueprint = {
+  /**
+    ID.
+  */
+  id: string;
+
+  /**
+    Nutzer-ID.
+  */
+  userId: string;
+
+  /**
+    Name.
+  */
+  name: string;
+
+  /**
+    Beschreibung.
+  */
+  description: string;
+
+  /**
+   Tags.
+  */
+  tags: string[]
+
+  /**
+    Liste von Übungen.
+  */
+  exercises: ExerciseEntry[];
 };
