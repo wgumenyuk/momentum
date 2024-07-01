@@ -1,40 +1,65 @@
-import React, { useState } from "react";
-import { Input } from "$components/Input";
+import React, { useState, useEffect } from "react";
+import { BlueprintList } from "$components/Blueprint/list";
+import { BlueprintsService } from "$internal/api/blueprints";
+import { Blueprint as BlueprintType, Response } from "@momentum/shared";
 
-export const BlueprintForm: React.FC = () => {
-  const [ name, setName ] = useState("");
-  const [ description, setDescription ] = useState("");
+const BlueprintsPage: React.FC = () => {
+  const [ blueprints, setBlueprints ] = useState<BlueprintType[]>([]);
+  const [ filteredBlueprints, setFilteredBlueprints ] = useState<BlueprintType[]>([]);
+  const [ filter, setFilter ] = useState<string>("");
+  const [ error, setError ] = useState<string | null>(null);
 
-  const handleNameChange = (value: string) => {
-    setName(value);
-  };
+  useEffect(() => {
+    const fetchBlueprints = async () => {
+      try {
+        const response: Response<{ blueprints: BlueprintType[] }> | null | undefined = await BlueprintsService.getAll();
+        if(response && response.ok) {
+          setBlueprints(response.data.blueprints);
+          setFilteredBlueprints(response.data.blueprints);
+        } else if(response) {
+          setError(response.err);
+        } else {
+          setError("Unexpected error occurred");
+        }
+      } catch(error) {
+        console.error("Error fetching blueprints:", error);
+        setError("Failed to fetch blueprints");
+      }
+    };
 
-  const handleDescriptionChange = (value: string) => {
-    setDescription(value);
-  };
+    fetchBlueprints();
+  }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-  };
+  useEffect(() => {
+    if(filter) {
+      setFilteredBlueprints(
+        blueprints.filter((blueprint) =>
+          blueprint.tags.some((tag) =>
+            tag.toLowerCase().includes(filter.toLowerCase())
+          )
+        )
+      );
+    } else {
+      setFilteredBlueprints(blueprints);
+    }
+  }, [ filter, blueprints ]);
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <Input
-        type="text"
-        placeholder="Blueprint Name"
-        value={name}
-        onChange={handleNameChange}
-      />
-      <Input
-        type="text"
-        placeholder="Description"
-        value={description}
-        onChange={handleDescriptionChange}
-      />
-      <button type="submit" className="p-2 bg-blue-500 rounded-lg text-white">
-        Save
-      </button>
-    </form>
+    <div className="min-h-screen w-full bg-gray-900 p-6">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-bold text-gray-500">Blueprints</h1>
+        <input
+          type="text"
+          placeholder="Filter by tag"
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          className="p-2 rounded-lg"
+        />
+      </div>
+      {error && <div className="text-red-500">{error}</div>}
+      <BlueprintList blueprints={filteredBlueprints}/>
+    </div>
   );
 };
+
+export default BlueprintsPage;
