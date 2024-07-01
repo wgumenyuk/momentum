@@ -492,3 +492,59 @@ export type JwtPayload = {
   */
   id: string;
 };
+
+/**
+  Schema für Blueprints.
+*/
+export const BlueprintSchema = z.object({
+  /**
+    Name.
+  */
+  name: z
+    .string({
+      message: ErrorCode.BlueprintInvalidName
+    })
+    .min(1, {
+      message: ErrorCode.BlueprintNameTooShort
+    })
+    .max(64, {
+      message: ErrorCode.BlueprintNameTooLong
+    }),
+
+  /**
+    Beschreibung.
+  */
+  description: z
+    .string({
+      message: ErrorCode.BlueprintInvalidDescription
+    })
+    .max(256, {
+      message: ErrorCode.BlueprintDescriptionTooLong
+    })
+    .optional(),
+
+  /**
+    Liste von Übungen.
+  */
+  exercises: z.array(
+    z.object({
+      exerciseId: z.string(),
+      sets: z
+        .number({
+          message: ErrorCode.InvalidNumber
+        })
+        .positive({
+          message: ErrorCode.InvalidNumber
+        }),
+      reps: z
+        .number({
+          message: ErrorCode.InvalidNumber
+        })
+        .positive({
+          message: ErrorCode.InvalidNumber
+        })
+    })
+  )
+});
+
+export type BlueprintSchemaType = z.infer<typeof BlueprintSchema>;
