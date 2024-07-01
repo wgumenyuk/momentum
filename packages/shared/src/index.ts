@@ -548,3 +548,33 @@ export const BlueprintSchema = z.object({
 });
 
 export type BlueprintSchemaType = z.infer<typeof BlueprintSchema>;
+
+/**
+  Blueprint.
+*/
+export type Blueprint = {
+  /**
+    ID.
+  */
+  id: string;
+
+  /**
+    Nutzer-ID.
+  */
+  userId: string;
+
+  /**
+    Name.
+  */
+  name: string;
+
+  /**
+    Beschreibung.
+  */
+  description: string;
+
+  /**
+    Liste von Übungen.
+  */
+  exercises: ExerciseEntry[];
+};
