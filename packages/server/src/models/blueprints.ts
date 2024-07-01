@@ -20,6 +20,9 @@ const BlueprintSchema = new Schema<BlueprintType>({
   description: {
     type: "string"
   },
+  tags: {
+    type: [ String ]
+  },
   exercises: {
     type: [
       {
