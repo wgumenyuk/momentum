@@ -6,7 +6,8 @@ export default {
   title: "Components/TagFilterModal",
   component: TagFilterModal,
   parameters: {
-    layout: "fullscreen"
+    layout: "fullscreen",
+    backgrounds: { default: "dark" } // Set default background to dark
   }
 } as Meta;
 
@@ -42,6 +43,5 @@ Default.args = {
     "Chest", "Triceps", "Shoulders", "Upper Body", "Back", "Biceps", "Legs", "Quads", "Hamstrings", "Calves",
     "60 Minutes", "Muscle Growth", "Balanced", "Arms Focused", "Powerlifting", "Strength", "Strength Endurance",
     "Time Efficient", "Calisthenics"
-  ],
-  selectedTags: []
+  ]
 };
