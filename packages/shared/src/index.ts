@@ -524,6 +524,11 @@ export const BlueprintSchema = z.object({
     .optional(),
 
   /**
+    Tags.
+  */
+  tags: z.array(z.string()),
+
+  /**
     Liste von Übungen.
   */
   exercises: z.array(
@@ -572,6 +577,11 @@ export type Blueprint = {
     Beschreibung.
   */
   description: string;
+
+  /**
+   Tags.
+  */
+  tags: string[]
 
   /**
     Liste von Übungen.
