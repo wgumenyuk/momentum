@@ -86,7 +86,12 @@ export const ErrorCode = {
   InvalidDate: "invalid_date",
   DisplayNameInvalid: "display_name.invalid",
   DisplayNameTooShort: "display_name.too_short",
-  DisplayNameTooLong: "display_name.too_long"
+  DisplayNameTooLong: "display_name.too_long",
+  BlueprintInvalidName: "blueprint.invalid_name",
+  BlueprintNameTooShort: "blueprint.name_too_short",
+  BlueprintNameTooLong: "blueprint.name_too_long",
+  BlueprintInvalidDescription: "blueprint.invalid_description",
+  BlueprintDescriptionTooLong: "blueprint.description_too_long"
 } as const;
 
 /**
