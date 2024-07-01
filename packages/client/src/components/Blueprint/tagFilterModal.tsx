@@ -21,15 +21,19 @@ export const TagFilterModal: React.FC<TagFilterModalProps> = ({
         <h2 className="text-xl font-bold text-white mb-4">Filter by Tags</h2>
         <div className="flex flex-wrap gap-2">
           {tags.map((tag) => (
-            <button
+            <div
               key={tag}
-              onClick={() =>
-                selectedTags.includes(tag) ? onDeselectTag(tag) : onSelectTag(tag)
-              }
-              className={`p-2 rounded-lg ${selectedTags.includes(tag) ? "bg-blue-500 text-white" : "bg-gray-600 text-gray-200"}`}
+              className={`p-2 rounded-lg ${selectedTags.includes(tag) ? "bg-blue-600" : "bg-blue-800"} text-white`}
             >
-              {tag}
-            </button>
+              <button
+                onClick={() =>
+                  selectedTags.includes(tag) ? onDeselectTag(tag) : onSelectTag(tag)
+                }
+                className="focus:outline-none"
+              >
+                {tag}
+              </button>
+            </div>
           ))}
         </div>
         <div className="mt-4 flex justify-end">
