@@ -1,21 +1,22 @@
 import React from "react";
 import { DictionaryTopicType } from "@momentum/shared";
-import { Link } from "react-router-dom";
 
 export interface TopicListProps {
   topics: DictionaryTopicType[];
   onTopicClick: (topicId: string) => void;
 }
 
-export const TopicList: React.FC<TopicListProps> = ({ topics }) => {
+export const TopicList: React.FC<TopicListProps> = ({ topics, onTopicClick }) => {
   return (
     <div className="space-y-4">
       {topics.map((topic) => (
-        <Link key={topic.id} to={`/dictionary/topic/${topic.id}`}>
-          <div className="block p-4 bg-blue-800 rounded-lg shadow-md text-white">
-            {topic.title}
-          </div>
-        </Link>
+        <div
+          key={topic.id}
+          className="block p-4 bg-blue-800 rounded-lg shadow-md text-white cursor-pointer mb-4"
+          onClick={() => onTopicClick(topic.id)}
+        >
+          {topic.title}
+        </div>
       ))}
     </div>
   );
