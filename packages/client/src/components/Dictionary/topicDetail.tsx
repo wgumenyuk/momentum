@@ -1,7 +1,7 @@
 import React from "react";
 import { DictionaryTopicType } from "@momentum/shared";
 
-interface TopicDetailProps {
+export interface TopicDetailProps {
   topic: DictionaryTopicType;
 }
 
