@@ -1,7 +1,6 @@
 import React from "react";
 import { Meta, StoryFn } from "@storybook/react";
 import { TopicList, TopicListProps } from "./topicList";
-import { BrowserRouter } from "react-router-dom";
 
 export default {
   title: "Components/Dictionary/TopicList",
@@ -9,9 +8,9 @@ export default {
 } as Meta;
 
 const Template: StoryFn<TopicListProps> = (args) => (
-  <BrowserRouter>
+  <div className="p-4 bg-gray-900">
     <TopicList {...args}/>
-  </BrowserRouter>
+  </div>
 );
 
 export const Default = Template.bind({});
