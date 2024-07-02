@@ -92,7 +92,15 @@ const dictionaryTopics = [
   { id: "63", category: "fitness-terminology", title: "DOMS (Delayed Onset Muscle Soreness)", content: "Muscle pain that occurs hours to days after exercise.", references: [] },
   { id: "64", category: "fitness-terminology", title: "Plyometrics", content: "Explosive exercises to improve power and speed.", references: [] },
   { id: "65", category: "fitness-terminology", title: "Isometric vs. Isotonic Exercises", content: "Isometric exercises involve holding a position under tension without movement, while isotonic exercises involve movement.", references: [] },
-  { id: "66", category: "fitness-terminology", title: "Eccentric and Concentric Movements", content: "Eccentric is the lengthening of a muscle under tension, and concentric is the shortening of a muscle.", references: [] }
+  { id: "66", category: "fitness-terminology", title: "Eccentric and Concentric Movements", content: "Eccentric is the lengthening of a muscle under tension, and concentric is the shortening of a muscle.", references: [] },
+
+  // Motivation and Mindset
+  { id: "67", category: "motivation-mindset", title: "SMART Goals", content: "Specific, Measurable, Achievable, Relevant, Time-bound goals.", references: [] },
+  { id: "68", category: "motivation-mindset", title: "Long-Term vs. Short-Term Goals", content: "Differentiating and planning for immediate and future fitness objectives.", references: [] },
+  { id: "69", category: "motivation-mindset", title: "Fitness Journals", content: "Recording workouts, nutrition, and progress.", references: [] },
+  { id: "70", category: "motivation-mindset", title: "Apps and Tools", content: "Digital tools to track and analyze fitness progress.", references: [] },
+  { id: "71", category: "motivation-mindset", title: "Overcoming Plateaus", content: "Techniques to break through fitness plateaus.", references: [] },
+  { id: "72", category: "motivation-mindset", title: "Mental Toughness", content: "Developing resilience and perseverance in training.", references: [] }
 ];
 
 export const seedDictionary = async () => {
