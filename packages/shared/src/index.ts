@@ -487,3 +487,20 @@ export type JwtPayload = {
   */
   id: string;
 };
+
+export const DictionaryCategorySchema = z.object({
+  id: z.string(),
+  name: z.string()
+});
+
+export type DictionaryCategoryType = z.infer<typeof DictionaryCategorySchema>;
+
+export const DictionaryTopicSchema = z.object({
+  id: z.string(),
+  category: z.string(),
+  title: z.string(),
+  content: z.string(),
+  references: z.array(z.string())
+});
+
+export type DictionaryTopicType = z.infer<typeof DictionaryTopicSchema>;
