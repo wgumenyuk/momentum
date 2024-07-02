@@ -106,7 +106,12 @@ const dictionaryTopics = [
   { id: "73", category: "scientific-research", title: "Landmark Research in Exercise Science", content: "Significant studies that shaped current fitness knowledge.", references: [] },
   { id: "74", category: "scientific-research", title: "Nutrition Studies", content: "Research on diet and its impact on health and performance.", references: [] },
   { id: "75", category: "scientific-research", title: "Latest Trends", content: "Current trends in fitness research.", references: [] },
-  { id: "76", category: "scientific-research", title: "Emerging Topics", content: "New and upcoming areas of study in fitness and nutrition.", references: [] }
+  { id: "76", category: "scientific-research", title: "Emerging Topics", content: "New and upcoming areas of study in fitness and nutrition.", references: [] },
+
+  // Historical Perspectives
+  { id: "77", category: "historical-perspectives", title: "History of Exercise", content: "How fitness practices have changed over time.", references: [] },
+  { id: "78", category: "historical-perspectives", title: "Ancient Exercise Practices", content: "Historical methods of exercise and their origins.", references: [] },
+  { id: "79", category: "historical-perspectives", title: "Notable Figures in Fitness", content: "Influential individuals in the history of fitness and their contributions.", references: [] }
 ];
 
 export const seedDictionary = async () => {
