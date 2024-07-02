@@ -83,7 +83,16 @@ const dictionaryTopics = [
   { id: "56", category: "fitness-influencers", title: "Strength Training Influencer", content: "Bio and key teachings of a popular strength training influencer.", references: [ "https://strength-influencer.com" ] },
   { id: "57", category: "fitness-influencers", title: "Nutrition Expert Influencer", content: "Bio and key teachings of a popular nutrition expert.", references: [ "https://nutrition-expert.com" ] },
   { id: "58", category: "fitness-influencers", title: "Cardio and Endurance Influencer", content: "Bio and key teachings of a popular cardio and endurance influencer.", references: [ "https://cardio-influencer.com" ] },
-  { id: "59", category: "fitness-influencers", title: "Yoga and Flexibility Influencer", content: "Bio and key teachings of a popular yoga and flexibility influencer.", references: [ "https://yoga-influencer.com" ] }
+  { id: "59", category: "fitness-influencers", title: "Yoga and Flexibility Influencer", content: "Bio and key teachings of a popular yoga and flexibility influencer.", references: [ "https://yoga-influencer.com" ] },
+
+  // Fitness Terminology
+  { id: "60", category: "fitness-terminology", title: "Reps and Sets", content: "Reps (repetitions) are the number of times you perform an exercise. Sets are groups of reps.", references: [] },
+  { id: "61", category: "fitness-terminology", title: "Supersets", content: "Performing two exercises back-to-back without rest.", references: [] },
+  { id: "62", category: "fitness-terminology", title: "AMRAP (As Many Reps As Possible)", content: "Completing as many reps as possible in a given time.", references: [] },
+  { id: "63", category: "fitness-terminology", title: "DOMS (Delayed Onset Muscle Soreness)", content: "Muscle pain that occurs hours to days after exercise.", references: [] },
+  { id: "64", category: "fitness-terminology", title: "Plyometrics", content: "Explosive exercises to improve power and speed.", references: [] },
+  { id: "65", category: "fitness-terminology", title: "Isometric vs. Isotonic Exercises", content: "Isometric exercises involve holding a position under tension without movement, while isotonic exercises involve movement.", references: [] },
+  { id: "66", category: "fitness-terminology", title: "Eccentric and Concentric Movements", content: "Eccentric is the lengthening of a muscle under tension, and concentric is the shortening of a muscle.", references: [] }
 ];
 
 export const seedDictionary = async () => {
