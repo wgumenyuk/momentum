@@ -77,7 +77,13 @@ const dictionaryTopics = [
   { id: "52", category: "health-wellness", title: "Foam Rolling", content: "Self-myofascial release technique to alleviate muscle tightness.", references: [] },
   { id: "53", category: "health-wellness", title: "Proper Form", content: "Using correct techniques during exercises to prevent injuries.", references: [] },
   { id: "54", category: "health-wellness", title: "Warm-Up and Cool-Down", content: "Preparing the body for exercise and aiding recovery afterward.", references: [] },
-  { id: "55", category: "health-wellness", title: "Common Injuries and Treatments", content: "Information on preventing and treating common fitness injuries like sprains and strains.", references: [] } 
+  { id: "55", category: "health-wellness", title: "Common Injuries and Treatments", content: "Information on preventing and treating common fitness injuries like sprains and strains.", references: [] },
+
+  // Popular Fitness Influencers
+  { id: "56", category: "fitness-influencers", title: "Strength Training Influencer", content: "Bio and key teachings of a popular strength training influencer.", references: [ "https://strength-influencer.com" ] },
+  { id: "57", category: "fitness-influencers", title: "Nutrition Expert Influencer", content: "Bio and key teachings of a popular nutrition expert.", references: [ "https://nutrition-expert.com" ] },
+  { id: "58", category: "fitness-influencers", title: "Cardio and Endurance Influencer", content: "Bio and key teachings of a popular cardio and endurance influencer.", references: [ "https://cardio-influencer.com" ] },
+  { id: "59", category: "fitness-influencers", title: "Yoga and Flexibility Influencer", content: "Bio and key teachings of a popular yoga and flexibility influencer.", references: [ "https://yoga-influencer.com" ] }
 ];
 
 export const seedDictionary = async () => {
