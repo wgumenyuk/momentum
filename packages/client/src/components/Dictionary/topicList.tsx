@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 interface TopicListProps {
   topics: DictionaryTopicType[];
+  onTopicClick: (topicId: string) => void;
 }
 
 export const TopicList: React.FC<TopicListProps> = ({ topics }) => {
