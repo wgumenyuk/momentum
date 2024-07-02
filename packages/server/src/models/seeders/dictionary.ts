@@ -66,7 +66,18 @@ const dictionaryTopics = [
   { id: "43", category: "fitness-concepts", title: "Cardiorespiratory Fitness", content: "The efficiency with which the body delivers oxygen and nutrients needed for muscular activity.", references: [] },
   { id: "44", category: "fitness-concepts", title: "Periodization", content: "Systematically varying training intensity and volume to maximize performance gains.", references: [] },
   { id: "45", category: "fitness-concepts", title: "VO2 Max", content: "The maximum rate of oxygen consumption measured during incremental exercise.", references: [] },
-  { id: "46", category: "fitness-concepts", title: "Lactic Threshold", content: "The exercise intensity at which lactate starts to accumulate in the blood.", references: [] }
+  { id: "46", category: "fitness-concepts", title: "Lactic Threshold", content: "The exercise intensity at which lactate starts to accumulate in the blood.", references: [] },
+
+  // Health and Wellness
+  { id: "47", category: "health-wellness", title: "Stress Management", content: "Techniques such as meditation, deep breathing, and exercise to reduce stress.", references: [] },
+  { id: "48", category: "health-wellness", title: "Mindfulness", content: "Practices like meditation and yoga to promote mental clarity and relaxation.", references: [] },
+  { id: "49", category: "health-wellness", title: "Yoga", content: "Combines physical postures, breathing exercises, and meditation to promote overall health.", references: [] },
+  { id: "50", category: "health-wellness", title: "Sleep", content: "Essential for muscle recovery, hormone balance, and overall health.", references: [] },
+  { id: "51", category: "health-wellness", title: "Stretching", content: "Improves flexibility and reduces muscle tension.", references: [] },
+  { id: "52", category: "health-wellness", title: "Foam Rolling", content: "Self-myofascial release technique to alleviate muscle tightness.", references: [] },
+  { id: "53", category: "health-wellness", title: "Proper Form", content: "Using correct techniques during exercises to prevent injuries.", references: [] },
+  { id: "54", category: "health-wellness", title: "Warm-Up and Cool-Down", content: "Preparing the body for exercise and aiding recovery afterward.", references: [] },
+  { id: "55", category: "health-wellness", title: "Common Injuries and Treatments", content: "Information on preventing and treating common fitness injuries like sprains and strains.", references: [] } 
 ];
 
 export const seedDictionary = async () => {
