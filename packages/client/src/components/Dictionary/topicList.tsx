@@ -2,7 +2,7 @@ import React from "react";
 import { DictionaryTopicType } from "@momentum/shared";
 import { Link } from "react-router-dom";
 
-interface TopicListProps {
+export interface TopicListProps {
   topics: DictionaryTopicType[];
   onTopicClick: (topicId: string) => void;
 }
