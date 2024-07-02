@@ -58,7 +58,15 @@ const dictionaryTopics = [
   { id: "37", category: "training-programs", title: "PPL (Push, Pull, Legs)", content: "A split routine that divides workouts into push (chest, shoulders, triceps), pull (back, biceps), and legs.", references: [] },
   { id: "38", category: "training-programs", title: "Upper/Lower Split", content: "Alternates between upper-body and lower-body workouts.", references: [] },
   { id: "39", category: "training-programs", title: "Full Body Workouts", content: "Engages all major muscle groups in a single workout session.", references: [] },
-  { id: "40", category: "training-programs", title: "HIIT (High-Intensity Interval Training)", content: "Combines short bursts of intense exercise with periods of rest or lower-intensity exercise.", references: [] }
+  { id: "40", category: "training-programs", title: "HIIT (High-Intensity Interval Training)", content: "Combines short bursts of intense exercise with periods of rest or lower-intensity exercise.", references: [] },
+
+  // Fitness Concepts
+  { id: "41", category: "fitness-concepts", title: "Progressive Overload", content: "Gradually increasing the weight, frequency, or number of repetitions in workouts to continually challenge muscles.", references: [] },
+  { id: "42", category: "fitness-concepts", title: "Muscle Hypertrophy", content: "The process of increasing muscle size through exercise.", references: [] },
+  { id: "43", category: "fitness-concepts", title: "Cardiorespiratory Fitness", content: "The efficiency with which the body delivers oxygen and nutrients needed for muscular activity.", references: [] },
+  { id: "44", category: "fitness-concepts", title: "Periodization", content: "Systematically varying training intensity and volume to maximize performance gains.", references: [] },
+  { id: "45", category: "fitness-concepts", title: "VO2 Max", content: "The maximum rate of oxygen consumption measured during incremental exercise.", references: [] },
+  { id: "46", category: "fitness-concepts", title: "Lactic Threshold", content: "The exercise intensity at which lactate starts to accumulate in the blood.", references: [] }
 ];
 
 export const seedDictionary = async () => {
