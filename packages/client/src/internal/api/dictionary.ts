@@ -1,7 +1,10 @@
 import { request } from "$internal/api/request";
-import { Response, DictionaryCategoryType, DictionaryTopicType } from "@momentum/shared";
 
-type GetAllCategoriesResponse = {
+// Types
+import type { DictionaryCategoryType, DictionaryTopicType } from "@momentum/shared";
+import type { Endpoint } from "$internal/api/request";
+
+type GetCategoriesResponse = {
   categories: DictionaryCategoryType[];
 };
 
@@ -13,8 +16,28 @@ type GetTopicDetailResponse = {
   topic: DictionaryTopicType;
 };
 
+/**
+  Dictionary API.
+*/
 export const DictionaryService = {
-  getCategories: () => request<Response<GetAllCategoriesResponse>>("GET", "/dictionary/categories"),
-  getTopicsByCategory: (category: string) => request<Response<GetTopicsByCategoryResponse>>("GET", `/dictionary/topics/${category}`),
-  getTopicDetail: (id: string) => request<Response<GetTopicDetailResponse>>("GET", `/dictionary/topic/${id}`)
+  /**
+    Fetches all dictionary categories.
+  */
+  getCategories: () => {
+    return request<GetCategoriesResponse>("GET", "/dictionary/categories" as Endpoint);
+  },
+
+  /**
+    Fetches all topics within a category.
+  */
+  getTopicsByCategory: (category: string) => {
+    return request<GetTopicsByCategoryResponse>("GET", `/dictionary/topics/${category}` as Endpoint);
+  },
+
+  /**
+    Fetches detailed information about a specific topic.
+  */
+  getTopicDetail: (id: string) => {
+    return request<GetTopicDetailResponse>("GET", `/dictionary/topic/${id}` as Endpoint);
+  }
 };

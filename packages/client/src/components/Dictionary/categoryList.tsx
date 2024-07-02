@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 
 interface CategoryListProps {
   categories: DictionaryCategoryType[];
+  onCategoryClick: (categoryId: string) => void;
 }
 
 export const CategoryList: React.FC<CategoryListProps> = ({ categories }) => {
