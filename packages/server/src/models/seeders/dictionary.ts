@@ -48,7 +48,17 @@ const dictionaryTopics = [
   { id: "29", category: "nutrition", title: "Protein Powders", content: "Supplements to increase protein intake. Commonly used by athletes and bodybuilders.", references: [] },
   { id: "30", category: "nutrition", title: "Creatine", content: "Enhances muscle mass and performance.", references: [] },
   { id: "31", category: "nutrition", title: "Multivitamins", content: "Supplements providing a range of essential vitamins and minerals.", references: [] },
-  { id: "32", category: "nutrition", title: "Omega-3 Fatty Acids", content: "Important for heart health, found in fish oil and flaxseed oil.", references: [] }
+  { id: "32", category: "nutrition", title: "Omega-3 Fatty Acids", content: "Important for heart health, found in fish oil and flaxseed oil.", references: [] },
+
+  // Training Programs
+  { id: "33", category: "training-programs", title: "Hypertrophy", content: "Focuses on increasing muscle size through higher reps and moderate weights.", references: [] },
+  { id: "34", category: "training-programs", title: "Strength", content: "Aims to increase overall strength using lower reps and heavier weights.", references: [] },
+  { id: "35", category: "training-programs", title: "Endurance", content: "Focuses on improving muscular endurance with higher reps and lower weights.", references: [] },
+  { id: "36", category: "training-programs", title: "Flexibility", content: "Aims to enhance flexibility through stretching exercises and yoga.", references: [] },
+  { id: "37", category: "training-programs", title: "PPL (Push, Pull, Legs)", content: "A split routine that divides workouts into push (chest, shoulders, triceps), pull (back, biceps), and legs.", references: [] },
+  { id: "38", category: "training-programs", title: "Upper/Lower Split", content: "Alternates between upper-body and lower-body workouts.", references: [] },
+  { id: "39", category: "training-programs", title: "Full Body Workouts", content: "Engages all major muscle groups in a single workout session.", references: [] },
+  { id: "40", category: "training-programs", title: "HIIT (High-Intensity Interval Training)", content: "Combines short bursts of intense exercise with periods of rest or lower-intensity exercise.", references: [] }
 ];
 
 export const seedDictionary = async () => {
