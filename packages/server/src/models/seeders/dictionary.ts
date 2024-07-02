@@ -100,7 +100,13 @@ const dictionaryTopics = [
   { id: "69", category: "motivation-mindset", title: "Fitness Journals", content: "Recording workouts, nutrition, and progress.", references: [] },
   { id: "70", category: "motivation-mindset", title: "Apps and Tools", content: "Digital tools to track and analyze fitness progress.", references: [] },
   { id: "71", category: "motivation-mindset", title: "Overcoming Plateaus", content: "Techniques to break through fitness plateaus.", references: [] },
-  { id: "72", category: "motivation-mindset", title: "Mental Toughness", content: "Developing resilience and perseverance in training.", references: [] }
+  { id: "72", category: "motivation-mindset", title: "Mental Toughness", content: "Developing resilience and perseverance in training.", references: [] },
+
+  // Scientific Studies and Research
+  { id: "73", category: "scientific-research", title: "Landmark Research in Exercise Science", content: "Significant studies that shaped current fitness knowledge.", references: [] },
+  { id: "74", category: "scientific-research", title: "Nutrition Studies", content: "Research on diet and its impact on health and performance.", references: [] },
+  { id: "75", category: "scientific-research", title: "Latest Trends", content: "Current trends in fitness research.", references: [] },
+  { id: "76", category: "scientific-research", title: "Emerging Topics", content: "New and upcoming areas of study in fitness and nutrition.", references: [] }
 ];
 
 export const seedDictionary = async () => {
