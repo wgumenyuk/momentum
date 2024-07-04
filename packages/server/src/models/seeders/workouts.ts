@@ -4,7 +4,7 @@ import { Workout } from "$models/workout";
 
 const workoutSeeds: WorkoutType[] = [
   {
-    id: "workout1",
+    id: "workout_1",
     userId: "test_user_1",  // Reference the test user
     name: "Upper Body Strength",
     description: "A workout focused on upper body strength.",
@@ -22,7 +22,7 @@ const workoutSeeds: WorkoutType[] = [
     ]
   },
   {
-    id: "workout2",
+    id: "workout_2",
     userId: "test_user_1",  // Reference the test user
     name: "Leg Day",
     description: "A workout focused on leg strength.",
