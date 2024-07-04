@@ -12,8 +12,8 @@ import { LogoutPage } from "$pages/auth/LogoutPage";
 import { RegisterPage } from "$pages/auth/RegisterPage";
 import { HomePage } from "$pages/HomePage";
 import { ProfilePage } from "$pages/ProfilePage";
-import WorkoutStack from "$pages/workout/WorkoutStack";
 import { SocialPage } from "$pages/social";
+import { WorkoutPage } from "$pages/workout";
 import { NotFoundPage } from "$pages/NotFound";
 import "./index.css";
 import LandingPage from "$pages/general/landing_page";
@@ -29,9 +29,6 @@ const router = createBrowserRouter([
     path: "landing_page",
     element: <LandingPage/>
   },
-  
-
- 
   {
     path: "/login",
     element: <LoginPage/>
@@ -61,8 +58,7 @@ const router = createBrowserRouter([
     path: "/workouts",
     element: (
       <ProtectedRoute>
-        <WorkoutStack/>
-        <Navigation/>
+        <WorkoutPage/>
       </ProtectedRoute>
     )
   },
