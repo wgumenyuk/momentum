@@ -1,0 +1,166 @@
+import {
+  ArrowLeftIcon,
+  CheckIcon,
+  EditIcon,
+  PlusIcon,
+  TextIcon,
+  XIcon
+} from "lucide-react";
+
+// Intern
+import { Workouts } from "$internal/api";
+import { useWorkout } from "$components/WorkoutContext";
+import { Card } from "$components/Card";
+import { Input } from "$components/Input";
+
+// Types
+import type { FC } from "react";
+import type { Exercise } from "@momentum/shared";
+import type { WorkoutStack } from "$pages/workout";
+
+type AddWorkoutProps = {
+  setStack: (stack: WorkoutStack) => void;
+};
+
+type ExerciseProps = {
+  data: Exercise;
+  onDelete: () => void;
+};
+
+const Exercise: FC<ExerciseProps> = ({ onDelete, data }) => {
+  return (
+    <Card className="flex justify-between items-center">
+      <div className="flex flex-col gap-0.5">
+        <span>{data.id}</span>
+        <span className="text-blue-500 text-sm">{data.equipment.join(", ")}</span>
+      </div>
+      <div className="flex gap-2">
+        <button className="bg-blue-700 p-2 rounded-lg">
+          <EditIcon/>
+        </button>
+        <button className="bg-blue-700 p-2 rounded-lg" onClick={onDelete}>
+          <XIcon/>
+        </button>
+      </div>
+    </Card>
+  );
+};
+
+export const AddWorkout: FC<AddWorkoutProps> = ({ setStack }) => {
+  const {
+    isUpdating,
+    workoutExercises,
+    workoutId,
+    workoutName,
+    setWorkoutName,
+    workoutDescription,
+    setWorkoutDescription,
+    setWorkoutExercises
+  } = useWorkout()!;
+
+  const saveWorkout = async () => {
+    let response;
+
+    // `isUpdating` bedeutet, dass der Nutzer ein bereits vorhandenes Workout
+    // bearbeitet und aktualisiert.
+    if(isUpdating && workoutId) {
+      response = await Workouts.update(workoutId, {
+        name: workoutName,
+        description: workoutDescription,
+        exercises: workoutExercises.map((exercise) => {
+          // TODO
+          return {
+            exerciseId: exercise.id,
+            reps: 1,
+            sets: 1
+          };
+        })
+      });
+    }
+
+    // Bei `!isUpdating` wird im Gegenzug ein neues Workout erstellt und
+    // gespeichert.
+    if(!isUpdating) {
+      response = await Workouts.create({
+        name: workoutName,
+        description: workoutDescription,
+        exercises: workoutExercises.map((exercise) => {
+          // TODO
+          return {
+            exerciseId: exercise.id,
+            reps: 1,
+            sets: 1
+          };
+        })
+      });
+    }
+
+    if(!response || !response.ok) {
+      console.log(response);
+      // TODO
+      return;
+    }
+
+    setStack("workouts");
+  };
+
+  const deleteExercise = (exerciseId: string) => {
+    setWorkoutExercises((exercises) => {
+      return [ ...exercises ].filter((exercise) => exercise.id !== exerciseId);
+    }); 
+  };
+
+  return (
+    <div className="min-h-screen w-full bg-gray-900 p-6">
+      <div className="flex justify-between items-center h-8 mb-6">
+        <button className="text-grey-500" onClick={() => setStack("workouts")}>
+          <ArrowLeftIcon size="28px"/>
+        </button>
+        <button className="text-green-400" onClick={saveWorkout}>
+          <CheckIcon size="28px"/>
+        </button>
+      </div>
+      <div className="flex flex-col gap-6 w-full">
+        <Input
+          type="text"
+          placeholder="Name"
+          className="bg-blue-800"
+          value={workoutName}
+          onChange={setWorkoutName}
+          icon={TextIcon}
+        />
+        <Input
+          type="text"
+          placeholder="Description"
+          className="bg-blue-800"
+          value={workoutDescription}
+          onChange={setWorkoutDescription}
+          icon={TextIcon}
+        />
+
+        <div className="flex justify-between items-center">
+          <span className="text-lg">Exercises</span>
+          <button
+            className="bg-blue-800 p-1 rounded"
+            onClick={() => setStack("add-exercise")}
+          >
+            <PlusIcon size="28px"/>
+          </button>
+        </div>
+
+        {!workoutExercises.length && (
+          <span className="text-blue-600">No exercises yet...</span>
+        )}
+
+        {workoutExercises.length > 0 && workoutExercises.map((exercise) => (
+          <Exercise
+            key={exercise.id}
+            data={exercise}
+            onDelete={() => deleteExercise(exercise.id)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
