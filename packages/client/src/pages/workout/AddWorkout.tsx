@@ -11,6 +11,7 @@ import {
 import { Workouts } from "$internal/api";
 import { useWorkout } from "$components/WorkoutContext";
 import { Card } from "$components/Card";
+import { Button } from "$components/Button";
 import { Input } from "$components/Input";
 
 // Types
@@ -110,6 +111,17 @@ export const AddWorkout: FC<AddWorkoutProps> = ({ setStack }) => {
     }); 
   };
 
+  const handleDeleteWorkout = async () => {
+    const response = await Workouts.delete(workoutId);
+
+    if(!response || !response.ok) {
+      console.error(response);
+      return;
+    }
+
+    setStack("workouts");
+  };
+
   return (
     <div className="min-h-screen w-full bg-gray-900 p-6">
       <div className="flex justify-between items-center h-8 mb-6">
@@ -138,6 +150,8 @@ export const AddWorkout: FC<AddWorkoutProps> = ({ setStack }) => {
           icon={TextIcon}
         />
 
+        <span className="block w-full h-px bg-blue-800 rounded"/>
+
         <div className="flex justify-between items-center">
           <span className="text-lg">Exercises</span>
           <button
@@ -159,6 +173,15 @@ export const AddWorkout: FC<AddWorkoutProps> = ({ setStack }) => {
             onDelete={() => deleteExercise(exercise.id)}
           />
         ))}
+
+        {isUpdating && (
+          <>
+            <span className="block w-full h-px bg-blue-800 rounded"/>
+            <Button variant="red" onClick={handleDeleteWorkout}>
+              Delete
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
