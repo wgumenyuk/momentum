@@ -13,7 +13,7 @@ import { RegisterPage } from "$pages/auth/RegisterPage";
 import { HomePage } from "$pages/HomePage";
 import { ProfilePage } from "$pages/ProfilePage";
 import { SocialPage } from "$pages/social";
-import { WorkoutPage } from "$pages/workout";
+import { WorkoutsPage } from "$pages/workouts";
 import { NotFoundPage } from "$pages/NotFound";
 import "./index.css";
 import LandingPage from "$pages/general/landing_page";
@@ -58,7 +58,7 @@ const router = createBrowserRouter([
     path: "/workouts",
     element: (
       <ProtectedRoute>
-        <WorkoutPage/>
+        <WorkoutsPage/>
       </ProtectedRoute>
     )
   },

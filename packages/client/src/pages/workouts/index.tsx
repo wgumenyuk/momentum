@@ -3,11 +3,11 @@ import { useState } from "react";
 // Intern
 import { BackgroundLayout } from "$components/Background";
 import { WorkoutProvider } from "$components/WorkoutContext";
-import { Workouts } from "$pages/workout/Workouts";
-import { AddWorkout } from "$pages/workout/AddWorkout";
-import { AddExercise } from "$pages/workout/AddExercise";
-import { EditExercise } from "$pages/workout/EditExercise";
-import { Filter } from "$pages/workout/Filter";
+import { Workouts } from "$pages/workouts/Workouts";
+import { AddWorkout } from "$pages/workouts/AddWorkout";
+import { AddExercise } from "$pages/workouts/AddExercise";
+import { EditExercise } from "$pages/workouts/EditExercise";
+import { Filter } from "$pages/workouts/Filter";
 
 // Types
 import type { FC } from "react";
@@ -15,7 +15,7 @@ import type { FC } from "react";
 export type WorkoutStack =
   "workouts" | "add-workout" | "add-exercise" | "edit-exercise" | "filter";
 
-export const WorkoutPage: FC = () => {
+export const WorkoutsPage: FC = () => {
   const [ stack, setStack ] = useState<WorkoutStack>("workouts");
 
   const render = () => {

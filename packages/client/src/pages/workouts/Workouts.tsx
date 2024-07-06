@@ -10,7 +10,7 @@ import { Navigation } from "$components/Navigation";
 // Types
 import type { FC } from "react";
 import type { Workout, Workout as WorkoutType } from "@momentum/shared";
-import type { WorkoutStack } from "$pages/workout";
+import type { WorkoutStack } from "$pages/workouts";
 
 type WorkoutsProps = {
   setStack: (stack: WorkoutStack) => void;
