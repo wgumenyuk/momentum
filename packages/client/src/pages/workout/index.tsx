@@ -6,6 +6,7 @@ import { WorkoutProvider } from "$components/WorkoutContext";
 import { Workouts } from "$pages/workout/Workouts";
 import { AddWorkout } from "$pages/workout/AddWorkout";
 import { AddExercise } from "$pages/workout/AddExercise";
+import { EditExercise } from "$pages/workout/EditExercise";
 import { Filter } from "$pages/workout/Filter";
 
 // Types
@@ -22,6 +23,7 @@ export const WorkoutPage: FC = () => {
       case "workouts": return <Workouts setStack={setStack}/>;
       case "add-workout": return <AddWorkout setStack={setStack}/>;
       case "add-exercise": return <AddExercise setStack={setStack}/>;
+      case "edit-exercise": return <EditExercise setStack={setStack}/>;
       case "filter": return <Filter setStack={setStack}/>;
     }
   };

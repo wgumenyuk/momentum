@@ -17,6 +17,7 @@ import { Input } from "$components/Input";
 // Types
 import type { FC } from "react";
 import type { Exercise } from "@momentum/shared";
+import type { WorkoutExercise } from "$components/WorkoutContext";
 import type { WorkoutStack } from "$pages/workout";
 
 type AddWorkoutProps = {
@@ -24,11 +25,19 @@ type AddWorkoutProps = {
 };
 
 type ExerciseProps = {
-  data: Exercise;
+  data: WorkoutExercise;
+  setStack: (stack: WorkoutStack) => void;
   onDelete: () => void;
 };
 
-const Exercise: FC<ExerciseProps> = ({ onDelete, data }) => {
+const Exercise: FC<ExerciseProps> = ({ setStack, onDelete, data }) => {
+  const { setExercise } = useWorkout()!;
+
+  const handleEditClick = () => {
+    setExercise(data);
+    setStack("edit-exercise");
+  };
+
   return (
     <Card className="flex justify-between items-center">
       <div className="flex flex-col gap-0.5">
@@ -36,7 +45,7 @@ const Exercise: FC<ExerciseProps> = ({ onDelete, data }) => {
         <span className="text-blue-500 text-sm">{data.equipment.join(", ")}</span>
       </div>
       <div className="flex gap-2">
-        <button className="bg-blue-700 p-2 rounded-lg">
+        <button className="bg-blue-700 p-2 rounded-lg" onClick={handleEditClick}>
           <EditIcon/>
         </button>
         <button className="bg-blue-700 p-2 rounded-lg" onClick={onDelete}>
@@ -69,11 +78,10 @@ export const AddWorkout: FC<AddWorkoutProps> = ({ setStack }) => {
         name: workoutName,
         description: workoutDescription,
         exercises: workoutExercises.map((exercise) => {
-          // TODO
           return {
             exerciseId: exercise.id,
-            reps: 1,
-            sets: 1
+            sets: exercise.sets,
+            reps: exercise.reps
           };
         })
       });
@@ -86,11 +94,10 @@ export const AddWorkout: FC<AddWorkoutProps> = ({ setStack }) => {
         name: workoutName,
         description: workoutDescription,
         exercises: workoutExercises.map((exercise) => {
-          // TODO
           return {
             exerciseId: exercise.id,
-            reps: 1,
-            sets: 1
+            sets: exercise.sets, 
+            reps: exercise.reps
           };
         })
       });
@@ -170,6 +177,7 @@ export const AddWorkout: FC<AddWorkoutProps> = ({ setStack }) => {
           <Exercise
             key={exercise.id}
             data={exercise}
+            setStack={setStack}
             onDelete={() => deleteExercise(exercise.id)}
           />
         ))}
