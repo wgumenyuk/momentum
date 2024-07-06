@@ -38,11 +38,14 @@ const Workout: FC<WorkoutProps> = ({ setStack, data }) => {
     setWorkoutDescription(data.description);
 
     if(exercises.length > 0) {
-      setWorkoutExercises(
-        data.exercises.map(({ exerciseId }) => {
-          return exercises.find((exercise) => exercise.id === exerciseId)!;
-        })
-      );
+      const workoutExercises = data.exercises.map((exercise) => {
+        return {
+          ...exercises.find((e) => e.id === exercise.exerciseId)!,
+          ...exercise
+        }; 
+      });
+
+      setWorkoutExercises(workoutExercises);
     }
 
     setStack("add-workout"); 
@@ -74,7 +77,8 @@ export const Workouts: FC<WorkoutsProps> = ({ setStack }) => {
     setWorkoutId,
     setWorkoutName,
     setWorkoutDescription,
-    setWorkoutExercises
+    setWorkoutExercises,
+    setExercise
   } = useWorkout()!;
 
   const fetchWorkouts = async () => {
@@ -94,6 +98,7 @@ export const Workouts: FC<WorkoutsProps> = ({ setStack }) => {
     setWorkoutName("");
     setWorkoutDescription("");
     setWorkoutExercises([]);
+    setExercise(null);
 
     if(workouts.length === 0) {
       fetchWorkouts();
