@@ -11,7 +11,8 @@ import { useWorkout } from "$components/WorkoutContext";
 // Types
 import type { FC } from "react";
 import type { Exercise } from "@momentum/shared";
-import type { WorkoutStack } from "$pages/workout";
+import type { WorkoutExercise } from "$components/WorkoutContext";
+import type { WorkoutStack } from "$pages/workouts";
 
 type AddExerciseProps = {
   setStack: (stack: WorkoutStack) => void;
@@ -83,7 +84,7 @@ export const AddExercise: FC<AddExerciseProps> = ({ setStack }) => {
     setWorkoutExercises((exercises: Exercise[]) => [
       ...exercises,
       exercise
-    ]);
+    ] as WorkoutExercise[]);
 
     setStack("add-workout");
   };

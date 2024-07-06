@@ -8,7 +8,7 @@ import { useWorkout } from "$components/WorkoutContext";
 
 // Types
 import type { FC } from "react";
-import type { WorkoutStack } from "$pages/workout";
+import type { WorkoutStack } from "$pages/workouts";
 
 type FilterProps = {
   setStack: (stack: WorkoutStack) => void;

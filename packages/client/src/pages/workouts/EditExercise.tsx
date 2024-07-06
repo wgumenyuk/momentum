@@ -13,7 +13,7 @@ import { Button } from "$components/Button";
 
 // Types
 import type { FC } from "react";
-import type { WorkoutStack } from "$pages/workout";
+import type { WorkoutStack } from "$pages/workouts";
 
 type EditExerciseProps = {
   setStack: (stack: WorkoutStack) => void;
