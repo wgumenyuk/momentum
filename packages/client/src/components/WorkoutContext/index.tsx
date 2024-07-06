@@ -4,7 +4,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { Exercises as ExercisesApi } from "$internal/api";
 
 // Types
-import type { FC, ReactNode } from "react";
+import type { Dispatch, FC, ReactNode, SetStateAction } from "react";
 import type { Exercise } from "@momentum/shared";
 
 type Filter = {
@@ -15,17 +15,24 @@ type Filter = {
   legs: boolean;
 };
 
+export type WorkoutExercise = Exercise & {
+  reps: number;
+  sets: number;
+};
+
 type WorkoutContextType = {
   isUpdating: boolean;
   setIsUpdating: (value: boolean) => void;
   exercises: Exercise[];
   setExercises: (exercises: Exercise[]) => void;
+  exercise: WorkoutExercise | null;
+  setExercise: Dispatch<SetStateAction<WorkoutExercise | null>>;
   filter: Filter;
   setFilter: (filter: Filter) => void;
-  workoutExercises: Exercise[];
+  workoutExercises: WorkoutExercise[];
   setWorkoutExercises: (
-    exercises: Exercise[] |
-    ((exercises: Exercise[]) => Exercise[])
+    exercises: WorkoutExercise[] |
+    ((exercises: WorkoutExercise[]) => WorkoutExercise[])
   ) => void;
   workoutId: string;
   setWorkoutId: (id: string) => void;
@@ -47,6 +54,7 @@ const WorkoutContext = createContext<WorkoutContextType | null>(null);
 export const WorkoutProvider: FC<WorkoutProviderProps> = ({ children }) => {
   const [ isUpdating, setIsUpdating ] = useState(false);
   const [ exercises, setExercises ] = useState<Exercise[]>([]);
+  const [ exercise, setExercise ] = useState<WorkoutExercise | null>(null);
   
   const [ filter, setFilter ] = useState<Filter>({
     chest: true,
@@ -56,7 +64,7 @@ export const WorkoutProvider: FC<WorkoutProviderProps> = ({ children }) => {
     legs: true
   });
 
-  const [ workoutExercises, setWorkoutExercises ] = useState<Exercise[]>([]);
+  const [ workoutExercises, setWorkoutExercises ] = useState<WorkoutExercise[]>([]);
   const [ workoutId, setWorkoutId ] = useState("");
   const [ workoutName, setWorkoutName ] = useState("");
   const [ workoutDescription, setWorkoutDescription ] = useState("");
@@ -82,6 +90,8 @@ export const WorkoutProvider: FC<WorkoutProviderProps> = ({ children }) => {
       setIsUpdating,
       exercises,
       setExercises,
+      exercise,
+      setExercise,
       filter,
       setFilter,
       workoutExercises,
