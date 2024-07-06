@@ -13,7 +13,7 @@ export const Countdown: FC<CountdownProps> = ({ onEnd, seconds: _seconds }) => {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      if(seconds - 1 === 0) {
+      if(seconds - 1 < 0) {
         clearInterval(interval);
         return onEnd();
       }
@@ -24,7 +24,7 @@ export const Countdown: FC<CountdownProps> = ({ onEnd, seconds: _seconds }) => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [ seconds ]);
 
   const render = (time: number) => {
     const minutes = Math.floor(time / 60);
