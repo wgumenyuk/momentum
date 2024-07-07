@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { PlusIcon, EditIcon } from "lucide-react";
 
 // Intern
@@ -22,16 +23,19 @@ type WorkoutProps = {
 };
 
 const Workout: FC<WorkoutProps> = ({ setStack, data }) => {
+  const navigate = useNavigate();
+
   const {
     setIsUpdating,
     setWorkoutId,
     setWorkoutName,
     setWorkoutDescription,
     setWorkoutExercises,
+    setActiveWorkout,
     exercises
   } = useWorkout()!;
 
-  const handleClick = () => {
+  const handleClickEdit = () => {
     setIsUpdating(true);
     setWorkoutId(data.id);
     setWorkoutName(data.name);
@@ -51,17 +55,38 @@ const Workout: FC<WorkoutProps> = ({ setStack, data }) => {
     setStack("add-workout"); 
   };
 
+  const handleStartWorkout = () => {
+    if(!exercises.length) {
+      return;
+    }
+
+    setActiveWorkout({
+      workoutId: data.id,
+      startedAt: new Date(),
+      finishedAt: new Date(),
+      exercises: data.exercises.map((exercise) => {
+        return [ ...new Array(exercise.sets) ].map(() => ({
+          exerciseId: exercise.exerciseId,
+          reps: 0,
+          weight: 0
+        })); 
+      })
+    });
+
+    navigate("/workout");
+  };
+
   return (
     <Card className="flex justify-between items-center">
-      <div className="flex flex-col gap-0.5">
+      <div className="flex flex-col gap-0.5" onClick={handleStartWorkout}>
         <span>{data.name}</span>
         {data.description && (
           <span className="text-blue-500">{data.description}</span>
         )}
       </div>
       <button
-        className="bg-blue-700 p-3 rounded-lg"
-        onClick={handleClick}
+        className="bg-blue-700 p-3 rounded-lg z-10"
+        onClick={handleClickEdit}
       >
         <EditIcon/>
       </button>

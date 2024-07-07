@@ -1,11 +1,12 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 
 // Intern
 import { Exercises as ExercisesApi } from "$internal/api";
 
 // Types
 import type { Dispatch, FC, ReactNode, SetStateAction } from "react";
-import type { Exercise } from "@momentum/shared";
+import type { Exercise, PastWorkoutSchemaType } from "@momentum/shared";
 
 type Filter = {
   chest: boolean;
@@ -40,10 +41,12 @@ type WorkoutContextType = {
   setWorkoutName: (name: string) => void;
   workoutDescription: string;
   setWorkoutDescription: (description: string) => void;
+  activeWorkout: PastWorkoutSchemaType | null;
+  setActiveWorkout: Dispatch<SetStateAction<PastWorkoutSchemaType | null>>;
 };
 
 type WorkoutProviderProps = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 const WorkoutContext = createContext<WorkoutContextType | null>(null);
@@ -51,7 +54,7 @@ const WorkoutContext = createContext<WorkoutContextType | null>(null);
 /**
   Provider für den dekodierten JWT-Payload.
 */
-export const WorkoutProvider: FC<WorkoutProviderProps> = ({ children }) => {
+export const WorkoutProvider: FC<WorkoutProviderProps> = () => {
   const [ isUpdating, setIsUpdating ] = useState(false);
   const [ exercises, setExercises ] = useState<Exercise[]>([]);
   const [ exercise, setExercise ] = useState<WorkoutExercise | null>(null);
@@ -68,6 +71,11 @@ export const WorkoutProvider: FC<WorkoutProviderProps> = ({ children }) => {
   const [ workoutId, setWorkoutId ] = useState("");
   const [ workoutName, setWorkoutName ] = useState("");
   const [ workoutDescription, setWorkoutDescription ] = useState("");
+
+  const [
+    activeWorkout,
+    setActiveWorkout
+  ] = useState<PastWorkoutSchemaType | null>(null);
 
   const fetchExercises = async () => {
     const response = await ExercisesApi.getAll();
@@ -101,9 +109,11 @@ export const WorkoutProvider: FC<WorkoutProviderProps> = ({ children }) => {
       workoutName,
       setWorkoutName,
       workoutDescription,
-      setWorkoutDescription
+      setWorkoutDescription,
+      activeWorkout,
+      setActiveWorkout
     }}>
-      {children}
+      <Outlet/>
     </WorkoutContext.Provider>
   );
 };
