@@ -2,7 +2,6 @@ import { useState } from "react";
 
 // Intern
 import { BackgroundLayout } from "$components/Background";
-import { WorkoutProvider } from "$components/WorkoutContext";
 import { Workouts } from "$pages/workouts/Workouts";
 import { AddWorkout } from "$pages/workouts/AddWorkout";
 import { AddExercise } from "$pages/workouts/AddExercise";
@@ -30,9 +29,7 @@ export const WorkoutsPage: FC = () => {
 
   return (
     <BackgroundLayout>
-      <WorkoutProvider>
-        {render()}
-      </WorkoutProvider>
+      {render()}
     </BackgroundLayout>
   );
 };
