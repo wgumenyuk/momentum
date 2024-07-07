@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // Intern
 import { JwtProvider } from "$components/JwtContext";
+import { WorkoutProvider } from "$components/WorkoutContext";
 import { ProtectedRoute } from "$components/ProtectedRoute";
 import { Navigation } from "$components/Navigation";
 import { MainPage } from "$pages/MainPage";
@@ -14,6 +15,7 @@ import { HomePage } from "$pages/HomePage";
 import { ProfilePage } from "$pages/ProfilePage";
 import { SocialPage } from "$pages/social";
 import { WorkoutsPage } from "$pages/workouts";
+import { WorkoutPage } from "$pages/WorkoutPage";
 import { NotFoundPage } from "$pages/NotFound";
 import "./index.css";
 import LandingPage from "$pages/general/landing_page";
@@ -55,12 +57,21 @@ const router = createBrowserRouter([
     )
   },
   {
-    path: "/workouts",
     element: (
       <ProtectedRoute>
-        <WorkoutsPage/>
+        <WorkoutProvider/>
       </ProtectedRoute>
-    )
+    ),
+    children: [
+      {
+        path: "/workout",
+        element: <WorkoutPage/>
+      },
+      {
+        path: "/workouts",
+        element: <WorkoutsPage/>
+      }
+    ]
   },
   {
     path: "/social",
