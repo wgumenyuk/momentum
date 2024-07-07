@@ -202,18 +202,50 @@ export type WorkoutSchemaType = z.infer<typeof WorkoutSchema>;
 /**
   Schema für erledigte Workouts.
 */
-export const PastWorkoutSchema = WorkoutSchema.extend({
+export const PastWorkoutSchema = z.object({
+  /**
+    Workout-ID.
+  */
+  workoutId: z.string({
+    message: ErrorCode.InternalError
+  }),
+
+  /**
+    Liste von Übungen.
+  */
+  exercises: z.array(
+    z.array(
+      z.object({
+        exerciseId: z.string(),
+        reps: z
+          .number({
+            message: ErrorCode.InvalidNumber
+          })
+          .gte(0, {
+            message: ErrorCode.InvalidNumber
+          }),
+        weight: z
+          .number({
+            message: ErrorCode.InvalidNumber
+          })
+          .gte(0, {
+            message: ErrorCode.InvalidNumber
+          })
+      })
+    )
+  ),
+
   /**
     Zeitpunkt des Starts.
   */
-  startedAt: z.date({
+  startedAt: z.coerce.date({
     message: ErrorCode.InvalidDate
   }),
 
   /**
     Zeitpunkt des Endes.
   */
-  finishedAt: z.date({
+  finishedAt: z.coerce.date({
     message: ErrorCode.InvalidDate
   })
 });

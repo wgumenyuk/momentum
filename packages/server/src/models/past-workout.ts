@@ -19,11 +19,13 @@ const PastWorkoutSchema = new Schema<PastWorkoutType>({
   },
   exercises: {
     type: [
-      {
-        exerciseId: "string",
-        sets: "number",
-        reps: "number"
-      }
+      [
+        {
+          exerciseId: "string",
+          sets: "number",
+          reps: "number"
+        }
+      ]
     ]
   },
   startedAt: {
