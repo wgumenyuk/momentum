@@ -13,6 +13,7 @@ import { useWorkout } from "$components/WorkoutContext";
 import { Card } from "$components/Card";
 import { Button } from "$components/Button";
 import { Input } from "$components/Input";
+import { Separator } from "$components/Separator";
 
 // Types
 import type { FC } from "react";
@@ -157,7 +158,7 @@ export const AddWorkout: FC<AddWorkoutProps> = ({ setStack }) => {
           icon={TextIcon}
         />
 
-        <span className="block w-full h-px bg-blue-800 rounded"/>
+        <Separator/>
 
         <div className="flex justify-between items-center">
           <span className="text-lg">Exercises</span>
@@ -184,7 +185,7 @@ export const AddWorkout: FC<AddWorkoutProps> = ({ setStack }) => {
 
         {isUpdating && (
           <>
-            <span className="block w-full h-px bg-blue-800 rounded"/>
+            <Separator/>
             <Button variant="red" onClick={handleDeleteWorkout}>
               Delete
             </Button>
