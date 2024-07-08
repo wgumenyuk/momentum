@@ -7,7 +7,7 @@ import type {
 } from "@momentum/shared";
 
 type GetAllResponse = {
-  workouts: PastWorkoutType[];
+  workouts: PastWorkoutSchemaType[];
 };
 
 type GetResponse = {
