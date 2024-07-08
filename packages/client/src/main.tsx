@@ -95,7 +95,9 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFoundPage/>
   }
-]);
+], {
+  basename: (process.env.NODE_ENV === "production") ? "/momentum" : ""
+});
 
 createRoot(root).render(
   <React.StrictMode>
