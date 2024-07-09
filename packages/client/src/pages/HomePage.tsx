@@ -6,7 +6,6 @@ import { useJwt } from "$components/JwtContext";
 import { BackgroundLayout } from "$components/Background";
 import { Separator } from "$components/Separator";
 import { Card } from "$components/Card";
-import { Loader } from "$components/Loader";
 
 // Types
 import type { FC } from "react";
@@ -77,12 +76,6 @@ export const HomePage: FC = () => {
               👋
             </span>
           </Card>
-
-          <Separator/>
-          
-          <div className="flex justify-center py-8">
-            <Loader/>
-          </div>
 
           <Separator/>
 
