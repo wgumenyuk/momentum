@@ -28,7 +28,7 @@ const Location: FC<LocationProps> = ({ to, icon, children }) => {
     "h-16",
     "rounded-xl",
     {
-      "bg-blue-800": (location.pathname === to)
+      "bg-blue-800": (location.pathname.endsWith(to))
     }
   );
 
