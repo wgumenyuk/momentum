@@ -187,8 +187,14 @@ const Weight: FC<WeightProps> = ({
 
 const Privacy: FC<PrivacyProps> = ({ isPrivate, setIsPrivate }) => {
   const toggleAndSaveValue = async (value: boolean) => {
-    setIsPrivate(value);
-    await User.updateProfilePrivacy(value);
+    const response = await User.updateProfilePrivacy(!value);
+
+    if(!response || !response.ok) {
+      console.error(response);
+      return;
+    }
+
+    setIsPrivate(!value);
   };
 
   return (
