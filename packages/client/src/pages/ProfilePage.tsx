@@ -125,7 +125,7 @@ const DisplayName: FC<DisplayNameProps> = ({
 const Weight: FC<WeightProps> = ({
   initialWeight
 }) => {
-  const [ weight, setWeight ] = useState(initialWeight);
+  const [ weight, setWeight ] = useState(initialWeight || 0);
   const [ showSuccess, setShowSuccess ] = useState(false);
   const [ error, setError ] = useState(false);
 
