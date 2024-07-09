@@ -92,14 +92,14 @@ export const HomePage: FC = () => {
             <span className="text-blue-500 text-center">It's pretty empty here...</span>
           )}
 
-          {pastWorkouts.length && pastWorkouts.map((workout, i) => (
+          {pastWorkouts.length > 0 && pastWorkouts.map((workout, i) => (
             <Card key={i} className="flex flex-col gap-0.5">
               <span>Workout</span>
               <span className="text-blue-500">{formatDate(workout.startedAt)}</span>
             </Card>
           ))}
 
-          {pastWorkouts.length && (
+          {pastWorkouts.length > 0 && (
             <span className="text-blue-500 text-center">No more data...</span>
           )}
         </div>
